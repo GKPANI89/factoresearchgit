@@ -2,9 +2,9 @@ export const DEFAULT_SITE_ORIGIN = 'https://factoresearch.com';
 
 export const ROUTE_SEO = {
     '/': {
-        title: 'Facto Research | Equity Research & Stock Market Analysis',
+        title: 'Facto Research | SEBI Registered Research Analyst & Stock Market Analysis',
         description:
-            'Facto Research provides data-driven equity research, market analysis, and investment insights backed by SEBI-registered expertise.',
+            'Facto Research is a SEBI-registered research analyst brand offering data-driven equity research, stock market analysis, and investment insights for Indian markets.',
         heading: 'Facto Research',
         changefreq: 'daily',
         priority: '1.0',

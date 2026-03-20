@@ -113,6 +113,7 @@ export const applyRouteSeo = (path, options = {}) => {
             '@context': 'https://schema.org',
             '@type': 'Organization',
             name: 'Facto Research',
+            alternateName: ['factoresearch', 'FactoResearch'],
             url: origin,
             email: 'support@factoresearch.com',
             logo: 'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:178,h:178,cg:true,m/cr=w:178,h:178/qt=q:95',
@@ -121,6 +122,7 @@ export const applyRouteSeo = (path, options = {}) => {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'Facto Research',
+            alternateName: ['factoresearch', 'FactoResearch'],
             url: origin,
             potentialAction: {
                 '@type': 'SearchAction',

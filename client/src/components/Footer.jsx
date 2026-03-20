@@ -41,6 +41,10 @@ const Footer = () => {
                                 style={{ height: '60px', marginBottom: '20px' }}
                             />
                         </div>
+                        <p className="footer-brand-copy">
+                            Facto Research is a SEBI-registered research analyst brand providing data-driven equity
+                            research, market analysis, and investment insights for Indian markets.
+                        </p>
                         <div className="social-links">
                             <a href="#" className="social-twitter" aria-label="Twitter"><Twitter size={20} /></a>
                             <a href="#" className="social-instagram" aria-label="Instagram"><Instagram size={20} /></a>

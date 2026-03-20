@@ -940,6 +940,18 @@ ul {
   margin-top: 8px;
 }
 
+.hero-title-line--brand {
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0f172a;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  animation: none;
+  margin-bottom: 12px;
+}
+
 .hero-title-line--primary {
   background-image: linear-gradient(120deg, #0f172a 0%, #1d4ed8 42%, #3b82f6 76%, #93c5fd 100%);
 }
@@ -2656,6 +2668,13 @@ ul {
   background: var(--bg-tertiary);
   padding: 40px 0 20px 0;
   border-top: 1px solid var(--glass-border);
+}
+
+.footer-brand-copy {
+  max-width: 320px;
+  margin: 0 0 18px;
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 .footer-grid {

@@ -63,6 +63,9 @@ const Hero = () => {
                         <TrendingUp size={14} /> <span>{siteData.hero.badge}</span>
                     </Motion.div>
                     <Motion.h1 variants={textItem} className="hero-title">
+                        <span className="hero-title-line hero-title-line--brand">
+                            {siteData.brand.name}
+                        </span>
                         <span className="hero-title-line hero-title-line--primary">
                             {heroTitleLines[0]}
                         </span>
@@ -124,7 +127,7 @@ const Hero = () => {
                                 </video>
                             )}
                         </div>
-                        {/* <p className="hero-video-caption">About Factoresearch</p> */}
+                        {/* <p className="hero-video-caption">About Facto Research</p> */}
                     </div>
                 </Motion.div>
             </div>

@@ -4,6 +4,18 @@
   publish = "dist"
 
 [[redirects]]
+  from = "https://www.factoresearch.com/*"
+  to = "https://factoresearch.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://factoresearch.netlify.app/*"
+  to = "https://factoresearch.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/robots.txt"
   to = "/robots.txt"
   status = 200

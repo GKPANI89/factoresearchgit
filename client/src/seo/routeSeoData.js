@@ -1,4 +1,4 @@
-export const DEFAULT_SITE_ORIGIN = 'https://factoresearch.netlify.app';
+export const DEFAULT_SITE_ORIGIN = 'https://factoresearch.com';
 
 export const ROUTE_SEO = {
     '/': {

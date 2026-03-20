@@ -79,7 +79,7 @@ const buildFallbackHtml = (routePath, seo) => {
     const currentPath = routePath === '/' ? 'Home' : seo.heading;
     const links = fallbackLinks
         .map((item) => `<a href="${item.path}">${escapeHtml(item.label)}</a>`)
-        .join(' · ');
+        .join(' | ');
 
     return `<main id="seo-static-content" aria-label="Facto Research Overview">
       <h1>${escapeHtml(seo.heading)}</h1>

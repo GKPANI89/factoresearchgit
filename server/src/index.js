@@ -50,7 +50,14 @@ if (smtpConfigErrors.length > 0) {
     console.error('SMTP configuration error:', smtpConfigErrors.join(' '));
 }
 
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
+const DEFAULT_ALLOWED_ORIGINS = [
+    'https://factoresearch.com',
+    'https://www.factoresearch.com',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+];
+
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || DEFAULT_ALLOWED_ORIGINS.join(','))
     .split(',')
     .map((origin) => origin.trim())
     .filter(Boolean);
@@ -78,8 +85,7 @@ const isAllowedOrigin = (origin) => {
         return (
             allowedOriginHosts.includes(normalizedHostname) ||
             normalizedHostname === 'localhost' ||
-            normalizedHostname === '127.0.0.1' ||
-            normalizedHostname.endsWith('.netlify.app')
+            normalizedHostname === '127.0.0.1'
         );
     } catch {
         return false;
@@ -132,7 +138,7 @@ const corsOptions = {
             return;
         }
 
-        callback(null, false);
+        callback(new Error(`CORS origin blocked: ${origin || 'unknown origin'}`));
     },
     optionsSuccessStatus: 204,
 };

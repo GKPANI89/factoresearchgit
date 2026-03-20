@@ -131,11 +131,10 @@ const buildQuoteEndpoints = () => {
     const symbols = MARKET_INDEXES.map((index) => index.symbol).join(',');
     const encoded = encodeURIComponent(symbols);
     const serverProxy = `${MARKET_API_BASE_URL}/api/market-quotes?symbols=${encoded}`;
-    const viteProxy = `/api/market-quotes?symbols=${encoded}`;
     const direct = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encoded}`;
     const cors = `https://api.allorigins.win/raw?url=${encodeURIComponent(direct)}`;
 
-    return [serverProxy, viteProxy, cors];
+    return import.meta.env.DEV ? [serverProxy, cors] : [serverProxy];
 };
 
 const extractQuoteMapFromPayload = (payload) => {

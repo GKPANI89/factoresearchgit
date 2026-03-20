@@ -102,6 +102,21 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     );
     html = replaceOrInjectInHead(
         html,
+        /<meta\s+name="googlebot"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />'
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+name="author"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta name="author" content="Facto Research" />'
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+name="theme-color"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta name="theme-color" content="#0f172a" />'
+    );
+    html = replaceOrInjectInHead(
+        html,
         /<meta\s+property="og:title"\s+content="[\s\S]*?"\s*\/?>/i,
         `<meta property="og:title" content="${escapeHtml(seo.title)}" />`
     );
@@ -117,6 +132,11 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     );
     html = replaceOrInjectInHead(
         html,
+        /<meta\s+property="og:image"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta property="og:image" content="https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:512,h:512,cg:true,m/cr=w:512,h:512/qt=q:95" />'
+    );
+    html = replaceOrInjectInHead(
+        html,
         /<meta\s+name="twitter:title"\s+content="[\s\S]*?"\s*\/?>/i,
         `<meta name="twitter:title" content="${escapeHtml(seo.title)}" />`
     );
@@ -124,6 +144,11 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
         html,
         /<meta\s+name="twitter:description"\s+content="[\s\S]*?"\s*\/?>/i,
         `<meta name="twitter:description" content="${escapeHtml(seo.description)}" />`
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+name="twitter:image"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:512,h:512,cg:true,m/cr=w:512,h:512/qt=q:95" />'
     );
     html = replaceOrInjectInHead(
         html,

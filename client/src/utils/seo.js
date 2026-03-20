@@ -79,14 +79,33 @@ export const applyRouteSeo = (path, options = {}) => {
             ? 'noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
             : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
     );
+    upsertMeta(
+        'name',
+        'googlebot',
+        noindex
+            ? 'noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+            : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+    );
+    upsertMeta('name', 'author', 'Facto Research');
+    upsertMeta('name', 'theme-color', '#0f172a');
     upsertMeta('property', 'og:type', 'website');
     upsertMeta('property', 'og:site_name', 'Facto Research');
     upsertMeta('property', 'og:title', seo.title);
     upsertMeta('property', 'og:description', seo.description);
     upsertMeta('property', 'og:url', canonicalUrl);
+    upsertMeta(
+        'property',
+        'og:image',
+        'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:512,h:512,cg:true,m/cr=w:512,h:512/qt=q:95'
+    );
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', seo.title);
     upsertMeta('name', 'twitter:description', seo.description);
+    upsertMeta(
+        'name',
+        'twitter:image',
+        'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:512,h:512,cg:true,m/cr=w:512,h:512/qt=q:95'
+    );
     upsertLink('canonical', canonicalUrl);
 
     const structuredData = [
@@ -103,6 +122,11 @@ export const applyRouteSeo = (path, options = {}) => {
             '@type': 'WebSite',
             name: 'Facto Research',
             url: origin,
+            potentialAction: {
+                '@type': 'SearchAction',
+                target: `${origin}/?q={search_term_string}`,
+                'query-input': 'required name=search_term_string',
+            },
         },
         {
             '@context': 'https://schema.org',

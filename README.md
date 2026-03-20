@@ -11,7 +11,7 @@ The frontend lives in `client/`.
 
 Set these values in `client/.env`:
 
-- `VITE_API_BASE_URL`: your Render backend URL, for example `https://factoresearch-mail-api.onrender.com`
+- `VITE_API_BASE_URL`: your API origin, for example `https://api.factoresearch.com`
 
 Run the frontend:
 
@@ -49,39 +49,36 @@ npm install
 npm run dev
 ```
 
-## Render deployment
+## Backend deployment
 
-Create a new Render Web Service with:
+Create a web service for the backend with:
 
 - Root Directory: `server`
 - Build Command: `npm install`
 - Start Command: `npm start`
 
-Set the required environment variables in Render to match `server/.env`.
+Set the required environment variables on your backend host to match `server/.env`.
 
-For `ALLOWED_ORIGINS`, include your Netlify domain, for example:
+For `ALLOWED_ORIGINS`, include your frontend domains, for example:
 
 ```text
-https://your-site.netlify.app
+https://factoresearch.com,https://www.factoresearch.com
 ```
 
-## Netlify deployment
+## Frontend deployment
 
-Set this environment variable in Netlify:
+Set this environment variable on the frontend host:
 
 ```text
-VITE_API_BASE_URL=https://your-render-service.onrender.com
+VITE_API_BASE_URL=https://api.factoresearch.com
 ```
 
-Set Netlify publish settings to:
+Build the frontend from `client/`:
 
 ```text
-Base directory: client
 Build command: npm run build
 Publish directory: client/dist
 ```
-
-Then redeploy the frontend.
 
 ## Mail behavior
 

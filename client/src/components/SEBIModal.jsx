@@ -372,7 +372,7 @@ const SEBIModal = () => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    placeholder="e.g. Ravi Kumar"
+                                    placeholder="e.g. Priya Sharma"
                                     autoComplete="name"
                                     aria-invalid={Boolean(formErrors.name)}
                                     aria-describedby={formErrors.name ? 'm-name-error' : undefined}
@@ -394,7 +394,7 @@ const SEBIModal = () => {
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleChange}
-                                    placeholder="e.g. +91 99599 37373"
+                                    placeholder="e.g. +91 99999 99999"
                                     autoComplete="tel"
                                     aria-invalid={Boolean(formErrors.phone)}
                                     aria-describedby={formErrors.phone ? 'm-phone-error' : undefined}
@@ -416,7 +416,7 @@ const SEBIModal = () => {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    placeholder="e.g. yourname@example.com"
+                                    placeholder="e.g. yourname@email.com"
                                     autoComplete="email"
                                     aria-invalid={Boolean(formErrors.email)}
                                     aria-describedby={formErrors.email ? 'm-email-error' : undefined}

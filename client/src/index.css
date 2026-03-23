@@ -884,6 +884,7 @@ select:focus-visible,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transform: translateY(-60px);
 }
 
 @media (max-width: 1440px) {
@@ -941,6 +942,7 @@ select:focus-visible,
     padding-top: 8px;
     max-width: 780px;
     margin: 0 auto;
+    transform: none;
   }
 }
 
@@ -970,8 +972,8 @@ select:focus-visible,
 
 .hero-title {
   font-size: clamp(3rem, 5.2vw, 4rem);
-  line-height: 1.06;
-  margin-bottom: 24px;
+  line-height: 1.02;
+  margin-bottom: 20px;
   white-space: normal;
   overflow-wrap: normal;
   color: #1e3a8a;
@@ -990,7 +992,7 @@ select:focus-visible,
 }
 
 .hero-title-line + .hero-title-line {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .hero-title-line--brand {
@@ -1002,7 +1004,7 @@ select:focus-visible,
   -webkit-background-clip: border-box;
   background-clip: border-box;
   animation: none;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .hero-title-line--primary {

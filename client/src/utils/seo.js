@@ -1,7 +1,15 @@
-import { BRAND_ALIASES, DEFAULT_SEO_KEYWORDS, DEFAULT_SITE_ORIGIN, ROUTE_SEO } from '../seo/routeSeoData';
+import {
+    BRAND_ALIASES,
+    BRAND_REGISTRATION_NUMBER,
+    DEFAULT_SEO_KEYWORDS,
+    DEFAULT_SITE_ORIGIN,
+    ROUTE_SEO,
+} from '../seo/routeSeoData';
 
 const BRAND_NAME = 'Facto Research';
 const BRAND_EMAIL = 'support@factoresearch.com';
+const BRAND_PHONE = '+91 99599 37373';
+const BRAND_ADDRESS = 'Anantapur, Andhra Pradesh, India';
 const BRAND_LOGO_URL =
     'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:178,h:178,cg:true,m/cr=w:178,h:178/qt=q:95';
 const BRAND_OG_IMAGE_URL =
@@ -148,6 +156,45 @@ export const applyRouteSeo = (path, options = {}) => {
             url: origin,
             email: BRAND_EMAIL,
             logo: BRAND_LOGO_URL,
+            description: 'Official website of Facto Research, a SEBI-registered Research Analyst in India.',
+            areaServed: 'IN',
+            knowsAbout: ['Equity Research', 'Stock Market Analysis', 'Technical Analysis', 'Portfolio Research'],
+            contactPoint: [
+                {
+                    '@type': 'ContactPoint',
+                    contactType: 'customer support',
+                    email: BRAND_EMAIL,
+                    telephone: BRAND_PHONE,
+                    areaServed: 'IN',
+                    availableLanguage: ['en', 'hi', 'te'],
+                },
+            ],
+        },
+        {
+            '@context': 'https://schema.org',
+            '@type': 'FinancialService',
+            '@id': `${origin}/#financial-service`,
+            name: BRAND_NAME,
+            alternateName: BRAND_ALIASES,
+            url: origin,
+            image: BRAND_OG_IMAGE_URL,
+            logo: BRAND_LOGO_URL,
+            email: BRAND_EMAIL,
+            telephone: BRAND_PHONE,
+            areaServed: 'IN',
+            address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Anantapur',
+                addressRegion: 'Andhra Pradesh',
+                addressCountry: 'IN',
+            },
+            description:
+                'Facto Research is a SEBI-registered Research Analyst in India providing equity research, market analysis, and investor-focused insights.',
+            identifier: {
+                '@type': 'PropertyValue',
+                name: 'SEBI Registration Number',
+                value: BRAND_REGISTRATION_NUMBER,
+            },
         },
         {
             '@context': 'https://schema.org',
@@ -178,6 +225,7 @@ export const applyRouteSeo = (path, options = {}) => {
             about: {
                 '@id': organizationId,
             },
+            primaryImageOfPage: BRAND_OG_IMAGE_URL,
         },
     ];
 

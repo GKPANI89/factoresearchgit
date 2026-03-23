@@ -1,12 +1,18 @@
 export const DEFAULT_SITE_ORIGIN = 'https://factoresearch.com';
 export const BRAND_ALIASES = ['Facto Research', 'facto research', 'FactoResearch', 'factoresearch', 'factoresearch.com'];
+export const BRAND_REGISTRATION_NUMBER = 'INH000024480';
 export const DEFAULT_SEO_KEYWORDS = [
     'Facto Research',
     'facto research',
     'FactoResearch',
     'factoresearch',
     'factoresearch.com',
+    'Facto Research official website',
+    'FactoResearch official site',
+    'Facto Research India',
     'SEBI registered research analyst',
+    'SEBI registered research analyst India',
+    'INH000024480',
     'stock market research India',
     'equity research India',
     'NSE BSE market analysis',
@@ -14,18 +20,18 @@ export const DEFAULT_SEO_KEYWORDS = [
 
 export const ROUTE_SEO = {
     '/': {
-        title: 'Facto Research | FactoResearch | SEBI Registered Research Analyst & Stock Market Analysis',
+        title: 'Facto Research Official Website | SEBI Registered Research Analyst In India',
         description:
-            'Facto Research (also searched as FactoResearch and factoresearch.com) is a SEBI-registered research analyst brand offering data-driven equity research, stock market analysis, and investment insights for Indian markets.',
+            'Facto Research is the official website of FactoResearch, a SEBI-registered Research Analyst in India (Registration No. INH000024480) offering data-driven equity research, stock market analysis, and investment insights.',
         keywords: DEFAULT_SEO_KEYWORDS,
         heading: 'Facto Research',
         changefreq: 'daily',
         priority: '1.0',
     },
     '/about': {
-        title: 'About Facto Research | 15 Years Of Market Experience',
+        title: 'About Facto Research | Official Brand Story & 15 Years Of Market Experience',
         description:
-            'Learn about Facto Research, our 15 years of market experience, SEBI-registered foundation, and truth-through-data research philosophy.',
+            'Learn about Facto Research, the official FactoResearch brand, our 15 years of market experience, SEBI-registered foundation, and truth-through-data research philosophy.',
         heading: 'About Facto Research',
         changefreq: 'monthly',
         priority: '0.8',
@@ -143,9 +149,9 @@ export const ROUTE_SEO = {
         priority: '0.7',
     },
     '/contact': {
-        title: 'Contact Facto Research | Get In Touch',
+        title: 'Contact Facto Research Official Website | Get In Touch',
         description:
-            'Contact Facto Research for market research enquiries, onboarding support, and service-related assistance.',
+            'Contact Facto Research through the official website for market research enquiries, onboarding support, and service-related assistance.',
         heading: 'Contact Facto Research',
         changefreq: 'monthly',
         priority: '0.8',

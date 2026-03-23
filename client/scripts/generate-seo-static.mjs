@@ -1,12 +1,25 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_SITE_ORIGIN, ORDERED_ROUTE_PATHS, ROUTE_SEO } from '../src/seo/routeSeoData.js';
+import {
+    BRAND_ALIASES,
+    DEFAULT_SEO_KEYWORDS,
+    DEFAULT_SITE_ORIGIN,
+    ORDERED_ROUTE_PATHS,
+    ROUTE_SEO,
+} from '../src/seo/routeSeoData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.resolve(__dirname, '../dist');
 const indexHtmlPath = path.join(distDir, 'index.html');
+const brandName = 'Facto Research';
+const brandEmail = 'support@factoresearch.com';
+const brandOgImageUrl =
+    'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:512,h:512,cg:true,m/cr=w:512,h:512/qt=q:95';
+const brandLogoUrl =
+    'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:178,h:178,cg:true,m/cr=w:178,h:178/qt=q:95';
+const brandOgImageAlt = 'Facto Research official brand logo';
 
 const siteOrigin = (
     process.env.VITE_SITE_URL ||
@@ -33,35 +46,69 @@ const replaceOrInjectInHead = (html, pattern, replacement) => {
 
 const toCanonicalUrl = (routePath) => (routePath === '/' ? siteOrigin : `${siteOrigin}${routePath}`);
 
+const resolveKeywords = (routeKeywords) => {
+    if (typeof routeKeywords !== 'string' || !routeKeywords.trim()) {
+        return DEFAULT_SEO_KEYWORDS;
+    }
+
+    const items = routeKeywords
+        .split(',')
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+    const seen = new Set(items.map((item) => item.toLowerCase()));
+    for (const fallbackKeyword of DEFAULT_SEO_KEYWORDS.split(',').map((item) => item.trim())) {
+        const key = fallbackKeyword.toLowerCase();
+        if (!seen.has(key)) {
+            seen.add(key);
+            items.push(fallbackKeyword);
+        }
+    }
+
+    return items.join(', ');
+};
+
 const buildStructuredDataJson = (seo, canonicalUrl) =>
     JSON.stringify(
         [
             {
                 '@context': 'https://schema.org',
                 '@type': 'Organization',
-                name: 'Facto Research',
-                alternateName: ['factoresearch', 'FactoResearch'],
+                '@id': `${siteOrigin}/#organization`,
+                name: brandName,
+                alternateName: BRAND_ALIASES,
                 url: siteOrigin,
-                email: 'support@factoresearch.com',
-                logo: 'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:178,h:178,cg:true,m/cr=w:178,h:178/qt=q:95',
+                email: brandEmail,
+                logo: brandLogoUrl,
             },
             {
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
-                name: 'Facto Research',
-                alternateName: ['factoresearch', 'FactoResearch'],
+                '@id': `${siteOrigin}/#website`,
+                name: brandName,
+                alternateName: BRAND_ALIASES,
                 url: siteOrigin,
+                publisher: {
+                    '@id': `${siteOrigin}/#organization`,
+                },
+                potentialAction: {
+                    '@type': 'SearchAction',
+                    target: `${siteOrigin}/?q={search_term_string}`,
+                    'query-input': 'required name=search_term_string',
+                },
             },
             {
                 '@context': 'https://schema.org',
                 '@type': 'WebPage',
+                '@id': `${canonicalUrl}#webpage`,
                 name: seo.heading,
                 url: canonicalUrl,
                 description: seo.description,
                 isPartOf: {
-                    '@type': 'WebSite',
-                    name: 'Facto Research',
-                    url: siteOrigin,
+                    '@id': `${siteOrigin}/#website`,
+                },
+                about: {
+                    '@id': `${siteOrigin}/#organization`,
                 },
             },
         ],
@@ -104,6 +151,11 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     );
     html = replaceOrInjectInHead(
         html,
+        /<meta\s+name="keywords"\s+content="[\s\S]*?"\s*\/?>/i,
+        `<meta name="keywords" content="${escapeHtml(resolveKeywords(seo.keywords))}" />`
+    );
+    html = replaceOrInjectInHead(
+        html,
         /<meta\s+name="googlebot"\s+content="[\s\S]*?"\s*\/?>/i,
         '<meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />'
     );
@@ -114,6 +166,11 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     );
     html = replaceOrInjectInHead(
         html,
+        /<meta\s+name="application-name"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta name="application-name" content="Facto Research" />'
+    );
+    html = replaceOrInjectInHead(
+        html,
         /<meta\s+name="theme-color"\s+content="[\s\S]*?"\s*\/?>/i,
         '<meta name="theme-color" content="#0f172a" />'
     );
@@ -121,6 +178,11 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
         html,
         /<meta\s+property="og:title"\s+content="[\s\S]*?"\s*\/?>/i,
         `<meta property="og:title" content="${escapeHtml(seo.title)}" />`
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+property="og:locale"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta property="og:locale" content="en_IN" />'
     );
     html = replaceOrInjectInHead(
         html,
@@ -135,7 +197,12 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     html = replaceOrInjectInHead(
         html,
         /<meta\s+property="og:image"\s+content="[\s\S]*?"\s*\/?>/i,
-        '<meta property="og:image" content="https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:512,h:512,cg:true,m/cr=w:512,h:512/qt=q:95" />'
+        `<meta property="og:image" content="${brandOgImageUrl}" />`
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+property="og:image:alt"\s+content="[\s\S]*?"\s*\/?>/i,
+        `<meta property="og:image:alt" content="${brandOgImageAlt}" />`
     );
     html = replaceOrInjectInHead(
         html,
@@ -150,7 +217,12 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     html = replaceOrInjectInHead(
         html,
         /<meta\s+name="twitter:image"\s+content="[\s\S]*?"\s*\/?>/i,
-        '<meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:512,h:512,cg:true,m/cr=w:512,h:512/qt=q:95" />'
+        `<meta name="twitter:image" content="${brandOgImageUrl}" />`
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+name="twitter:image:alt"\s+content="[\s\S]*?"\s*\/?>/i,
+        `<meta name="twitter:image:alt" content="${brandOgImageAlt}" />`
     );
     html = replaceOrInjectInHead(
         html,

@@ -1,10 +1,23 @@
 export const DEFAULT_SITE_ORIGIN = 'https://factoresearch.com';
+export const BRAND_ALIASES = ['Facto Research', 'facto research', 'FactoResearch', 'factoresearch', 'factoresearch.com'];
+export const DEFAULT_SEO_KEYWORDS = [
+    'Facto Research',
+    'facto research',
+    'FactoResearch',
+    'factoresearch',
+    'factoresearch.com',
+    'SEBI registered research analyst',
+    'stock market research India',
+    'equity research India',
+    'NSE BSE market analysis',
+].join(', ');
 
 export const ROUTE_SEO = {
     '/': {
-        title: 'Facto Research | SEBI Registered Research Analyst & Stock Market Analysis',
+        title: 'Facto Research | FactoResearch | SEBI Registered Research Analyst & Stock Market Analysis',
         description:
-            'Facto Research is a SEBI-registered research analyst brand offering data-driven equity research, stock market analysis, and investment insights for Indian markets.',
+            'Facto Research (also searched as FactoResearch and factoresearch.com) is a SEBI-registered research analyst brand offering data-driven equity research, stock market analysis, and investment insights for Indian markets.',
+        keywords: DEFAULT_SEO_KEYWORDS,
         heading: 'Facto Research',
         changefreq: 'daily',
         priority: '1.0',

@@ -204,6 +204,7 @@ const MarketTicker = () => {
     const [hasError, setHasError] = useState(false);
     const [isDaySnapshot, setIsDaySnapshot] = useState(() => Boolean(readDaySnapshot()));
     const [isMarketOpen, setIsMarketOpen] = useState(() => isIndianMarketRunning());
+    const [isTickerPaused, setIsTickerPaused] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -289,8 +290,17 @@ const MarketTicker = () => {
                     {statusLabel}
                 </div>
 
-                <div className="ticker-marquee" role="status" aria-live="polite">
-                    <div className="ticker-track">
+                <button
+                    type="button"
+                    className="ticker-toggle-btn"
+                    onClick={() => setIsTickerPaused((paused) => !paused)}
+                    aria-pressed={isTickerPaused}
+                >
+                    {isTickerPaused ? 'Play Ticker' : 'Pause Ticker'}
+                </button>
+
+                <div className="ticker-marquee" aria-live="off">
+                    <div className={`ticker-track ${isTickerPaused ? 'paused' : ''}`}>
                         {[0, 1].map((copyIndex) => (
                             <div className="ticker-group" key={copyIndex}>
                                 {quotes.map((quote) => {

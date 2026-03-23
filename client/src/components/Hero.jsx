@@ -120,15 +120,41 @@ const Hero = () => {
                                     controls
                                     preload="metadata"
                                     playsInline
+                                    aria-describedby="home-video-transcript"
                                     onPlay={() => setShowPoster(false)}
                                     onEnded={handleVideoEnd}
                                 >
+                                    <track
+                                        kind="descriptions"
+                                        src="/documents/facto-intro-audio-description.vtt"
+                                        srcLang="en"
+                                        label="Audio Description"
+                                    />
                                     Your browser does not support the video tag.
                                 </video>
                             )}
                         </div>
                         {/* <p className="hero-video-caption">About Facto Research</p> */}
                     </div>
+                    <section id="home-video-transcript" className="hero-video-accessibility">
+                        <h2>Read Transcript</h2>
+                        <p>
+                            Speaker introduces Facto Research as a SEBI Registered Research Analyst and explains the
+                            focus on data-driven research, disciplined risk management, and transparent communication.
+                        </p>
+                        <p>
+                            On-screen text includes the brand identity and SEBI Registration Number: INH000024480.
+                        </p>
+                        <p className="hero-video-transcript-link">
+                            <a
+                                href="/documents/facto-introduction-transcript.txt"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                Open full transcript (TXT)
+                            </a>
+                        </p>
+                    </section>
                 </Motion.div>
             </div>
 

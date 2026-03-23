@@ -60,7 +60,7 @@ const ServiceDetailPage = () => {
                     >
                         <header className="services-v3-detail-head">
                             <span className="service-card-tag">{serviceTag}</span>
-                            <h3>{service.title}</h3>
+                            <h2>{service.title}</h2>
                         </header>
 
                         <div className="services-v3-point-grid">
@@ -72,10 +72,10 @@ const ServiceDetailPage = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.38, delay: pointIndex * 0.05 }}
                                 >
-                                    <h4>
+                                    <h3>
                                         <CheckCircle2 size={16} className="check-icon" />
                                         <span>{point.title}</span>
-                                    </h4>
+                                    </h3>
                                     <p>{point.description}</p>
                                     <p className="services-v3-point-disclosure">{point.disclosure}</p>
                                 </Motion.article>

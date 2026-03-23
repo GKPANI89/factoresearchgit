@@ -17,7 +17,7 @@ const ComplianceAuditStatusPage = () => {
             <section className="section-padding legal-section">
                 <div className="container legal-container">
                     <article className="glass-card legal-card">
-                        <h3>Current Status</h3>
+                        <h2>Current Status</h2>
                         <p>{complianceAuditStatus.status}</p>
                         <ul className="legal-list">
                             {complianceAuditStatus.points.map((point) => (
@@ -27,15 +27,15 @@ const ComplianceAuditStatusPage = () => {
                     </article>
 
                     <article className="glass-card legal-card legal-download-card">
-                        <h3>Download</h3>
+                        <h2>Download</h2>
                         <p>Download the latest compliance audit status note.</p>
                         <a className="btn-primary legal-download-btn" href="/documents/compliance-audit-status-january-2026.txt" download>
-                            Download
+                            Download Compliance Audit Status (TXT) – January 2026
                         </a>
                     </article>
 
                     <article className="glass-card legal-card legal-risk-card">
-                        <h3>SEBI Investment Risk Disclosure</h3>
+                        <h2>SEBI Investment Risk Disclosure</h2>
                         <p>{sebiRiskDisclosure}</p>
                     </article>
                 </div>

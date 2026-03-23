@@ -21,16 +21,30 @@ const AppShell = () => {
         applyRouteSeo(path, { noindex: !isKnownRoute });
     }, [path, isKnownRoute]);
 
+    useEffect(() => {
+        const focusRaf = window.requestAnimationFrame(() => {
+            const pageHeading = document.querySelector('#main-content h1');
+            if (!pageHeading) return;
+            pageHeading.setAttribute('tabindex', '-1');
+            pageHeading.focus({ preventScroll: true });
+        });
+
+        return () => window.cancelAnimationFrame(focusRaf);
+    }, [path]);
+
     return (
         <div className="app-wrapper">
-            <FestivalOverlay />
-            <Navbar />
-            <MarketTicker />
-            <main className="main-content">
-                <PageComponent />
-            </main>
-            <FloatingChatWidget />
-            <Footer />
+            <a href="#main-content" className="skip-link">Skip to main content</a>
+            <div id="app-main-shell">
+                <FestivalOverlay />
+                <Navbar />
+                <MarketTicker />
+                <main id="main-content" className="main-content">
+                    <PageComponent />
+                </main>
+                <FloatingChatWidget />
+                <Footer />
+            </div>
             <SEBIModal />
         </div>
     );

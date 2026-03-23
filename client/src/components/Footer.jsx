@@ -133,7 +133,7 @@ const Footer = () => {
                     <p>© 2026 {siteData.brand.name}. All rights reserved.</p>
                 </div>
 
-                <div className="footer-disclosure" style={{ marginTop: '18px', fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                <div className="footer-disclosure">
                     <p>
                         {siteData.footer.disclosure}
                     </p>

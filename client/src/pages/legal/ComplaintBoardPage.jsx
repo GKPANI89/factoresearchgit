@@ -40,30 +40,30 @@ const ComplaintBoardPage = () => {
             <section className="section-padding legal-section">
                 <div className="container legal-container">
                     <article className="glass-card legal-card legal-download-card">
-                        <h3>Download</h3>
+                        <h2>Download</h2>
                         <p>Download the complaint board data file.</p>
                         <a className="btn-primary legal-download-btn" href="/documents/complaint-board-january-2026.csv" download>
-                            Download
+                            Download Complaint Board Data (CSV) – January 2026
                         </a>
                     </article>
 
                     <article className="glass-card legal-card">
-                        <h3>Data for the Month Ending: {complaintBoardData.monthEnding}</h3>
+                        <h2>Data for the Month Ending: {complaintBoardData.monthEnding}</h2>
                         {renderTable(complaintBoardData.sourceTable)}
                     </article>
 
                     <article className="glass-card legal-card">
-                        <h3>Trend of Monthly Disposal of Complaints</h3>
+                        <h2>Trend of Monthly Disposal of Complaints</h2>
                         {renderTable(complaintBoardData.monthlyTrendTable)}
                     </article>
 
                     <article className="glass-card legal-card">
-                        <h3>Trend of Annual Disposal of Complaints</h3>
+                        <h2>Trend of Annual Disposal of Complaints</h2>
                         {renderTable(complaintBoardData.annualTrendTable)}
                     </article>
 
                     <article className="glass-card legal-card legal-risk-card">
-                        <h3>SEBI Investment Risk Disclosure</h3>
+                        <h2>SEBI Investment Risk Disclosure</h2>
                         <p>{sebiRiskDisclosure}</p>
                     </article>
                 </div>

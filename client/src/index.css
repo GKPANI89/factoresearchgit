@@ -163,20 +163,22 @@ select:focus-visible,
 }
 
 .skip-link {
-  position: absolute;
-  left: -9999px;
-  top: auto;
+  position: fixed;
+  top: 8px;
+  left: 8px;
   background: #000;
   color: #fff;
   z-index: 10001;
   padding: 10px 14px;
   border-radius: 6px;
   font-weight: 700;
+  transform: translateY(-180%);
+  transition: transform 0.2s ease;
 }
 
-.skip-link:focus {
-  left: 8px;
-  top: 8px;
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 #main-content h1[tabindex='-1']:focus {
@@ -637,6 +639,10 @@ select:focus-visible,
   z-index: 990;
 }
 
+.market-ticker.is-hidden .ticker-shell {
+  justify-content: flex-end;
+}
+
 .ticker-shell {
   height: 100%;
   width: 100%;
@@ -644,41 +650,6 @@ select:focus-visible,
   align-items: center;
   gap: 12px;
   padding: 0 14px;
-}
-
-.ticker-status {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid var(--glass-border);
-  border-radius: 999px;
-  padding: 5px 10px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.82);
-}
-
-.ticker-status.live {
-  color: #15803d;
-  border-color: rgba(21, 128, 61, 0.3);
-  background: rgba(220, 252, 231, 0.9);
-}
-
-.ticker-status.offline {
-  color: #92400e;
-  border-color: rgba(217, 119, 6, 0.28);
-  background: rgba(254, 243, 199, 0.92);
-}
-
-.ticker-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
 }
 
 .ticker-marquee {
@@ -696,6 +667,16 @@ select:focus-visible,
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.1;
+  cursor: pointer;
+}
+
+.ticker-visibility-btn {
+  border-color: rgba(30, 64, 175, 0.34);
+}
+
+.ticker-play-btn {
+  border-color: rgba(37, 99, 235, 0.28);
+  color: #1e40af;
 }
 
 .ticker-track {
@@ -799,10 +780,6 @@ select:focus-visible,
     --ticker-height: 52px;
   }
 
-  .ticker-status {
-    display: none;
-  }
-
   .ticker-toggle-btn {
     padding: 5px 8px;
     font-size: 0.64rem;
@@ -884,6 +861,7 @@ select:focus-visible,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transform: translateY(-40px);
 }
 
 @media (max-width: 1440px) {
@@ -941,6 +919,7 @@ select:focus-visible,
     padding-top: 8px;
     max-width: 780px;
     margin: 0 auto;
+    transform: none;
   }
 }
 

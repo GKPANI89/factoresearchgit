@@ -43,7 +43,7 @@ const ComplaintBoardPage = () => {
                         <h2>Download</h2>
                         <p>Download the complaint board data file.</p>
                         <a className="btn-primary legal-download-btn" href="/documents/complaint-board-january-2026.csv" download>
-                            Download Complaint Board Data (CSV) – January 2026
+                            Download Complaint Board Data (CSV) – March 2026
                         </a>
                     </article>
 

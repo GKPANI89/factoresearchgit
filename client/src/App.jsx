@@ -17,6 +17,14 @@ const AppShell = () => {
     const isKnownRoute = Boolean(routeComponents[path]);
     const PageComponent = routeComponents[path] || NotFoundPage;
 
+    const handleSkipToMain = (event) => {
+        event.preventDefault();
+        const mainContent = document.getElementById('main-content');
+        if (!mainContent) return;
+        mainContent.focus();
+        mainContent.scrollIntoView({ block: 'start' });
+    };
+
     useEffect(() => {
         applyRouteSeo(path, { noindex: !isKnownRoute });
     }, [path, isKnownRoute]);
@@ -34,12 +42,14 @@ const AppShell = () => {
 
     return (
         <div className="app-wrapper">
-            <a href="#main-content" className="skip-link">Skip to main content</a>
+            <a href="#main-content" className="skip-link" onClick={handleSkipToMain}>
+                Skip to main content
+            </a>
             <div id="app-main-shell">
                 <FestivalOverlay />
                 <Navbar />
                 <MarketTicker />
-                <main id="main-content" className="main-content">
+                <main id="main-content" className="main-content" tabIndex={-1}>
                     <PageComponent />
                 </main>
                 <FloatingChatWidget />

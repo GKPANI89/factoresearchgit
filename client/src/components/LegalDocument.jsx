@@ -26,10 +26,18 @@ const REWRITTEN_LINKS = [
 
 const EXTERNAL_URL_REGEX = /(https?:\/\/[^\s)]+|www\.[^\s)]+)/gi;
 const EMAIL_REGEX = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
+const PHONE_REGEX = /(?:\+\d[\d\s()-]{7,}\d|\b\d{3,5}-\d{2,5}-\d{3,5}\b)/g;
+const PHONE_TEXT_REGEX = /^(?:\+\d[\d\s()-]{7,}\d|\d{3,5}-\d{2,5}-\d{3,5})$/;
 
 const cleanUrlText = (value) => value.replace(/[.,;:!?]+$/, '');
 
 const toUrlHref = (value) => (value.startsWith('http') ? value : `https://${value}`);
+const toPhoneHref = (value) => {
+    const normalized = cleanUrlText(value);
+    const digitsOnly = normalized.replace(/\D/g, '');
+    if (!digitsOnly) return '';
+    return normalized.trim().startsWith('+') ? `+${digitsOnly}` : digitsOnly;
+};
 
 const buildLinkNode = (rawText, keyPrefix, index) => {
     const normalized = cleanUrlText(rawText);
@@ -56,6 +64,15 @@ const buildLinkNode = (rawText, keyPrefix, index) => {
         );
     }
 
+    if (PHONE_TEXT_REGEX.test(normalized)) {
+        return (
+            <React.Fragment key={`${keyPrefix}-phone-${index}`}>
+                <a href={`tel:${toPhoneHref(normalized)}`}>{normalized}</a>
+                {trailing}
+            </React.Fragment>
+        );
+    }
+
     return (
         <React.Fragment key={`${keyPrefix}-url-${index}`}>
             <a href={toUrlHref(normalized)} target="_blank" rel="noreferrer noopener">
@@ -71,7 +88,7 @@ const renderTextWithLinks = (text, keyPrefix) => {
         return text;
     }
 
-    const matcher = new RegExp(`(${EXTERNAL_URL_REGEX.source}|${EMAIL_REGEX.source})`, 'gi');
+    const matcher = new RegExp(`(${EXTERNAL_URL_REGEX.source}|${EMAIL_REGEX.source}|${PHONE_REGEX.source})`, 'gi');
     const matches = Array.from(text.matchAll(matcher));
 
     if (!matches.length) {

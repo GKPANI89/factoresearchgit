@@ -27,15 +27,22 @@ const getSiteOrigin = () => {
     }
 
     if (typeof window !== 'undefined' && window.location?.origin) {
-        return window.location.origin;
+        try {
+            const hostname = new URL(window.location.origin).hostname.toLowerCase();
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return window.location.origin;
+            }
+        } catch {
+            // Ignore URL parsing failure and fall back to canonical production origin.
+        }
     }
 
     return DEFAULT_SITE_ORIGIN;
 };
 
-const toCanonicalUrl = (origin, path) => {
+const toPublicUrl = (origin, path) => {
     if (path === '/') return origin;
-    return `${origin}${path}`;
+    return `${origin}${path}/`;
 };
 
 const resolveKeywords = (routeKeywords) => {
@@ -98,7 +105,7 @@ export const applyRouteSeo = (path, options = {}) => {
     const normalizedPath = normalizePath(path);
     const seo = ROUTE_SEO[normalizedPath] || ROUTE_SEO['/'];
     const origin = getSiteOrigin();
-    const canonicalUrl = toCanonicalUrl(origin, normalizedPath);
+    const canonicalUrl = toPublicUrl(origin, normalizedPath);
 
     document.title = seo.title;
     upsertMeta('name', 'description', seo.description);

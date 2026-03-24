@@ -44,7 +44,7 @@ const replaceOrInjectInHead = (html, pattern, replacement) => {
     return html.replace('</head>', `  ${replacement}\n  </head>`);
 };
 
-const toCanonicalUrl = (routePath) => (routePath === '/' ? siteOrigin : `${siteOrigin}${routePath}`);
+const toPublicUrl = (routePath) => (routePath === '/' ? siteOrigin : `${siteOrigin}${routePath}/`);
 
 const resolveKeywords = (routeKeywords) => {
     if (typeof routeKeywords !== 'string' || !routeKeywords.trim()) {
@@ -68,7 +68,7 @@ const resolveKeywords = (routeKeywords) => {
     return items.join(', ');
 };
 
-const buildStructuredDataJson = (seo, canonicalUrl) =>
+const buildStructuredDataJson = (seo, pageUrl) =>
     JSON.stringify(
         [
             {
@@ -100,9 +100,9 @@ const buildStructuredDataJson = (seo, canonicalUrl) =>
             {
                 '@context': 'https://schema.org',
                 '@type': 'WebPage',
-                '@id': `${canonicalUrl}#webpage`,
+                '@id': `${pageUrl}#webpage`,
                 name: seo.heading,
-                url: canonicalUrl,
+                url: pageUrl,
                 description: seo.description,
                 isPartOf: {
                     '@id': `${siteOrigin}/#website`,
@@ -118,10 +118,10 @@ const buildStructuredDataJson = (seo, canonicalUrl) =>
 
 const fallbackLinks = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/services', label: 'Services' },
-    { path: '/pricing', label: 'Pricing' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/about/', label: 'About' },
+    { path: '/services/', label: 'Services' },
+    { path: '/pricing/', label: 'Pricing' },
+    { path: '/contact/', label: 'Contact' },
 ];
 
 const buildFallbackHtml = (routePath, seo) => {
@@ -133,13 +133,14 @@ const buildFallbackHtml = (routePath, seo) => {
     return `<main id="seo-static-content" aria-label="Facto Research Overview">
       <h1>${escapeHtml(seo.heading)}</h1>
       <p>${escapeHtml(seo.description)}</p>
+      <p>Brand reference: FactoResearch (factoresearch.com).</p>
       <p>Current page: ${escapeHtml(currentPath)}</p>
       <p>${links}</p>
     </main>`;
 };
 
 const applySeoToHtml = (baseHtml, routePath, seo) => {
-    const canonicalUrl = toCanonicalUrl(routePath);
+    const pageUrl = toPublicUrl(routePath);
     let html = baseHtml;
 
     html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(seo.title)}</title>`);
@@ -151,8 +152,23 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     );
     html = replaceOrInjectInHead(
         html,
+        /<meta\s+name="robots"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />'
+    );
+    html = replaceOrInjectInHead(
+        html,
         /<meta\s+name="keywords"\s+content="[\s\S]*?"\s*\/?>/i,
         `<meta name="keywords" content="${escapeHtml(resolveKeywords(seo.keywords))}" />`
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+property="og:type"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta property="og:type" content="website" />'
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+property="og:site_name"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta property="og:site_name" content="Facto Research" />'
     );
     html = replaceOrInjectInHead(
         html,
@@ -192,7 +208,7 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     html = replaceOrInjectInHead(
         html,
         /<meta\s+property="og:url"\s+content="[\s\S]*?"\s*\/?>/i,
-        `<meta property="og:url" content="${escapeHtml(canonicalUrl)}" />`
+        `<meta property="og:url" content="${escapeHtml(pageUrl)}" />`
     );
     html = replaceOrInjectInHead(
         html,
@@ -203,6 +219,11 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
         html,
         /<meta\s+property="og:image:alt"\s+content="[\s\S]*?"\s*\/?>/i,
         `<meta property="og:image:alt" content="${brandOgImageAlt}" />`
+    );
+    html = replaceOrInjectInHead(
+        html,
+        /<meta\s+name="twitter:card"\s+content="[\s\S]*?"\s*\/?>/i,
+        '<meta name="twitter:card" content="summary_large_image" />'
     );
     html = replaceOrInjectInHead(
         html,
@@ -227,15 +248,12 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
     html = replaceOrInjectInHead(
         html,
         /<link\s+rel="canonical"\s+href="[\s\S]*?"\s*\/?>/i,
-        `<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />`
+        `<link rel="canonical" href="${escapeHtml(pageUrl)}" />`
     );
     html = replaceOrInjectInHead(
         html,
         /<script\s+id="seo-jsonld"\s+type="application\/ld\+json">[\s\S]*?<\/script>/i,
-        `<script id="seo-jsonld" type="application/ld+json">\n${buildStructuredDataJson(
-            seo,
-            canonicalUrl
-        )}\n    </script>`
+        `<script id="seo-jsonld" type="application/ld+json">\n${buildStructuredDataJson(seo, pageUrl)}\n    </script>`
     );
 
     html = html.replace(/<main\s+id="seo-static-content"[\s\S]*?<\/main>/i, buildFallbackHtml(routePath, seo));
@@ -260,7 +278,7 @@ const buildSitemap = () => {
     const urls = ORDERED_ROUTE_PATHS.map((routePath) => {
         const seo = ROUTE_SEO[routePath];
         return `  <url>
-    <loc>${escapeHtml(toCanonicalUrl(routePath))}</loc>
+    <loc>${escapeHtml(toPublicUrl(routePath))}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${seo.changefreq}</changefreq>
     <priority>${seo.priority}</priority>

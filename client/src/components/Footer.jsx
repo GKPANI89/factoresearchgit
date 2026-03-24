@@ -42,8 +42,9 @@ const Footer = () => {
                             />
                         </div>
                         <p className="footer-brand-copy">
-                            Facto Research is a SEBI-registered research analyst brand providing data-driven equity
-                            research, market analysis, and investment insights for Indian markets.
+                            Facto Research (also searched as FactoResearch) is a SEBI-registered research analyst
+                            brand providing data-driven equity research, market analysis, and investment insights for
+                            Indian markets through factoresearch.com.
                         </p>
                         <div className="social-links">
                             <a href="#" className="social-twitter" aria-label="Twitter"><Twitter size={20} /></a>

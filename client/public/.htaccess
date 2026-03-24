@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Canonical host for SEO consistency.
+RewriteCond %{HTTP_HOST} ^www\.factoresearch\.com$ [NC]
+RewriteRule ^ https://factoresearch.com%{REQUEST_URI} [R=301,L]
+
+# Keep SPA routes working when served by Apache.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^ index.html [L]

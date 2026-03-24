@@ -29,7 +29,7 @@ export const siteData = {
         badge: '15 Years of Market Mastery',
         title: 'Research Built on Data\nReports Built on Facts.',
         description:
-            `${APP_NAME} is led by a veteran Research Analyst with over 15 years of deep-market experience. We help investors navigate Indian financial markets with clarity, confidence, and consistency.`,
+            `FactoResearch (${APP_NAME}) is led by a veteran Research Analyst with over 15 years of deep-market experience. We help investors navigate Indian financial markets with clarity, confidence, and consistency through factoresearch.com.`,
         primaryAction: { label: 'Onboarding', path: ONBOARDING_URL },
         secondaryAction: { label: `About ${APP_NAME}`, path: '/about' },
         stats: [
@@ -41,7 +41,7 @@ export const siteData = {
         title: `About ${APP_NAME}`,
         decadeTitle: '15 Years of Market Mastery',
         decadeParagraphs: [
-            `${APP_NAME} is led by a veteran Research Analyst with over 15 years of deep-market experience in Indian equities.`,
+            `FactoResearch (${APP_NAME}) is led by a veteran Research Analyst with over 15 years of deep-market experience in Indian equities.`,
             '15 years in the markets provide a perspective that charts alone cannot show. It brings the wisdom of having navigated diverse market cycles, economic shifts, and structural reforms.',
             `At ${APP_NAME}, we believe successful investing is not about following the noise. It is about following the facts. We provide institutional-grade market intelligence to help investors navigate the complexities of Indian financial markets with clarity and confidence.`,
         ],

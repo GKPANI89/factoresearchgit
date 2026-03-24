@@ -137,8 +137,8 @@ export const legalDocuments = {
                 'For any queries regarding this disclaimer or our services, please contact:',
                 `${APP_NAME} (SEBI Registration No: INH000024480)`,
                 registeredOfficeAddress,
-                `Phone Number: ${SUPPORT_PHONE}`,
-                `Email id: ${INFO_EMAIL}`,
+                `Email: `,
+                `Phone: ${SUPPORT_PHONE}`,
             ],
         },
     },
@@ -247,8 +247,8 @@ export const legalDocuments = {
                 `For questions about this privacy policy or to exercise your rights, please contact ${APP_NAME} at:`,
                 `${APP_NAME} (SEBI Registration No: INH000024480)`,
                 registeredOfficeAddress,
-                `Phone Number: ${SUPPORT_PHONE}`,
-                `Email id: ${INFO_EMAIL}`,
+                `Email: support@factoresearch.com`,
+                `Phone: +91 99599 37373`,
             ],
         },
     },
@@ -377,8 +377,8 @@ export const legalDocuments = {
                 'For questions about these terms and conditions, please contact us:',
                 `${APP_NAME} (SEBI Registration No: INH000024480)`,
                 registeredOfficeAddress,
-                `Phone Number: ${SUPPORT_PHONE}`,
-                `Email id: ${INFO_EMAIL}`,
+                `Email: support@factoresearch.com`,
+                `Phone: +91 99599 37373`,
             ],
         },
     },
@@ -541,8 +541,8 @@ export const legalDocuments = {
             {
                 heading: 'Quick Grievance Contact',
                 bullets: [
-                    `Email: ${GRIEVANCE_EMAIL}`,
-                    `Phone: ${SUPPORT_PHONE}`,
+                    `Email: support@factoresearch.com`,
+                    `Phone: +91 99599 37373`,
                     'Response Time: Within 72 hours',
                 ],
             },
@@ -600,8 +600,8 @@ export const legalDocuments = {
                     {
                         heading: 'Step 1: Initial Contact',
                         bullets: [
-                            `Phone: ${SUPPORT_PHONE} (9:15 AM - 3:30 PM IST, Monday-Friday).`,
-                            `Email: ${SUPPORT_EMAIL}.`,
+                            `Phone: +91 99599 37373 (9:15 AM - 3:30 PM IST, Monday-Friday).`,
+                            `Email: support@factoresearch.com.`,
                             `WhatsApp: ${whatsappPhone}.`,
                             'Live Chat: Available on our website during business hours.',
                         ],
@@ -622,10 +622,10 @@ export const legalDocuments = {
                     {
                         heading: 'Submission Methods',
                         bullets: [
-                            `Email: ${GRIEVANCE_EMAIL}.`,
+                            `Email:  support@factoresearch.com.`,
                             'Written Application: Mail to our registered office address.',
                             'Online Form: Available on our website.',
-                            `Phone: ${SUPPORT_PHONE} (followed by written confirmation).`,
+                            `Phone: +91 99599 37373 (followed by written confirmation).`,
                         ],
                     },
                 ],
@@ -642,9 +642,9 @@ export const legalDocuments = {
             {
                 heading: 'Escalation Matrix',
                 bullets: [
-                    `Level 1 - Customer Support Team: ${SUPPORT_EMAIL} (0-2 days).`,
-                    `Level 2 - Grievance Office: ${GRIEVANCE_EMAIL} (3-7 days).`,
-                    `Level 3 - Senior Management: ${INFO_EMAIL} (8-15 days).`,
+                    `Level 1 - Customer Support Team: support@factoresearch.com (0-2 days).`,
+                    `Level 2 - Grievance Office: support@factoresearch.com (3-7 days).`,
+                    `Level 3 - Senior Management: info@factoresearch.com (8-15 days).`,
                     'Level 4 - SEBI Complaints: scores.sebi.gov.in (external escalation).',
                 ],
             },
@@ -653,8 +653,8 @@ export const legalDocuments = {
                 bullets: [
                     'Name: Godina Kodandpani.',
                     'Designation: Chief Research Analyst & Compliance Officer.',
-                    `Email: ${GRIEVANCE_EMAIL}.`,
-                    `Phone: ${SUPPORT_PHONE}.`,
+                    `Email: info@factoresearch.com.`,
+                    `Phone: +91 99599 37373.`,
                     'Available: Monday-Friday, 9:15 AM - 3:30 PM IST.',
                 ],
             },
@@ -702,7 +702,7 @@ export const legalDocuments = {
             {
                 heading: 'Emergency Grievances',
                 paragraphs: [
-                    `For urgent matters requiring immediate attention (unauthorized transactions, security breaches), contact us immediately at ${SUPPORT_PHONE} or ${GRIEVANCE_EMAIL} with "URGENT" in the subject line.`,
+                    `For urgent matters requiring immediate attention (unauthorized transactions, security breaches), contact us immediately at +91 99599 37373 or support@factoresearch.com with "URGENT" in the subject line.`,
                 ],
             },
         ],
@@ -711,8 +711,8 @@ export const legalDocuments = {
             lines: [
                 `${APP_NAME} (SEBI Registration No: INH000024480)`,
                 registeredOfficeAddress,
-                `Phone Number: ${SUPPORT_PHONE}`,
-                `Email id: ${INFO_EMAIL}`,
+                `Email:  support@factoresearch.com`,
+                `Phone: +91 99599 37373`,
             ],
         },
     },
@@ -836,9 +836,9 @@ export const legalDocuments = {
                     {
                         heading: 'Internal Redressal',
                         bullets: [
-                            'Grievance Officer: GK.',
-                            `Email: ${GRIEVANCE_EMAIL}.`,
-                            `Phone: ${SUPPORT_PHONE}.`,
+                            'Grievance Officer: Godina Kodandpani.',
+                            `Email: support@factoresearch.com.`,
+                            `Phone: +91 99599 37373.`,
                             'Resolution Time: 30 business days.',
                         ],
                     },
@@ -877,9 +877,9 @@ export const legalDocuments = {
                 `${APP_NAME} (SEBI Registration No: INH000024480)`,
                 'Registered Office Address:',
                 registeredOfficeAddress,
-                `Email: ${INFO_EMAIL}`,
-                `Phone: ${SUPPORT_PHONE}`,
-                `Website: ${WEBSITE_URL}`,
+                `Email: support@factoresearch.com`,
+                `Phone: +91 99599 37373`,
+                `Website: factoresearch.com`,
                 'Working Hours: Monday-Friday, 9:15 AM - 3:30 PM IST',
             ],
         },
@@ -888,7 +888,7 @@ export const legalDocuments = {
 
 export const complaintBoardData = {
     title: 'Complaint Board',
-    monthEnding: 'January 2026',
+    monthEnding: 'March 2026',
     sourceTable: {
         headers: [
             'S.No.',
@@ -910,7 +910,7 @@ export const complaintBoardData = {
     monthlyTrendTable: {
         headers: ['S.No', 'Month', 'Carried forward from previous month', 'Received', 'Resolved', 'Pending'],
         rows: [
-            ['1', 'January - 2026', '0', '0', '0', '0'],
+            ['1', 'March - 2026', '0', '0', '0', '0'],
             ['', 'Total', '0', '0', '0', '0'],
         ],
     },

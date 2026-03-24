@@ -200,11 +200,9 @@ const getNextRefreshIntervalMs = () =>
 
 const MarketTicker = () => {
     const [quotes, setQuotes] = useState(() => readDaySnapshot() || MARKET_INDEXES.map(emptyQuote));
-    const [isLiveFeed, setIsLiveFeed] = useState(false);
     const [hasError, setHasError] = useState(false);
-    const [isDaySnapshot, setIsDaySnapshot] = useState(() => Boolean(readDaySnapshot()));
-    const [isMarketOpen, setIsMarketOpen] = useState(() => isIndianMarketRunning());
     const [isTickerPaused, setIsTickerPaused] = useState(false);
+    const [isTickerVisible, setIsTickerVisible] = useState(true);
 
     useEffect(() => {
         let isMounted = true;
@@ -212,8 +210,6 @@ const MarketTicker = () => {
 
         const pollQuotes = async () => {
             const cycleStartedAt = Date.now();
-            const marketOpenNow = isIndianMarketRunning();
-            if (isMounted) setIsMarketOpen(marketOpenNow);
 
             try {
                 const mappedQuotes = await fetchLiveQuotes();
@@ -224,21 +220,15 @@ const MarketTicker = () => {
                 if (hasLiveData) {
                     setQuotes(liveQuotes);
                     writeDaySnapshot(liveQuotes);
-                    setIsLiveFeed(marketOpenNow);
                     setHasError(false);
-                    setIsDaySnapshot(!marketOpenNow);
                 } else {
                     const snapshot = readDaySnapshot();
                     if (snapshot?.length) {
                         setQuotes(snapshot);
-                        setIsLiveFeed(false);
                         setHasError(false);
-                        setIsDaySnapshot(true);
                     } else {
                         setQuotes(mappedQuotes);
-                        setIsLiveFeed(false);
                         setHasError(true);
-                        setIsDaySnapshot(false);
                     }
                 }
             } catch {
@@ -246,13 +236,9 @@ const MarketTicker = () => {
                 const snapshot = readDaySnapshot();
                 if (snapshot?.length) {
                     setQuotes(snapshot);
-                    setIsLiveFeed(false);
                     setHasError(false);
-                    setIsDaySnapshot(true);
                 } else {
-                    setIsLiveFeed(false);
                     setHasError(true);
-                    setIsDaySnapshot(false);
                 }
             }
 
@@ -274,61 +260,62 @@ const MarketTicker = () => {
         };
     }, []);
 
-    const statusLabel = isLiveFeed
-        ? 'Live NSE/BSE'
-        : isMarketOpen
-            ? 'Feed reconnecting'
-            : isDaySnapshot
-                ? 'Market closed'
-                : 'Feed reconnecting';
-
     return (
-        <section className="market-ticker" aria-label="Live market values">
+        <section className={`market-ticker ${isTickerVisible ? '' : 'is-hidden'}`.trim()} aria-label="Live market values">
             <div className="ticker-shell">
-                <div className={`ticker-status ${isLiveFeed ? 'live' : 'offline'}`}>
-                    <span className="ticker-dot" />
-                    {statusLabel}
-                </div>
-
                 <button
                     type="button"
-                    className="ticker-toggle-btn"
-                    onClick={() => setIsTickerPaused((paused) => !paused)}
-                    aria-pressed={isTickerPaused}
+                    className="ticker-toggle-btn ticker-visibility-btn"
+                    onClick={() => setIsTickerVisible((visible) => !visible)}
+                    aria-expanded={isTickerVisible}
+                    aria-controls="market-ticker-marquee"
                 >
-                    {isTickerPaused ? 'Play Ticker' : 'Pause Ticker'}
+                    {isTickerVisible ? 'Hide Ticker' : 'Show Ticker'}
                 </button>
 
-                <div className="ticker-marquee" aria-live="off">
-                    <div className={`ticker-track ${isTickerPaused ? 'paused' : ''}`}>
-                        {[0, 1].map((copyIndex) => (
-                            <div className="ticker-group" key={copyIndex}>
-                                {quotes.map((quote) => {
-                                    const isUp = typeof quote.change === 'number' && quote.change > 0;
-                                    const isDown = typeof quote.change === 'number' && quote.change < 0;
-                                    const trendClass = isUp ? 'up' : isDown ? 'down' : 'flat';
+                {isTickerVisible && (
+                    <button
+                        type="button"
+                        className="ticker-toggle-btn ticker-play-btn"
+                        onClick={() => setIsTickerPaused((paused) => !paused)}
+                        aria-pressed={isTickerPaused}
+                    >
+                        {isTickerPaused ? 'Play Ticker' : 'Pause Ticker'}
+                    </button>
+                )}
 
-                                    return (
-                                        <div className="ticker-item" key={`${copyIndex}-${quote.label}`}>
-                                            <img src={quote.logo} alt={`${quote.label} exchange logo`} className="ticker-logo" />
-                                            <span className="ticker-symbol">{quote.label}</span>
-                                            <span className="ticker-price">{formatPrice(quote.price)}</span>
-                                            <span className={`ticker-change ${trendClass}`}>
-                                                {isUp && <TrendingUp size={12} />}
-                                                {isDown && <TrendingDown size={12} />}
-                                                {typeof quote.change === 'number' && typeof quote.changePercent === 'number'
-                                                    ? `${formatSigned(quote.change)} (${formatSigned(quote.changePercent)}%)`
-                                                    : '--'}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        ))}
+                {isTickerVisible && (
+                    <div className="ticker-marquee" aria-live="off" id="market-ticker-marquee">
+                        <div className={`ticker-track ${isTickerPaused ? 'paused' : ''}`}>
+                            {[0, 1].map((copyIndex) => (
+                                <div className="ticker-group" key={copyIndex}>
+                                    {quotes.map((quote) => {
+                                        const isUp = typeof quote.change === 'number' && quote.change > 0;
+                                        const isDown = typeof quote.change === 'number' && quote.change < 0;
+                                        const trendClass = isUp ? 'up' : isDown ? 'down' : 'flat';
+
+                                        return (
+                                            <div className="ticker-item" key={`${copyIndex}-${quote.label}`}>
+                                                <img src={quote.logo} alt={`${quote.label} exchange logo`} className="ticker-logo" />
+                                                <span className="ticker-symbol">{quote.label}</span>
+                                                <span className="ticker-price">{formatPrice(quote.price)}</span>
+                                                <span className={`ticker-change ${trendClass}`}>
+                                                    {isUp && <TrendingUp size={12} />}
+                                                    {isDown && <TrendingDown size={12} />}
+                                                    {typeof quote.change === 'number' && typeof quote.changePercent === 'number'
+                                                        ? `${formatSigned(quote.change)} (${formatSigned(quote.changePercent)}%)`
+                                                        : '--'}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
 
-                {hasError && <p className="ticker-fallback">Live market feed is temporarily unavailable.</p>}
+                {isTickerVisible && hasError && <p className="ticker-fallback">Live market feed is temporarily unavailable.</p>}
             </div>
         </section>
     );

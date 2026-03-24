@@ -15,7 +15,7 @@
   --danger: #ef4444;
   --glass: rgba(255, 255, 255, 0.78);
   --glass-border: rgba(37, 99, 235, 0.18);
-  --header-height: 92px;
+  --header-height: 80px;
   --ticker-height: 56px;
   --top-offset: calc(var(--header-height) + var(--ticker-height));
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -163,20 +163,22 @@ select:focus-visible,
 }
 
 .skip-link {
-  position: absolute;
-  left: -9999px;
-  top: auto;
+  position: fixed;
+  top: 8px;
+  left: 8px;
   background: #000;
   color: #fff;
   z-index: 10001;
   padding: 10px 14px;
   border-radius: 6px;
   font-weight: 700;
+  transform: translateY(-180%);
+  transition: transform 0.2s ease;
 }
 
-.skip-link:focus {
-  left: 8px;
-  top: 8px;
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 #main-content h1[tabindex='-1']:focus {
@@ -334,7 +336,7 @@ select:focus-visible,
 }
 
 .logo-img {
-  height: 68px;
+  height: 58px;
   width: auto;
   transition: var(--transition);
 }
@@ -361,7 +363,7 @@ select:focus-visible,
   }
 
   .logo-img {
-    height: 52px;
+    height: 46px;
   }
 
   .navbar .logo {
@@ -374,7 +376,7 @@ select:focus-visible,
 }
 
 .nav-links > a {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text-secondary);
   white-space: nowrap;
@@ -391,7 +393,7 @@ select:focus-visible,
 .pricing-trigger {
   background: transparent;
   color: var(--text-secondary);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
@@ -579,9 +581,9 @@ select:focus-visible,
   background: var(--accent-primary);
   border: none;
   color: white;
-  padding: 11px 26px;
+  padding: 9px 22px;
   border-radius: 10px;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 10px 22px rgba(29, 78, 216, 0.24);
@@ -637,6 +639,10 @@ select:focus-visible,
   z-index: 990;
 }
 
+.market-ticker.is-hidden .ticker-shell {
+  justify-content: flex-end;
+}
+
 .ticker-shell {
   height: 100%;
   width: 100%;
@@ -644,41 +650,6 @@ select:focus-visible,
   align-items: center;
   gap: 12px;
   padding: 0 14px;
-}
-
-.ticker-status {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid var(--glass-border);
-  border-radius: 999px;
-  padding: 5px 10px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.82);
-}
-
-.ticker-status.live {
-  color: #15803d;
-  border-color: rgba(21, 128, 61, 0.3);
-  background: rgba(220, 252, 231, 0.9);
-}
-
-.ticker-status.offline {
-  color: #92400e;
-  border-color: rgba(217, 119, 6, 0.28);
-  background: rgba(254, 243, 199, 0.92);
-}
-
-.ticker-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
 }
 
 .ticker-marquee {
@@ -696,6 +667,16 @@ select:focus-visible,
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.1;
+  cursor: pointer;
+}
+
+.ticker-visibility-btn {
+  border-color: rgba(30, 64, 175, 0.34);
+}
+
+.ticker-play-btn {
+  border-color: rgba(37, 99, 235, 0.28);
+  color: #1e40af;
 }
 
 .ticker-track {
@@ -795,12 +776,8 @@ select:focus-visible,
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 74px;
+    --header-height: 68px;
     --ticker-height: 52px;
-  }
-
-  .ticker-status {
-    display: none;
   }
 
   .ticker-toggle-btn {
@@ -884,7 +861,7 @@ select:focus-visible,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transform: translateY(-60px);
+  transform: translateY(-40px);
 }
 
 @media (max-width: 1440px) {
@@ -2391,10 +2368,10 @@ select:focus-visible,
 }
 
 .modal-content {
-  width: min(100%, 460px);
-  max-width: 460px;
-  padding: 28px;
-  max-height: calc(100vh - 48px);
+  width: min(100%, 400px);
+  max-width: 400px;
+  padding: 18px 22px;
+  max-height: calc(100vh - 72px);
   overflow-y: auto;
   background: #eff6ff !important;
   background-image: none !important;
@@ -2403,20 +2380,20 @@ select:focus-visible,
 .modal-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
 .modal-header h2 {
   flex: 1;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   line-height: 1.2;
 }
 
 .modal-close-btn {
   margin-left: auto;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2438,20 +2415,20 @@ select:focus-visible,
 
 .modal-body p {
   color: var(--text-secondary);
-  margin-bottom: 12px;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  margin-bottom: 8px;
+  font-size: 0.86rem;
+  line-height: 1.35;
 }
 
 .disclosure-box {
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.2);
-  padding: 12px;
+  padding: 8px 10px;
   border-radius: 8px;
   color: var(--danger);
-  font-size: 0.84rem;
-  line-height: 1.45;
-  margin-bottom: 18px;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  margin-bottom: 10px;
 }
 
 .full-width {
@@ -2459,41 +2436,55 @@ select:focus-visible,
 }
 
 .advice-modal-content {
-  width: min(100%, 500px);
-  max-width: 500px;
-  padding: 16px;
+  width: min(100%, 440px);
+  max-width: 440px;
+  padding: 10px 12px;
   background: #eff6ff !important;
   background-image: none !important;
 }
 
 .advice-modal-header {
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 14px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.advice-modal-header > div {
+  width: 100%;
+  text-align: center;
+  padding: 0 36px 0 0;
 }
 
 .advice-modal-header h2 {
-  margin-bottom: 8px;
-  font-size: 1.65rem;
+  margin-bottom: 4px;
+  font-size: 1.4rem;
   line-height: 1.1;
 }
 
 .advice-modal-header p {
   color: var(--text-primary);
-  font-size: 0.95rem;
-  line-height: 1.45;
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+.advice-modal-header .modal-close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .advice-form {
   display: grid;
-  gap: 12px;
+  gap: 8px;
   overflow: visible;
 }
 
 .advice-form input,
 .advice-form textarea {
   width: 100%;
-  padding: 13px 16px;
+  padding: 9px 14px;
   border-radius: 12px;
   border: 1px solid rgba(148, 163, 184, 0.32);
   background: #f8fbff !important;
@@ -2503,7 +2494,7 @@ select:focus-visible,
 
 .advice-form textarea {
   resize: vertical;
-  min-height: 90px;
+  min-height: 56px;
 }
 
 .advice-form input::placeholder,
@@ -2520,7 +2511,7 @@ select:focus-visible,
 
 .advice-form-field {
   display: grid;
-  gap: 10px;
+  gap: 6px;
   position: relative;
 }
 
@@ -2531,10 +2522,10 @@ select:focus-visible,
 }
 
 .advice-field-error {
-  margin-top: -2px;
+  margin-top: 0;
   color: #b91c1c;
-  font-size: 0.84rem;
-  line-height: 1.35;
+  font-size: 0.8rem;
+  line-height: 1.25;
 }
 
 .advice-select {
@@ -2655,14 +2646,14 @@ select:focus-visible,
   width: fit-content;
   min-width: 180px;
   border-radius: 999px;
-  padding: 12px 22px;
+  padding: 9px 20px;
 }
 
 .advice-form-status {
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.4;
   margin: 0;
-  padding: 12px 14px;
+  padding: 10px 12px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.78);
   color: var(--text-primary);
@@ -2687,8 +2678,8 @@ select:focus-visible,
   }
 
   .modal-content {
-    width: min(100%, 420px);
-    padding: 18px 16px;
+    width: min(100%, 380px);
+    padding: 14px 12px;
     border-radius: 18px;
     max-height: calc(100dvh - 32px);
     overflow-y: auto;
@@ -2696,17 +2687,17 @@ select:focus-visible,
   }
 
   .advice-modal-content {
-    width: min(100%, 388px);
-    padding: 14px;
+    width: min(100%, 360px);
+    padding: 10px;
   }
 
   .advice-modal-header h2 {
-    font-size: 1.45rem;
+    font-size: 1.28rem;
   }
 
   .advice-form input,
   .advice-form textarea {
-    padding: 12px 14px;
+    padding: 8px 12px;
   }
 
   .advice-select-trigger {
@@ -2726,12 +2717,12 @@ select:focus-visible,
   }
 
   .advice-modal-header {
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
 
   .advice-modal-header p,
   .advice-form-status {
-    font-size: 0.92rem;
+    font-size: 0.86rem;
   }
 
   .advice-submit-btn {

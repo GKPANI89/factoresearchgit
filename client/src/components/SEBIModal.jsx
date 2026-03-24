@@ -438,7 +438,7 @@ const SEBIModal = () => {
                                     value={formData.enquiryMessage}
                                     onChange={handleChange}
                                     placeholder="Share your requirement"
-                                    rows="4"
+                                    rows="2"
                                     disabled={isSubmitted}
                                 />
                             </div>

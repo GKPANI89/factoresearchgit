@@ -137,7 +137,7 @@ export const legalDocuments = {
                 'For any queries regarding this disclaimer or our services, please contact:',
                 `${APP_NAME} (SEBI Registration No: INH000024480)`,
                 registeredOfficeAddress,
-                `Email: `,
+                `Email: info@factorsearch.com`,
                 `Phone: ${SUPPORT_PHONE}`,
             ],
         },
@@ -602,7 +602,7 @@ export const legalDocuments = {
                         bullets: [
                             `Phone: +91 99599 37373 (9:15 AM - 3:30 PM IST, Monday-Friday).`,
                             `Email: support@factoresearch.com.`,
-                            `WhatsApp: ${whatsappPhone}.`,
+                            `WhatsApp: +91 99599 37373.`,
                             'Live Chat: Available on our website during business hours.',
                         ],
                     },

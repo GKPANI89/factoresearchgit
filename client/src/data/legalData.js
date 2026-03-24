@@ -836,7 +836,7 @@ export const legalDocuments = {
                     {
                         heading: 'Internal Redressal',
                         bullets: [
-                            'Grievance Officer: GK.',
+                            'Grievance Officer: Godina Kodandpani.',
                             `Email: support@factoresearch.com.`,
                             `Phone: +91 99599 37373.`,
                             'Resolution Time: 30 business days.',

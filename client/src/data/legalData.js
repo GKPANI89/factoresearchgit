@@ -602,7 +602,7 @@ export const legalDocuments = {
                         bullets: [
                             `Phone: +91 99599 37373 (9:15 AM - 3:30 PM IST, Monday-Friday).`,
                             `Email: support@factoresearch.com.`,
-                            `WhatsApp: +91 99599 37373.`,
+                            `WhatsApp: ${whatsappPhone}.`,
                             'Live Chat: Available on our website during business hours.',
                         ],
                     },

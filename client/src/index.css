@@ -15,7 +15,7 @@
   --danger: #ef4444;
   --glass: rgba(255, 255, 255, 0.78);
   --glass-border: rgba(37, 99, 235, 0.18);
-  --header-height: 92px;
+  --header-height: 80px;
   --ticker-height: 56px;
   --top-offset: calc(var(--header-height) + var(--ticker-height));
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -336,7 +336,7 @@ select:focus-visible,
 }
 
 .logo-img {
-  height: 68px;
+  height: 58px;
   width: auto;
   transition: var(--transition);
 }
@@ -363,7 +363,7 @@ select:focus-visible,
   }
 
   .logo-img {
-    height: 52px;
+    height: 46px;
   }
 
   .navbar .logo {
@@ -376,7 +376,7 @@ select:focus-visible,
 }
 
 .nav-links > a {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text-secondary);
   white-space: nowrap;
@@ -393,7 +393,7 @@ select:focus-visible,
 .pricing-trigger {
   background: transparent;
   color: var(--text-secondary);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
@@ -581,9 +581,9 @@ select:focus-visible,
   background: var(--accent-primary);
   border: none;
   color: white;
-  padding: 11px 26px;
+  padding: 9px 22px;
   border-radius: 10px;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 10px 22px rgba(29, 78, 216, 0.24);
@@ -776,7 +776,7 @@ select:focus-visible,
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 74px;
+    --header-height: 68px;
     --ticker-height: 52px;
   }
 

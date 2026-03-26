@@ -65,6 +65,13 @@ const AboutSection = ({ showActions = false, RouteLink = null }) => {
                             <Database size={18} />
                             <h3>{siteData.about.philosophyTitle}</h3>
                             <p>{siteData.about.philosophyIntro}</p>
+                            <ul className="philosophy-list">
+                                {siteData.about.philosophyPoints.map((point) => (
+                                    <li key={point.title}>
+                                        <strong>{point.title}:</strong> {point.description}
+                                    </li>
+                                ))}
+                            </ul>
                         </Motion.article>
                     </aside>
                 </div>

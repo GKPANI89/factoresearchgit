@@ -509,13 +509,19 @@
 }
 
 .philosophy-list {
-  margin-top: 16px;
+  margin: 16px 0 0;
+  padding-left: 0;
+  list-style: none;
   display: grid;
   gap: 12px;
 }
 
 .philosophy-list li {
   color: var(--text-secondary);
+}
+
+.philosophy-list li strong {
+  color: var(--text-primary);
 }
 
 .home-cta-row {

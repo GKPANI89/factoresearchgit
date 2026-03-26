@@ -15,6 +15,11 @@ const SUPPORT_PHONE = withFallback(import.meta.env.VITE_SUPPORT_PHONE, DEFAULT_S
 const SUPPORT_EMAIL = withFallback(import.meta.env.VITE_SUPPORT_EMAIL, DEFAULT_SUPPORT_EMAIL);
 const REGISTERED_ADDRESS = withFallback(import.meta.env.VITE_REGISTERED_ADDRESS, DEFAULT_REGISTERED_ADDRESS);
 const WHATSAPP_URL = withFallback(import.meta.env.VITE_WHATSAPP_URL, DEFAULT_WHATSAPP_URL);
+const TWITTER_URL = withFallback(import.meta.env.VITE_TWITTER_URL, '');
+const INSTAGRAM_URL = withFallback(import.meta.env.VITE_INSTAGRAM_URL, '');
+const LINKEDIN_URL = withFallback(import.meta.env.VITE_LINKEDIN_URL, '');
+const FACEBOOK_URL = withFallback(import.meta.env.VITE_FACEBOOK_URL, '');
+const YOUTUBE_URL = withFallback(import.meta.env.VITE_YOUTUBE_URL, '');
 
 const ONBOARDING_URL =
     import.meta.env.VITE_ONBOARDING_URL || 'https://onboarding.cognifyai.in/Facto/';
@@ -514,6 +519,14 @@ export const siteData = {
         address: REGISTERED_ADDRESS,
         intro: 'Please contact us directly with questions, comments, or scheduling inquiries.',
         social: ['Twitter', 'LinkedIn', 'Instagram', 'WhatsApp'],
+        socialLinks: {
+            twitter: TWITTER_URL,
+            instagram: INSTAGRAM_URL,
+            linkedin: LINKEDIN_URL,
+            facebook: FACEBOOK_URL,
+            youtube: YOUTUBE_URL,
+            whatsapp: WHATSAPP_URL,
+        },
     },
     footer: {
         disclosure:

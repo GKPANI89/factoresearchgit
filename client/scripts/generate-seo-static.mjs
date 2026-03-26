@@ -22,6 +22,21 @@ const brandOgImageUrl =
 const brandLogoUrl =
     'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:178,h:178,cg:true,m/cr=w:178,h:178/qt=q:95';
 const brandOgImageAlt = 'Facto Research official brand logo';
+const brandSocialUrls = [
+    process.env.VITE_TWITTER_URL || process.env.TWITTER_URL || '',
+    process.env.VITE_INSTAGRAM_URL || process.env.INSTAGRAM_URL || '',
+    process.env.VITE_LINKEDIN_URL || process.env.LINKEDIN_URL || '',
+    process.env.VITE_FACEBOOK_URL || process.env.FACEBOOK_URL || '',
+    process.env.VITE_YOUTUBE_URL || process.env.YOUTUBE_URL || '',
+]
+    .map((value) => String(value || '').trim())
+    .filter(Boolean);
+const googleSiteVerification = (
+    process.env.VITE_GOOGLE_SITE_VERIFICATION ||
+    process.env.GOOGLE_SITE_VERIFICATION ||
+    ''
+)
+    .trim();
 
 const siteOrigin = (
     process.env.VITE_SITE_URL ||
@@ -46,7 +61,7 @@ const replaceOrInjectInHead = (html, pattern, replacement) => {
     return html.replace('</head>', `  ${replacement}\n  </head>`);
 };
 
-const toPublicUrl = (routePath) => (routePath === '/' ? siteOrigin : `${siteOrigin}${routePath}/`);
+const toPublicUrl = (routePath) => (routePath === '/' ? `${siteOrigin}/` : `${siteOrigin}${routePath}/`);
 
 const resolveKeywords = (routeKeywords) => {
     if (typeof routeKeywords !== 'string' || !routeKeywords.trim()) {
@@ -85,6 +100,7 @@ const buildStructuredDataJson = (seo, pageUrl) =>
                 description: 'Official website of Facto Research, a SEBI-registered Research Analyst in India.',
                 areaServed: 'IN',
                 knowsAbout: ['Equity Research', 'Stock Market Analysis', 'Technical Analysis', 'Portfolio Research'],
+                ...(brandSocialUrls.length ? { sameAs: brandSocialUrls } : {}),
                 contactPoint: [
                     {
                         '@type': 'ContactPoint',
@@ -175,12 +191,9 @@ const buildFallbackHtml = (routePath, seo) => {
     return `<main id="seo-static-content" aria-label="Facto Research Overview">
       <h1>${escapeHtml(seo.heading)}</h1>
       <p>${escapeHtml(seo.description)}</p>
-<<<<<<< HEAD
       <p>Facto Research is the official website of FactoResearch, a SEBI-registered Research Analyst in India.</p>
       <p>SEBI Registration Number: ${escapeHtml(BRAND_REGISTRATION_NUMBER)}</p>
-=======
       <p>Brand reference: FactoResearch (factoresearch.com).</p>
->>>>>>> 0ca020bf03eb238f82f7da237c26828f85503410
       <p>Current page: ${escapeHtml(currentPath)}</p>
       <p>${links}</p>
     </main>`;
@@ -237,6 +250,13 @@ const applySeoToHtml = (baseHtml, routePath, seo) => {
         /<meta\s+name="theme-color"\s+content="[\s\S]*?"\s*\/?>/i,
         '<meta name="theme-color" content="#0f172a" />'
     );
+    if (googleSiteVerification) {
+        html = replaceOrInjectInHead(
+            html,
+            /<meta\s+name="google-site-verification"\s+content="[\s\S]*?"\s*\/?>/i,
+            `<meta name="google-site-verification" content="${escapeHtml(googleSiteVerification)}" />`
+        );
+    }
     html = replaceOrInjectInHead(
         html,
         /<meta\s+property="og:title"\s+content="[\s\S]*?"\s*\/?>/i,

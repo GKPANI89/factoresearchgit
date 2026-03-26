@@ -2987,6 +2987,16 @@ select:focus-visible,
   color: white;
 }
 
+.social-links a.social-link-disabled {
+  opacity: 0.9;
+  cursor: default;
+}
+
+.social-links a.social-link-disabled:hover {
+  background: #ffffff;
+  color: #1e293b;
+}
+
 .qr-block {
   margin-top: 24px;
 }

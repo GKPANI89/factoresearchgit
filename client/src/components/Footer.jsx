@@ -22,6 +22,25 @@ const Footer = () => {
     const emailHref = `mailto:${siteData.contact.email || ''}`;
     const complianceEmailHref = `mailto:${complianceEmail}`;
     const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteData.contact.address || '')}`;
+    const socialLinks = siteData.contact.socialLinks || {};
+    const hasLink = (value) => typeof value === 'string' && value.trim().length > 0;
+    const socialProfiles = [
+        { key: 'twitter', href: socialLinks.twitter, className: 'social-twitter', label: 'Twitter', Icon: Twitter },
+        {
+            key: 'instagram',
+            href: socialLinks.instagram,
+            className: 'social-instagram',
+            label: 'Instagram',
+            Icon: Instagram,
+        },
+        {
+            key: 'linkedin',
+            href: socialLinks.linkedin,
+            className: 'social-linkedin',
+            label: 'LinkedIn',
+            Icon: Linkedin,
+        },
+    ];
     const todayHours = useMemo(() => {
         const todayIndex = new Date().getDay();
         const todayKey = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][todayIndex];
@@ -47,18 +66,38 @@ const Footer = () => {
                             Indian markets through factoresearch.com.
                         </p>
                         <div className="social-links">
-                            <a href="#" className="social-twitter" aria-label="Twitter"><Twitter size={20} /></a>
-                            <a href="#" className="social-instagram" aria-label="Instagram"><Instagram size={20} /></a>
-                            <a href="#" className="social-linkedin" aria-label="LinkedIn"><Linkedin size={20} /></a>
-                            <a
-                                href={siteData.contact.whatsappUrl}
-                                target="_blank"
-                                rel="noreferrer noopener"
-                                aria-label="WhatsApp"
-                                className="social-whatsapp-link"
-                            >
-                                <WhatsAppBrandIcon size={20} />
-                            </a>
+                            {socialProfiles.map((profile) => {
+                                const enabled = hasLink(profile.href);
+                                return (
+                                    <a
+                                        key={profile.key}
+                                        href={enabled ? profile.href : '#'}
+                                        className={`${profile.className}${enabled ? '' : ' social-link-disabled'}`}
+                                        target={enabled ? '_blank' : undefined}
+                                        rel={enabled ? 'noreferrer noopener' : undefined}
+                                        aria-label={profile.label}
+                                        aria-disabled={!enabled}
+                                        onClick={(event) => {
+                                            if (!enabled) {
+                                                event.preventDefault();
+                                            }
+                                        }}
+                                    >
+                                        <profile.Icon size={20} />
+                                    </a>
+                                );
+                            })}
+                            {siteData.contact.whatsappUrl && (
+                                <a
+                                    href={siteData.contact.whatsappUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    aria-label="WhatsApp"
+                                    className="social-whatsapp-link"
+                                >
+                                    <WhatsAppBrandIcon size={20} />
+                                </a>
+                            )}
                         </div>
                     </div>
 

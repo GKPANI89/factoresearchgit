@@ -15,6 +15,16 @@ const BRAND_LOGO_URL =
 const BRAND_OG_IMAGE_URL =
     'https://img1.wsimg.com/isteam/ip/890c2873-45ef-40f0-a650-7817ddb60ef4/Untitled%20(512%20x%20512%20px).png/:/rs=w:512,h:512,cg:true,m/cr=w:512,h:512/qt=q:95';
 const BRAND_OG_IMAGE_ALT = 'Facto Research official brand logo';
+const BRAND_SOCIAL_URLS = [
+    import.meta.env.VITE_TWITTER_URL,
+    import.meta.env.VITE_INSTAGRAM_URL,
+    import.meta.env.VITE_LINKEDIN_URL,
+    import.meta.env.VITE_FACEBOOK_URL,
+    import.meta.env.VITE_YOUTUBE_URL,
+]
+    .map((value) => (typeof value === 'string' ? value.trim() : ''))
+    .filter(Boolean);
+const GOOGLE_SITE_VERIFICATION = (import.meta.env.VITE_GOOGLE_SITE_VERIFICATION || '').trim();
 
 const normalizePath = (path) => {
     if (!path) return '/';
@@ -49,7 +59,7 @@ const getSiteOrigin = () => {
 };
 
 const toPublicUrl = (origin, path) => {
-    if (path === '/') return origin;
+    if (path === '/') return `${origin}/`;
     return `${origin}${path}/`;
 };
 
@@ -135,6 +145,9 @@ export const applyRouteSeo = (path, options = {}) => {
     upsertMeta('name', 'application-name', BRAND_NAME);
     upsertMeta('name', 'keywords', resolveKeywords(seo.keywords));
     upsertMeta('name', 'theme-color', '#0f172a');
+    if (GOOGLE_SITE_VERIFICATION) {
+        upsertMeta('name', 'google-site-verification', GOOGLE_SITE_VERIFICATION);
+    }
     upsertMeta('property', 'og:type', 'website');
     upsertMeta('property', 'og:site_name', BRAND_NAME);
     upsertMeta('property', 'og:locale', 'en_IN');
@@ -166,6 +179,7 @@ export const applyRouteSeo = (path, options = {}) => {
             description: 'Official website of Facto Research, a SEBI-registered Research Analyst in India.',
             areaServed: 'IN',
             knowsAbout: ['Equity Research', 'Stock Market Analysis', 'Technical Analysis', 'Portfolio Research'],
+            ...(BRAND_SOCIAL_URLS.length ? { sameAs: BRAND_SOCIAL_URLS } : {}),
             contactPoint: [
                 {
                     '@type': 'ContactPoint',

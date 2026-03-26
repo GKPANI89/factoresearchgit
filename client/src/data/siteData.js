@@ -50,7 +50,7 @@ export const siteData = {
             'We are a SEBI Registered Research Analyst firm (Registration No. INH000024480). Our foundation is built on the twin pillars of unmatched experience and regulatory excellence. We bring sophisticated research techniques used by institutional desks to the discerning individual investor.',
         philosophyTitle: 'The Facto Philosophy: "Truth Through Data"',
         philosophyIntro:
-            'In a decade of research, we have learned that prices fluctuate, but facts eventually prevail. Our "Facto" methodology is a proprietary research framework refined over 10 years to:',
+            'In a decade of research, we have learned that prices fluctuate, but facts eventually prevail. Our "Facto" methodology is a proprietary research framework refined over 15 years to:',
         philosophyPoints: [
             {
                 title: 'Forensic Analysis',

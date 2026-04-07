@@ -2,22 +2,42 @@ import React from 'react';
 import { complaintBoardData, sebiRiskDisclosure } from '../../data/legalData';
 
 const ComplaintBoardPage = () => {
-    const renderTable = (tableData) => (
-        <div className="legal-table-wrapper">
+    const renderTable = (tableData, caption) => (
+        <div className="legal-table-wrapper" role="region" aria-label={caption}>
             <table className="legal-table">
+                <caption>{caption}</caption>
                 <thead>
                     <tr>
                         {tableData.headers.map((header) => (
-                            <th key={header}>{header}</th>
+                            <th key={header} scope="col">
+                                {header}
+                            </th>
                         ))}
                     </tr>
                 </thead>
                 <tbody>
                     {tableData.rows.map((row, rowIndex) => (
                         <tr key={`${row.join('-')}-${rowIndex}`}>
-                            {row.map((cell, cellIndex) => (
-                                <td key={`${cell}-${cellIndex}`}>{cell}</td>
-                            ))}
+                            {row[0] === '' && row[1]?.toLowerCase() === 'total' ? (
+                                <>
+                                    <th scope="row" colSpan={2}>
+                                        {row[1]}
+                                    </th>
+                                    {row.slice(2).map((cell, cellIndex) => (
+                                        <td key={`${cell}-${cellIndex + 2}`}>{cell}</td>
+                                    ))}
+                                </>
+                            ) : (
+                                row.map((cell, cellIndex) =>
+                                    cellIndex === 0 ? (
+                                        <th key={`${cell}-${cellIndex}`} scope="row">
+                                            {cell}
+                                        </th>
+                                    ) : (
+                                        <td key={`${cell}-${cellIndex}`}>{cell}</td>
+                                    )
+                                )
+                            )}
                         </tr>
                     ))}
                 </tbody>
@@ -53,17 +73,20 @@ const ComplaintBoardPage = () => {
 
                     <article className="glass-card legal-card">
                         <h2>Data for the Month Ending: {complaintBoardData.monthEnding}</h2>
-                        {renderTable(complaintBoardData.sourceTable)}
+                        {renderTable(
+                            complaintBoardData.sourceTable,
+                            `Statement of investor complaints for the month ending ${complaintBoardData.monthEnding}`
+                        )}
                     </article>
 
                     <article className="glass-card legal-card">
                         <h2>Trend of Monthly Disposal of Complaints</h2>
-                        {renderTable(complaintBoardData.monthlyTrendTable)}
+                        {renderTable(complaintBoardData.monthlyTrendTable, 'Trend of monthly disposal of complaints')}
                     </article>
 
                     <article className="glass-card legal-card">
                         <h2>Trend of Annual Disposal of Complaints</h2>
-                        {renderTable(complaintBoardData.annualTrendTable)}
+                        {renderTable(complaintBoardData.annualTrendTable, 'Trend of annual disposal of complaints')}
                     </article>
 
                     <article className="glass-card legal-card legal-risk-card">

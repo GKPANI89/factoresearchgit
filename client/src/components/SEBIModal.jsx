@@ -26,7 +26,13 @@ const getFocusableElements = (container) => {
         container.querySelectorAll(
             'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
         )
-    );
+    ).filter((element) => {
+        if (!(element instanceof HTMLElement)) return false;
+        if (element.hasAttribute('disabled')) return false;
+        if (element.getAttribute('aria-hidden') === 'true') return false;
+        if (element.tabIndex < 0) return false;
+        return element.offsetParent !== null || element === document.activeElement;
+    });
 };
 
 const SEBIModal = () => {
@@ -43,6 +49,7 @@ const SEBIModal = () => {
     const adviceDialogRef = useRef(null);
     const disclaimerCloseButtonRef = useRef(null);
     const adviceCloseButtonRef = useRef(null);
+    const adviceNameInputRef = useRef(null);
     const lastFocusedElementRef = useRef(null);
     const wasAnyModalOpenRef = useRef(false);
 
@@ -95,7 +102,7 @@ const SEBIModal = () => {
         if (!isAdviceOpen) return;
 
         const focusId = window.requestAnimationFrame(() => {
-            adviceCloseButtonRef.current?.focus();
+            adviceNameInputRef.current?.focus();
         });
 
         return () => window.cancelAnimationFrame(focusId);
@@ -124,16 +131,12 @@ const SEBIModal = () => {
             }
         };
 
-        const handleKeyDown = (event) => {
-            if (event.key === 'Escape') {
-                event.preventDefault();
-                closeActiveModal();
-                return;
-            }
+        const activeDialog = isAdviceOpen ? adviceDialogRef.current : disclaimerDialogRef.current;
+        if (!activeDialog) return undefined;
 
+        const handleDialogTabKeyDown = (event) => {
             if (event.key !== 'Tab') return;
 
-            const activeDialog = isAdviceOpen ? adviceDialogRef.current : disclaimerDialogRef.current;
             const focusable = getFocusableElements(activeDialog);
 
             if (!focusable.length) {
@@ -158,8 +161,19 @@ const SEBIModal = () => {
             }
         };
 
-        document.addEventListener('keydown', handleKeyDown);
-        return () => document.removeEventListener('keydown', handleKeyDown);
+        const handleEscapeKeyDown = (event) => {
+            if (event.key !== 'Escape' && event.key !== 'Esc') return;
+            event.preventDefault();
+            closeActiveModal();
+        };
+
+        activeDialog.addEventListener('keydown', handleDialogTabKeyDown);
+        document.addEventListener('keydown', handleEscapeKeyDown, true);
+
+        return () => {
+            activeDialog.removeEventListener('keydown', handleDialogTabKeyDown);
+            document.removeEventListener('keydown', handleEscapeKeyDown, true);
+        };
     }, [isAnyModalOpen, isAdviceOpen, isDisclaimerOpen]);
 
     const clearAdviceFormStatus = () => {
@@ -367,6 +381,7 @@ const SEBIModal = () => {
                             <div className="advice-form-field">
                                 <label htmlFor="m-name">Full Name *</label>
                                 <input
+                                    ref={adviceNameInputRef}
                                     id="m-name"
                                     type="text"
                                     name="name"

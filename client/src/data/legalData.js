@@ -20,10 +20,11 @@ export const legalLinks = [
     { label: 'Investor Charter', path: '/legal/investor-charter' },
     { label: 'Complaint Board', path: '/legal/complaint-board' },
     { label: 'Compliance Audit Status', path: '/legal/compliance-audit-status' },
+    { label: 'Accessibility Statement', path: '/accessibility' },
+    { label: 'HTML Sitemap', path: '/sitemap' },
 ];
 
 const registeredOfficeAddress = REGISTERED_ADDRESS;
-const whatsappPhone = WHATSAPP_URL.match(/phone=(\d+)/)?.[1] || SUPPORT_PHONE;
 
 export const legalDocuments = {
     disclaimer: {

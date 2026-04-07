@@ -20,6 +20,8 @@ import GrievanceRedressalPage from './pages/legal/GrievanceRedressalPage';
 import InvestorCharterPage from './pages/legal/InvestorCharterPage';
 import ComplaintBoardPage from './pages/legal/ComplaintBoardPage';
 import ComplianceAuditStatusPage from './pages/legal/ComplianceAuditStatusPage';
+import AccessibilityStatementPage from './pages/AccessibilityStatementPage';
+import SitemapPage from './pages/SitemapPage';
 import { ROUTE_SEO } from './seo/routeSeoData';
 
 export const navLinks = [
@@ -67,6 +69,8 @@ export const routeComponents = {
     '/legal/investor-charter': InvestorCharterPage,
     '/legal/complaint-board': ComplaintBoardPage,
     '/legal/compliance-audit-status': ComplianceAuditStatusPage,
+    '/accessibility': AccessibilityStatementPage,
+    '/sitemap': SitemapPage,
 };
 
 export const routeTitles = Object.fromEntries(

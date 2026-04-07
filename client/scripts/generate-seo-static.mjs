@@ -180,6 +180,8 @@ const fallbackLinks = [
     { path: '/services/', label: 'Services' },
     { path: '/pricing/', label: 'Pricing' },
     { path: '/contact/', label: 'Contact' },
+    { path: '/accessibility/', label: 'Accessibility Statement' },
+    { path: '/sitemap/', label: 'HTML Sitemap' },
 ];
 
 const buildFallbackHtml = (routePath, seo) => {

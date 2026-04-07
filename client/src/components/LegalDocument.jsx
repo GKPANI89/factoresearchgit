@@ -10,7 +10,7 @@ const REWRITTEN_LINKS = [
     {
         regex: /igrs\.sebi\.gov\.in\b/i,
         href: 'https://igrs.sebi.gov.in',
-        label: 'Visit SEBI Investor Grievance Portal',
+        label: 'Visit Investor Grievance Portal (IGRS)',
     },
     {
         regex: /smartodr\.in\b/i,
@@ -24,7 +24,7 @@ const REWRITTEN_LINKS = [
     },
 ];
 
-const EXTERNAL_URL_REGEX = /(https?:\/\/[^\s)]+|www\.[^\s)]+)/gi;
+const EXTERNAL_URL_REGEX = /(https?:\/\/[^\s)]+|www\.[^\s)]+|\b(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s)]*)?\b)/gi;
 const EMAIL_REGEX = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
 const PHONE_REGEX = /(?:\+\d[\d\s()-]{7,}\d|\b\d{3,5}-\d{2,5}-\d{3,5}\b)/g;
 const PHONE_TEXT_REGEX = /^(?:\+\d[\d\s()-]{7,}\d|\d{3,5}-\d{2,5}-\d{3,5})$/;
@@ -88,7 +88,7 @@ const renderTextWithLinks = (text, keyPrefix) => {
         return text;
     }
 
-    const matcher = new RegExp(`(${EXTERNAL_URL_REGEX.source}|${EMAIL_REGEX.source}|${PHONE_REGEX.source})`, 'gi');
+    const matcher = new RegExp(`(${EMAIL_REGEX.source}|${EXTERNAL_URL_REGEX.source}|${PHONE_REGEX.source})`, 'gi');
     const matches = Array.from(text.matchAll(matcher));
 
     if (!matches.length) {
@@ -169,7 +169,12 @@ const LegalDocument = ({ documentKey, pageHeading }) => {
                 <div className="container legal-container">
                     {documentData.warning && (
                         <article className="glass-card legal-card legal-warning-card">
-                            <h2>Investment Risk Warning</h2>
+                            <h2>
+                                <span className="legal-warning-icon" aria-hidden="true">
+                                    ⚠
+                                </span>{' '}
+                                Investment Risk Warning
+                            </h2>
                             <p>{documentData.warning}</p>
                         </article>
                     )}

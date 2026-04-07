@@ -236,6 +236,22 @@ export const ROUTE_SEO = {
         changefreq: 'monthly',
         priority: '0.4',
     },
+    '/accessibility': {
+        title: 'Accessibility Statement | Facto Research',
+        description:
+            'Read the Facto Research accessibility statement, conformance status, and contact details for reporting accessibility issues.',
+        heading: 'Accessibility Statement',
+        changefreq: 'monthly',
+        priority: '0.5',
+    },
+    '/sitemap': {
+        title: 'HTML Sitemap | Facto Research',
+        description:
+            'Browse the HTML sitemap of Facto Research with direct links to main pages, services, pricing, legal, and compliance pages.',
+        heading: 'HTML Sitemap',
+        changefreq: 'weekly',
+        priority: '0.5',
+    },
 };
 
 export const ORDERED_ROUTE_PATHS = Object.keys(ROUTE_SEO);

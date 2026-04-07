@@ -105,7 +105,15 @@
 }
 
 .legal-warning-card h2 {
-  color: #fbbf24;
+  color: #92400e;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legal-warning-icon {
+  font-size: 1.1em;
+  line-height: 1;
 }
 
 .legal-paragraph {
@@ -175,6 +183,16 @@
   border-collapse: collapse;
 }
 
+.legal-table caption {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(37, 99, 235, 0.08);
+  border-bottom: 1px solid var(--glass-border);
+}
+
 .legal-table th,
 .legal-table td {
   border: 1px solid var(--glass-border);
@@ -189,6 +207,34 @@
   background: rgba(37, 99, 235, 0.12);
   color: var(--text-primary);
   font-size: 0.88rem;
+}
+
+body.theme-dark .legal-warning-card,
+body.high-contrast .legal-warning-card {
+  border-color: rgba(245, 158, 11, 0.46);
+  background: rgba(146, 64, 14, 0.18);
+}
+
+body.theme-dark .legal-warning-card h2,
+body.high-contrast .legal-warning-card h2 {
+  color: #fbbf24;
+}
+
+body.theme-dark .legal-paragraph a,
+body.theme-dark .legal-list a,
+body.high-contrast .legal-paragraph a,
+body.high-contrast .legal-list a {
+  color: #9ec5ff;
+}
+
+body.theme-dark .legal-table caption,
+body.high-contrast .legal-table caption {
+  background: rgba(79, 140, 255, 0.2);
+}
+
+body.theme-dark .legal-table th,
+body.high-contrast .legal-table th {
+  background: rgba(79, 140, 255, 0.24);
 }
 
 .about-stack {
@@ -1903,6 +1949,95 @@
   color: #1e3a8a;
   font-size: 0.8rem;
   font-weight: 600;
+}
+
+body.theme-dark .contact-badge,
+body.high-contrast .contact-badge {
+  border-color: rgba(122, 160, 236, 0.44);
+  background: rgba(19, 33, 63, 0.92);
+  color: #cfe2ff;
+}
+
+body.theme-dark .contact-main-wrapper,
+body.high-contrast .contact-main-wrapper {
+  border-color: rgba(122, 160, 236, 0.32);
+  background: linear-gradient(180deg, #0d1830 0%, #101e38 100%);
+  box-shadow: 0 28px 58px rgba(2, 8, 20, 0.52);
+}
+
+body.theme-dark .contact-main-wrapper.contact-form-only,
+body.high-contrast .contact-main-wrapper.contact-form-only {
+  border-color: rgba(122, 160, 236, 0.38);
+  background: linear-gradient(180deg, #0d1830 0%, #122240 100%);
+}
+
+body.theme-dark .contact-main-wrapper.contact-form-only .contact-form-panel,
+body.high-contrast .contact-main-wrapper.contact-form-only .contact-form-panel {
+  border-color: rgba(122, 160, 236, 0.3);
+  background: linear-gradient(180deg, #101d36 0%, #142545 100%);
+}
+
+body.theme-dark .contact-main-wrapper.contact-form-only .contact-form-head,
+body.high-contrast .contact-main-wrapper.contact-form-only .contact-form-head {
+  border-bottom-color: rgba(122, 160, 236, 0.3);
+}
+
+body.theme-dark .contact-main-wrapper.contact-form-only .contact-form-head p,
+body.theme-dark .contact-form-head p,
+body.high-contrast .contact-main-wrapper.contact-form-only .contact-form-head p,
+body.high-contrast .contact-form-head p {
+  color: #b8cae9;
+}
+
+body.theme-dark .contact-form-head h3,
+body.high-contrast .contact-form-head h3 {
+  color: #e6efff;
+}
+
+body.theme-dark .form-group-v3 label,
+body.high-contrast .form-group-v3 label {
+  color: #c3d5f3;
+}
+
+body.theme-dark .form-group-v3 input,
+body.theme-dark .form-group-v3 select,
+body.theme-dark .form-group-v3 textarea,
+body.high-contrast .form-group-v3 input,
+body.high-contrast .form-group-v3 select,
+body.high-contrast .form-group-v3 textarea {
+  border-color: rgba(122, 160, 236, 0.34);
+  background: #111f3a;
+  color: #e8f0ff;
+  box-shadow: inset 0 1px 0 rgba(180, 209, 255, 0.08);
+}
+
+body.theme-dark .form-group-v3 input::placeholder,
+body.theme-dark .form-group-v3 textarea::placeholder,
+body.high-contrast .form-group-v3 input::placeholder,
+body.high-contrast .form-group-v3 textarea::placeholder {
+  color: #8ea8d3;
+}
+
+body.theme-dark .form-group-v3 input:focus,
+body.theme-dark .form-group-v3 select:focus,
+body.theme-dark .form-group-v3 textarea:focus,
+body.high-contrast .form-group-v3 input:focus,
+body.high-contrast .form-group-v3 select:focus,
+body.high-contrast .form-group-v3 textarea:focus {
+  border-color: #7fb4ff;
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.26);
+}
+
+body.theme-dark .contact-form-status,
+body.high-contrast .contact-form-status {
+  color: #9bc5ff;
+}
+
+body.theme-dark .contact-trust-pill,
+body.high-contrast .contact-trust-pill {
+  border-color: rgba(122, 160, 236, 0.34);
+  background: rgba(20, 34, 64, 0.9);
+  color: #d1e2ff;
 }
 
 @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import MarketTicker from './components/MarketTicker';
 import Footer from './components/Footer';
@@ -16,20 +16,34 @@ const AppShell = () => {
     const { path } = useRouter();
     const isKnownRoute = Boolean(routeComponents[path]);
     const PageComponent = routeComponents[path] || NotFoundPage;
-
-    const handleSkipToMain = (event) => {
-        event.preventDefault();
-        const mainContent = document.getElementById('main-content');
-        if (!mainContent) return;
-        mainContent.focus();
-        mainContent.scrollIntoView({ block: 'start' });
-    };
+    const didHydrateRef = useRef(false);
 
     useEffect(() => {
         applyRouteSeo(path, { noindex: !isKnownRoute });
     }, [path, isKnownRoute]);
 
     useEffect(() => {
+        const skipLink = document.getElementById('skip-to-main-content');
+        if (!skipLink) return undefined;
+
+        const handleSkipToMain = (event) => {
+            event.preventDefault();
+            const mainContent = document.getElementById('main-content');
+            if (!mainContent) return;
+            mainContent.focus();
+            mainContent.scrollIntoView({ block: 'start' });
+        };
+
+        skipLink.addEventListener('click', handleSkipToMain);
+        return () => skipLink.removeEventListener('click', handleSkipToMain);
+    }, []);
+
+    useEffect(() => {
+        if (!didHydrateRef.current) {
+            didHydrateRef.current = true;
+            return undefined;
+        }
+
         const focusRaf = window.requestAnimationFrame(() => {
             const pageHeading = document.querySelector('#main-content h1');
             if (!pageHeading) return;
@@ -42,9 +56,6 @@ const AppShell = () => {
 
     return (
         <div className="app-wrapper">
-            <a href="#main-content" className="skip-link" onClick={handleSkipToMain}>
-                Skip to main content
-            </a>
             <div id="app-main-shell">
                 <FestivalOverlay />
                 <Navbar />

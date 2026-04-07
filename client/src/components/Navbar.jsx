@@ -4,6 +4,8 @@ import {
     X,
     ArrowUpRight,
     ChevronDown,
+    Moon,
+    Sun,
     BarChart3,
     TrendingUp,
     Activity,
@@ -15,6 +17,19 @@ import { RouteLink } from '../router';
 import { useRouter } from '../useRouter';
 import { navLinks, pricingLinks } from '../routes';
 import { siteData } from '../data/siteData';
+
+const FONT_SCALE_STORAGE_KEY = 'factoFontScale';
+const THEME_MODE_STORAGE_KEY = 'factoThemeMode';
+const LEGACY_HIGH_CONTRAST_STORAGE_KEY = 'factoHighContrastMode';
+const MIN_FONT_SCALE = 0.9;
+const MAX_FONT_SCALE = 1.4;
+const FONT_STEP = 0.1;
+
+const clampFontScale = (value) => {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return 1;
+    return Math.min(MAX_FONT_SCALE, Math.max(MIN_FONT_SCALE, numeric));
+};
 
 const serviceLinks = [
     {
@@ -103,6 +118,17 @@ const Navbar = () => {
     const [isPricingMenuOpen, setIsPricingMenuOpen] = useState(false);
     const [isMobileServicesMenuOpen, setIsMobileServicesMenuOpen] = useState(false);
     const [isMobilePricingMenuOpen, setIsMobilePricingMenuOpen] = useState(false);
+    const [fontScale, setFontScale] = useState(() => {
+        if (typeof window === 'undefined') return 1;
+        return clampFontScale(window.localStorage.getItem(FONT_SCALE_STORAGE_KEY) || 1);
+    });
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        const storedThemeMode = window.localStorage.getItem(THEME_MODE_STORAGE_KEY);
+        if (storedThemeMode === 'dark') return true;
+        if (storedThemeMode === 'light') return false;
+        return window.localStorage.getItem(LEGACY_HIGH_CONTRAST_STORAGE_KEY) === 'true';
+    });
     const { path } = useRouter();
     const servicesMenuRef = useRef(null);
     const pricingMenuRef = useRef(null);
@@ -118,6 +144,16 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    useEffect(() => {
+        document.documentElement.style.fontSize = `${Math.round(fontScale * 100)}%`;
+        window.localStorage.setItem(FONT_SCALE_STORAGE_KEY, String(fontScale));
+    }, [fontScale]);
+
+    useEffect(() => {
+        document.body.classList.toggle('theme-dark', isDarkMode);
+        window.localStorage.setItem(THEME_MODE_STORAGE_KEY, isDarkMode ? 'dark' : 'light');
+    }, [isDarkMode]);
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
@@ -314,6 +350,19 @@ const Navbar = () => {
         setIsMobilePricingMenuOpen(false);
     };
 
+    const adjustFontScale = (direction) => {
+        if (direction === 0) {
+            setFontScale(1);
+            return;
+        }
+
+        setFontScale((previousScale) => clampFontScale(previousScale + direction * FONT_STEP));
+    };
+
+    const toggleDarkMode = () => {
+        setIsDarkMode((previous) => !previous);
+    };
+
     return (
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
             <div className="container nav-content">
@@ -433,6 +482,51 @@ const Navbar = () => {
                             {contactLink.label}
                         </RouteLink>
                     )}
+                    <div className="nav-accessibility-controls" aria-label="Accessibility settings">
+                        <button
+                            type="button"
+                            className="nav-a11y-btn"
+                            onClick={() => adjustFontScale(-1)}
+                            aria-label="Decrease text size"
+                        >
+                            A-
+                        </button>
+                        <button
+                            type="button"
+                            className="nav-a11y-btn"
+                            onClick={() => adjustFontScale(0)}
+                            aria-label="Reset text size"
+                        >
+                            A
+                        </button>
+                        <button
+                            type="button"
+                            className="nav-a11y-btn"
+                            onClick={() => adjustFontScale(1)}
+                            aria-label="Increase text size"
+                        >
+                            A+
+                        </button>
+                        <button
+                            type="button"
+                            className={`nav-a11y-btn ${isDarkMode ? 'is-active' : ''}`.trim()}
+                            onClick={toggleDarkMode}
+                            aria-pressed={isDarkMode}
+                            aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                        >
+                            {isDarkMode ? (
+                                <>
+                                    <Sun size={13} />
+                                    <span>Light</span>
+                                </>
+                            ) : (
+                                <>
+                                    <Moon size={13} />
+                                    <span>Dark</span>
+                                </>
+                            )}
+                        </button>
+                    </div>
                     <RouteLink
                         to={siteData.hero.primaryAction.path}
                         className="nav-cta"
@@ -534,6 +628,51 @@ const Navbar = () => {
                             {contactLink.label}
                         </RouteLink>
                     )}
+                    <div className="mobile-a11y-controls" aria-label="Accessibility settings">
+                        <button
+                            type="button"
+                            className="nav-a11y-btn"
+                            onClick={() => adjustFontScale(-1)}
+                            aria-label="Decrease text size"
+                        >
+                            A-
+                        </button>
+                        <button
+                            type="button"
+                            className="nav-a11y-btn"
+                            onClick={() => adjustFontScale(0)}
+                            aria-label="Reset text size"
+                        >
+                            A
+                        </button>
+                        <button
+                            type="button"
+                            className="nav-a11y-btn"
+                            onClick={() => adjustFontScale(1)}
+                            aria-label="Increase text size"
+                        >
+                            A+
+                        </button>
+                        <button
+                            type="button"
+                            className={`nav-a11y-btn ${isDarkMode ? 'is-active' : ''}`.trim()}
+                            onClick={toggleDarkMode}
+                            aria-pressed={isDarkMode}
+                            aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                        >
+                            {isDarkMode ? (
+                                <>
+                                    <Sun size={13} />
+                                    <span>Light</span>
+                                </>
+                            ) : (
+                                <>
+                                    <Moon size={13} />
+                                    <span>Dark</span>
+                                </>
+                            )}
+                        </button>
+                    </div>
                     <RouteLink
                         to={siteData.hero.primaryAction.path}
                         className="nav-cta"

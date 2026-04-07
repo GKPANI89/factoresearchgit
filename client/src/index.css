@@ -3249,8 +3249,13 @@ body.high-contrast .nav-a11y-btn.is-active {
   border: none;
   border-radius: 0;
   padding: 0;
-  display: grid;
-  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-contact h4 {
+  margin-bottom: 8px;
 }
 
 .footer-links ul li {
@@ -3269,9 +3274,9 @@ body.high-contrast .nav-a11y-btn.is-active {
 .contact-item {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
   color: #1e293b;
-  margin-bottom: 6px;
+  margin-bottom: 0;
   font-size: 0.95rem;
 }
 
@@ -3300,7 +3305,9 @@ body.high-contrast .nav-a11y-btn.is-active {
 }
 
 .footer-whatsapp-btn {
-  margin: 0 0 4px;
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
   width: 100%;
   justify-content: flex-start;
 }
@@ -3312,7 +3319,7 @@ body.high-contrast .nav-a11y-btn.is-active {
 .contact-item svg {
   flex-shrink: 0;
   color: #1e3a8a;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 .contact-item .compliance-icon {
@@ -3322,7 +3329,7 @@ body.high-contrast .nav-a11y-btn.is-active {
 .contact-link {
   color: #1e293b;
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 1.35;
   text-decoration: none;
   flex: 1;
 }
@@ -3333,9 +3340,9 @@ body.high-contrast .nav-a11y-btn.is-active {
 }
 
 .footer-open-today {
-  margin: 0 0 0 14px;
+  margin: 2px 0 0 14px;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .footer-open-today-prefix {

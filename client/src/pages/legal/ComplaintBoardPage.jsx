@@ -67,7 +67,7 @@ const ComplaintBoardPage = () => {
                             href="/documents/Complaint%20Board.pdf"
                             download="Complaint Board.pdf"
                         >
-                            Download Complaint Board Data (PDF) – May 2026
+                            Download Complaint Board Data (PDF) - May 2026
                         </a>
                     </article>
 

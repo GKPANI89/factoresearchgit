@@ -64,10 +64,10 @@ const ComplaintBoardPage = () => {
                         <p>Download the complaint board PDF file.</p>
                         <a
                             className="btn-primary legal-download-btn"
-                            href="/documents/Complaint%20Board.pdf?v=may-2026"
+                            href="/documents/Complaint%20Board.pdf?v=june-2026"
                             download="Complaint Board.pdf"
                         >
-                            Download Complaint Board Data (PDF) - May 2026
+                            Download Complaint Board Data (PDF) - June 2026
                         </a>
                     </article>
 

@@ -29,8 +29,8 @@ const ComplianceAuditStatusPage = () => {
                     <article className="glass-card legal-card legal-download-card">
                         <h2>Download</h2>
                         <p>Download the latest compliance audit status note.</p>
-                        <a className="btn-primary legal-download-btn" href="/documents/compliance-audit-status-january-2026.txt" download>
-                            Download Compliance Audit Status (TXT) – January 2026
+                        <a className="btn-primary legal-download-btn" href="/documents/compliance-audit-status-june-2026.txt" download>
+                            Download Compliance Audit Status (TXT) – June 2026
                         </a>
                     </article>
 

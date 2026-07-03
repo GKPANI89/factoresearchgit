@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import MarketTicker from './components/MarketTicker';
 import Footer from './components/Footer';
@@ -22,20 +22,33 @@ const AppShell = () => {
         applyRouteSeo(path, { noindex: !isKnownRoute });
     }, [path, isKnownRoute]);
 
-    useEffect(() => {
-        const skipLink = document.getElementById('skip-to-main-content');
-        if (!skipLink) return undefined;
+    const handleSkipToMain = useCallback((event) => {
+        event.preventDefault();
 
-        const handleSkipToMain = (event) => {
-            event.preventDefault();
-            const mainContent = document.getElementById('main-content');
-            if (!mainContent) return;
-            mainContent.focus();
-            mainContent.scrollIntoView({ block: 'start' });
-        };
+        const mainContent = document.getElementById('main-content');
+        if (!mainContent) return;
 
-        skipLink.addEventListener('click', handleSkipToMain);
-        return () => skipLink.removeEventListener('click', handleSkipToMain);
+        const pageHeading = mainContent.querySelector('h1');
+        const focusTarget = pageHeading || mainContent;
+
+        if (pageHeading && !pageHeading.hasAttribute('tabindex')) {
+            pageHeading.setAttribute('tabindex', '-1');
+        }
+
+        focusTarget.focus({ preventScroll: true });
+
+        const topOffset = parseFloat(
+            window.getComputedStyle(document.documentElement).getPropertyValue('--top-offset')
+        );
+        const scrollTop =
+            mainContent.getBoundingClientRect().top +
+            window.scrollY -
+            (Number.isFinite(topOffset) ? topOffset : 0);
+
+        window.scrollTo({
+            top: Math.max(0, scrollTop),
+            behavior: 'smooth',
+        });
     }, []);
 
     useEffect(() => {
@@ -56,6 +69,9 @@ const AppShell = () => {
 
     return (
         <div className="app-wrapper">
+            <a id="skip-to-main-content" href="#main-content" className="skip-link" onClick={handleSkipToMain}>
+                Skip to main content
+            </a>
             <div id="app-main-shell">
                 <FestivalOverlay />
                 <Navbar />

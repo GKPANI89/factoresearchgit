@@ -3689,7 +3689,7 @@ body.high-contrast .nav-a11y-btn.is-active {
   height: 32px;
   border-radius: 50%;
   background: #1e293b;
-  color: #64748b;
+  color: #cbd5e1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3709,13 +3709,13 @@ body.high-contrast .nav-a11y-btn.is-active {
 .step-label {
   font-size: 0.7rem;
   font-weight: 700;
-  color: #64748b;
+  color: #cbd5e1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .step-label.active {
-  color: #94a3b8;
+  color: #e2e8f0;
 }
 
 .step-line {
@@ -3746,7 +3746,7 @@ body.high-contrast .nav-a11y-btn.is-active {
 }
 
 .form-header p {
-  color: #475569;
+  color: #cbd5e1;
   font-size: 1.1rem;
 }
 
@@ -3770,7 +3770,7 @@ body.high-contrast .nav-a11y-btn.is-active {
 
 .form-group-onboard input {
   background: #0f1115;
-  border: 1px solid #1e293b;
+  border: 1px solid #475569;
   border-radius: 12px;
   padding: 16px 20px;
   color: white;
@@ -3781,11 +3781,12 @@ body.high-contrast .nav-a11y-btn.is-active {
 
 .form-group-onboard input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.28);
 }
 
 .form-group-onboard input::placeholder {
-  color: #475569;
+  color: #94a3b8;
 }
 
 .onboarding-submit-btn {
@@ -3808,13 +3809,14 @@ body.high-contrast .nav-a11y-btn.is-active {
 .onboarding-footer {
   text-align: center;
   margin-top: 24px;
-  color: #475569;
+  color: #cbd5e1;
   font-size: 0.85rem;
 }
 
 .onboarding-footer a {
-  color: #3b82f6;
+  color: #93c5fd;
   text-decoration: none;
+  font-weight: 700;
 }
 
 .onboarding-footer a:hover {

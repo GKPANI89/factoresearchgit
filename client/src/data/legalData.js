@@ -1,11 +1,17 @@
 const APP_NAME = import.meta.env.VITE_APP_NAME || 'Facto Research';
-const SUPPORT_PHONE = import.meta.env.VITE_SUPPORT_PHONE || '';
-const SUPPORT_EMAIL = import.meta.env.VITE_SUPPORT_EMAIL || '';
-const REGISTERED_ADDRESS = import.meta.env.VITE_REGISTERED_ADDRESS || '';
+const DEFAULT_SUPPORT_PHONE = '+91 99599 37373';
+const DEFAULT_SUPPORT_EMAIL = 'support@factoresearch.com';
+const DEFAULT_REGISTERED_ADDRESS =
+    'D.No.7, SNO.432/4 Plot No.6, Opp JNTU College, KM Colony, Anantapur, Andhra Pradesh-515002.';
+const SUPPORT_PHONE = import.meta.env.VITE_SUPPORT_PHONE || DEFAULT_SUPPORT_PHONE;
+const SUPPORT_EMAIL = import.meta.env.VITE_SUPPORT_EMAIL || DEFAULT_SUPPORT_EMAIL;
+const REGISTERED_ADDRESS = import.meta.env.VITE_REGISTERED_ADDRESS || DEFAULT_REGISTERED_ADDRESS;
 const WHATSAPP_URL = import.meta.env.VITE_WHATSAPP_URL || '';
 const INFO_EMAIL = import.meta.env.VITE_INFO_EMAIL || SUPPORT_EMAIL;
 const GRIEVANCE_EMAIL = import.meta.env.VITE_GRIEVANCE_EMAIL || SUPPORT_EMAIL;
-const WEBSITE_URL = import.meta.env.VITE_SITE_URL || '';
+const WEBSITE_URL = import.meta.env.VITE_SITE_URL || 'https://factoresearch.com';
+const WEBSITE_ROOT = WEBSITE_URL.replace(/\/$/, '');
+const WEBSITE_DISPLAY = WEBSITE_ROOT.replace(/^https?:\/\//i, '');
 
 export const sebiRiskDisclosure =
     'SEBI Investment Risk Disclosure: Investment in securities market are subject to market risks. Read all the related documents carefully before investing. Registration granted by SEBI, membership of BASL and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors. Please read the Risk Disclosure Document prescribed by SEBI & exchange before investing.';
@@ -749,6 +755,48 @@ export const legalDocuments = {
                     'Right to Privacy.',
                     'Right to Grievance Redressal.',
                     'Right to Exit.',
+                ],
+            },
+            {
+                heading: 'Accessibility for Investors with Disabilities',
+                paragraphs: [
+                    `In accordance with the Rights of Persons with Disabilities (RPwD) Act, 2016 and SEBI directives on investor accessibility, ${APP_NAME} is committed to ensuring that all investors, including investors with disabilities, can access research services and related information without barriers.`,
+                ],
+                subSections: [
+                    {
+                        heading: 'Website Accessibility',
+                        paragraphs: [
+                            `This website (${WEBSITE_DISPLAY}) is designed and maintained in conformance with the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA, including compatibility with screen readers, keyboard navigation, sufficient colour contrast, and accessible document structure.`,
+                        ],
+                    },
+                    {
+                        heading: 'Accessible Communication',
+                        paragraphs: [
+                            'Investors with disabilities may request research communications in accessible formats or ask for alternate communication support through the following channels:',
+                        ],
+                        bullets: [
+                            `Email: ${SUPPORT_EMAIL} - for accessible formats, accessibility feedback, or alternate communication support.`,
+                            `Phone: ${SUPPORT_PHONE} - for investors who cannot use digital channels.`,
+                        ],
+                    },
+                    {
+                        heading: 'Accessible Grievance Redressal',
+                        paragraphs: [
+                            'Investors with disabilities who face barriers in using SCORES or any online grievance system may submit complaints directly via email or phone. Complaints received through alternate accessible channels will be treated with equal priority and resolved within the same timelines as online complaints.',
+                        ],
+                    },
+                    {
+                        heading: 'Non-Discrimination',
+                        paragraphs: [
+                            'Services are provided equally to all investors regardless of disability status. No investor will be denied access to research services, reports, or grievance mechanisms on the basis of any disability as defined under the RPwD Act, 2016.',
+                        ],
+                    },
+                    {
+                        heading: 'Accessibility Statement',
+                        paragraphs: [
+                            `A detailed Accessibility Statement, including known limitations and contact information for reporting accessibility issues, is available at ${WEBSITE_ROOT}/accessibility.`,
+                        ],
+                    },
                 ],
             },
             {

@@ -178,7 +178,7 @@ const Contact = () => {
                                         name="fullName"
                                         value={formData.fullName}
                                         onChange={handleChange}
-                                        placeholder="e.g. Ramesh Kumar Sharma"
+                                        placeholder="e.g. Priya Sharma"
                                         autoComplete="name"
                                         aria-invalid={Boolean(formErrors.fullName)}
                                         aria-describedby={getDescribedBy('fullName', 'fullName-hint')}
@@ -199,7 +199,7 @@ const Contact = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        placeholder="e.g. 9811735353"
+                                        placeholder="e.g. 9999999999"
                                         inputMode="numeric"
                                         autoComplete="tel"
                                         aria-invalid={Boolean(formErrors.phone)}
@@ -235,7 +235,7 @@ const Contact = () => {
                                 {renderFieldError('email')}
                             </div>
                             <div className="form-group-v3">
-                                <label htmlFor="contact-message">Message *</label>
+                                <label htmlFor="contact-message">Message*</label>
                                 <textarea
                                     ref={fieldRefs.message}
                                     id="contact-message"

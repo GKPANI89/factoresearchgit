@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
-import { ShieldAlert, X } from 'lucide-react';
+import { CheckCircle2, ShieldAlert, X } from 'lucide-react';
 import { useRouter } from '../useRouter';
 import { submitContactForm } from '../utils/contactApi';
 
@@ -43,6 +43,7 @@ const SEBIModal = () => {
     const [formErrors, setFormErrors] = useState(EMPTY_ERRORS);
     const [formStatus, setFormStatus] = useState('');
     const [formStatusType, setFormStatusType] = useState('');
+    const [showSuccessToast, setShowSuccessToast] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const disclaimerDialogRef = useRef(null);
@@ -280,14 +281,16 @@ const SEBIModal = () => {
             pageUrl: window.location.href,
         })
             .then(() => {
-                setFormStatus('Your enquiry has been sent. We will be in touch shortly.');
-                setFormStatusType('success');
+                setFormStatus('');
+                setFormStatusType('');
+                setShowSuccessToast(true);
 
                 setTimeout(() => {
+                    setShowSuccessToast(false);
                     setIsAdviceOpen(false);
                     setFormData(EMPTY_FORM);
                     navigate('/');
-                }, 1800);
+                }, 2000);
             })
             .catch((error) => {
                 setIsSubmitted(false);
@@ -297,7 +300,26 @@ const SEBIModal = () => {
     };
 
     return (
-        <AnimatePresence>
+        <>
+            <AnimatePresence>
+                {showSuccessToast && (
+                    <div className="advice-success-toast-wrap">
+                        <Motion.div
+                            initial={{ opacity: 0, y: -12, scale: 0.96 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -12, scale: 0.96 }}
+                            className="advice-success-toast"
+                            role="status"
+                            aria-live="polite"
+                        >
+                            <CheckCircle2 size={18} />
+                            <span>Your enquiry has been sent. We will be in touch shortly</span>
+                        </Motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+
+            <AnimatePresence>
             {isDisclaimerOpen && (
                 <div className="modal-overlay">
                     <Motion.div
@@ -379,7 +401,7 @@ const SEBIModal = () => {
 
                         <form className="advice-form" onSubmit={handleSubmit} noValidate>
                             <div className="advice-form-field">
-                                <label htmlFor="m-name">Full Name *</label>
+                                <label htmlFor="m-name">Full Name*</label>
                                 <input
                                     ref={adviceNameInputRef}
                                     id="m-name"
@@ -402,7 +424,7 @@ const SEBIModal = () => {
                             </div>
 
                             <div className="advice-form-field">
-                                <label htmlFor="m-phone">Mobile Number *</label>
+                                <label htmlFor="m-phone">Mobile Number*</label>
                                 <input
                                     id="m-phone"
                                     type="tel"
@@ -424,7 +446,7 @@ const SEBIModal = () => {
                             </div>
 
                             <div className="advice-form-field">
-                                <label htmlFor="m-email">Email Address *</label>
+                                <label htmlFor="m-email">Email Address*</label>
                                 <input
                                     id="m-email"
                                     type="email"
@@ -452,7 +474,7 @@ const SEBIModal = () => {
                                     name="enquiryMessage"
                                     value={formData.enquiryMessage}
                                     onChange={handleChange}
-                                    placeholder="Share your requirement"
+                                    placeholder="Share your requirement..."
                                     rows="2"
                                     disabled={isSubmitted}
                                 />
@@ -462,7 +484,7 @@ const SEBIModal = () => {
                                 {isSubmitted ? 'Submitting...' : 'Send enquiry'}
                             </button>
 
-                            {formStatus && (
+                            {formStatus && formStatusType !== 'success' && (
                                 <p
                                     className={`advice-form-status${
                                         formStatusType ? ` advice-form-status-${formStatusType}` : ''
@@ -477,6 +499,7 @@ const SEBIModal = () => {
                 </div>
             )}
         </AnimatePresence>
+        </>
     );
 };
 

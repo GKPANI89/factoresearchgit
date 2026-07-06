@@ -56,7 +56,7 @@ const OnboardingPage = () => {
 
                     <form className="onboarding-form" onSubmit={handleSubmit}>
                         <div className="form-group-onboard">
-                            <label>Full Name</label>
+                            <label><div className="p-4">Full Name</div></label>
                             <input type="text" placeholder="Enter your full name" required />
                         </div>
 

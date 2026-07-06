@@ -2487,9 +2487,9 @@ select:focus-visible,
 }
 
 .advice-modal-content {
-  width: min(100%, 440px);
-  max-width: 440px;
-  padding: 10px 12px;
+  width: min(100%, 420px);
+  max-width: 420px;
+  padding: 20px 22px;
   background: #eff6ff !important;
   background-image: none !important;
 }
@@ -2512,6 +2512,7 @@ select:focus-visible,
   margin-bottom: 4px;
   font-size: 1.4rem;
   line-height: 1.1;
+  transform: translateX(10px);
 }
 
 .advice-modal-header p {
@@ -2528,14 +2529,14 @@ select:focus-visible,
 
 .advice-form {
   display: grid;
-  gap: 8px;
+  gap: 7px;
   overflow: visible;
 }
 
 .advice-form input,
 .advice-form textarea {
   width: 100%;
-  padding: 9px 14px;
+  padding: 8px 12px;
   border-radius: 12px;
   border: 1px solid rgba(148, 163, 184, 0.32);
   background: #f8fbff !important;
@@ -2545,7 +2546,7 @@ select:focus-visible,
 
 .advice-form textarea {
   resize: vertical;
-  min-height: 56px;
+  min-height: 48px;
 }
 
 .advice-form input::placeholder,
@@ -2565,11 +2566,15 @@ select:focus-visible,
   gap: 6px;
   position: relative;
 }
+.advice-form-field  ::placeholder{
+  font-family: sans-serif;
+}
 
 .advice-form-field label {
   color: #334155;
   font-size: 0.88rem;
   font-weight: 700;
+  margin-left: 10px;
 }
 
 .advice-field-error {
@@ -2723,6 +2728,37 @@ select:focus-visible,
   border: 1px solid rgba(239, 68, 68, 0.22);
 }
 
+.advice-success-toast-wrap {
+  position: fixed;
+  top: calc(var(--top-offset) + 18px);
+  left: 50%;
+  z-index: 2300;
+  width: min(calc(100vw - 32px), 430px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.advice-success-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid rgba(34, 197, 94, 0.26);
+  border-radius: 14px;
+  background: rgba(240, 253, 244, 0.98);
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.18);
+  color: #166534;
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.advice-success-toast svg {
+  flex: 0 0 auto;
+  color: #16a34a;
+}
+
 @media (max-width: 640px) {
   .modal-overlay {
     padding: 16px;
@@ -2738,17 +2774,29 @@ select:focus-visible,
   }
 
   .advice-modal-content {
-    width: min(100%, 360px);
-    padding: 10px;
+    width: min(100%, 340px);
+    padding: 18px 14px;
   }
 
   .advice-modal-header h2 {
     font-size: 1.28rem;
   }
 
+  .advice-success-toast-wrap {
+    top: 18px;
+  }
+
+  .advice-success-toast {
+    font-size: 0.86rem;
+  }
+
   .advice-form input,
   .advice-form textarea {
     padding: 8px 12px;
+  }
+
+  .advice-form-field label {
+    margin-left: 8px;
   }
 
   .advice-select-trigger {
@@ -3153,6 +3201,13 @@ body.high-contrast .advice-select-menu {
 body.theme-dark .advice-form-status,
 body.high-contrast .advice-form-status {
   background: rgba(17, 31, 58, 0.95);
+}
+
+body.theme-dark .advice-success-toast,
+body.high-contrast .advice-success-toast {
+  background: rgba(14, 39, 30, 0.98);
+  border-color: rgba(74, 222, 128, 0.32);
+  color: #bbf7d0;
 }
 
 body.theme-dark .footer-section,
@@ -3664,6 +3719,8 @@ body.high-contrast .nav-a11y-btn.is-active {
 .onboarding-form-container {
   max-width: 480px;
   width: 100%;
+  padding: 36px 32px;
+  border-radius: 18px;
 }
 
 /* Stepper */
@@ -3836,6 +3893,10 @@ body.high-contrast .nav-a11y-btn.is-active {
 
   .onboarding-right {
     padding: 24px;
+  }
+
+  .onboarding-form-container {
+    padding: 28px 20px;
   }
 
   .onboarding-left-content h1 {

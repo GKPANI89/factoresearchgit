@@ -723,7 +723,7 @@ body.high-contrast .legal-table th {
 }
 
 .services-v3-selector-link:focus-visible .services-v3-selector {
-  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline: 3px solid rgba(27, 127, 234, 0.45);
   outline-offset: 2px;
 }
 
@@ -2288,6 +2288,48 @@ body.high-contrast .contact-trust-pill {
   gap: 7px;
 }
 
+.chat-fab,
+.chat-fab:hover,
+.chat-panel-header,
+.chat-bubble,
+.chat-send-btn,
+.chat-whatsapp-link {
+  background: #1B7FEA;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.chat-panel-header h4,
+.chat-panel-header button,
+.chat-panel-header button svg,
+.chat-fab svg,
+.chat-send-btn svg {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.nav-links > a,
+.nav-links > a:hover,
+.nav-links > a.active,
+.pricing-trigger,
+.pricing-trigger:hover,
+.pricing-trigger.active,
+.legal-trigger,
+.legal-trigger:hover,
+.legal-trigger.active,
+.mobile-menu a,
+.mobile-menu a:hover,
+.mobile-menu a.active,
+.mobile-pricing-trigger,
+.mobile-pricing-trigger:hover,
+.mobile-pricing-trigger.active,
+.mobile-legal-trigger,
+.mobile-legal-trigger:hover,
+.mobile-legal-trigger.active {
+  color: #1B7FEA !important;
+  -webkit-text-fill-color: #1B7FEA !important;
+}
+
 .chat-form-status {
   color: #1e3a8a;
   font-size: 0.83rem;
@@ -2420,4 +2462,23 @@ li,
 .footer-disclosure,
 .footer-bottom {
   color: #111827;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.nav-cta,
+.nav-links .nav-cta,
+.mobile-menu .nav-cta,
+.nav-links .nav-cta:hover,
+.mobile-menu .nav-cta:hover,
+.luxury-submit {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.ticker-toggle-btn,
+.ticker-visibility-btn,
+.ticker-play-btn {
+  color: #1B7FEA !important;
+  -webkit-text-fill-color: #1B7FEA !important;
 }

@@ -410,7 +410,7 @@ export const siteData = {
                 'Periodic review support',
                 'Consultative onboarding',
             ],
-            investorResearchTitle: 'Our Research For Investors',
+            investorResearchTitle: 'Our Premium Research for Investors',
             investorPackages: [
                 {
                     slug: 'facto-blueprint',

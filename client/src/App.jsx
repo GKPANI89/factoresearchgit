@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import MarketTicker from './components/MarketTicker';
 import Footer from './components/Footer';
@@ -17,6 +17,7 @@ const AppShell = () => {
     const isKnownRoute = Boolean(routeComponents[path]);
     const PageComponent = routeComponents[path] || NotFoundPage;
     const didHydrateRef = useRef(false);
+    const [isSkipLinkVisible, setIsSkipLinkVisible] = useState(false);
 
     useEffect(() => {
         applyRouteSeo(path, { noindex: !isKnownRoute });
@@ -24,6 +25,7 @@ const AppShell = () => {
 
     const handleSkipToMain = useCallback((event) => {
         event.preventDefault();
+        setIsSkipLinkVisible(false);
 
         const mainContent = document.getElementById('main-content');
         if (!mainContent) return;
@@ -52,6 +54,31 @@ const AppShell = () => {
     }, []);
 
     useEffect(() => {
+        const handleKeyboardNavigation = (event) => {
+            if (event.key === 'Tab') {
+                setIsSkipLinkVisible(true);
+                return;
+            }
+
+            if (event.key === 'Escape') {
+                setIsSkipLinkVisible(false);
+            }
+        };
+
+        const handlePointerNavigation = () => {
+            setIsSkipLinkVisible(false);
+        };
+
+        document.addEventListener('keydown', handleKeyboardNavigation);
+        document.addEventListener('pointerdown', handlePointerNavigation);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyboardNavigation);
+            document.removeEventListener('pointerdown', handlePointerNavigation);
+        };
+    }, []);
+
+    useEffect(() => {
         if (!didHydrateRef.current) {
             didHydrateRef.current = true;
             return undefined;
@@ -69,7 +96,12 @@ const AppShell = () => {
 
     return (
         <div className="app-wrapper">
-            <a id="skip-to-main-content" href="#main-content" className="skip-link" onClick={handleSkipToMain}>
+            <a
+                id="skip-to-main-content"
+                href="#main-content"
+                className={`skip-link ${isSkipLinkVisible ? 'skip-link-visible' : ''}`.trim()}
+                onClick={handleSkipToMain}
+            >
                 Skip to main content
             </a>
             <div id="app-main-shell">

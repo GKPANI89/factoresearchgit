@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
+    allowedHosts: ['dose-compilation-vol-guarantees.trycloudflare.com'],
     proxy: {
       '/api/market': {
         target: 'https://query1.finance.yahoo.com',

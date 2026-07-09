@@ -56,8 +56,7 @@ const Footer = () => {
                             <img
                                 src={siteData.brand.logoUrl}
                                 alt={`${siteData.brand.name} Logo`}
-                                className="logo-img"
-                                style={{ height: '60px', marginBottom: '20px' }}
+                                className="logo-img footer-logo-img"
                             />
                         </div>
                         <p className="footer-brand-copy">

@@ -5,6 +5,7 @@
 
 .main-content {
   min-height: 100vh;
+  background: var(--bg-primary);
 }
 
 .inner-page {
@@ -36,6 +37,7 @@
   font-size: 3rem;
   line-height: 1.1;
   margin-bottom: 16px;
+  color: #1B7FEA;
 }
 
 .page-header-subtitle {
@@ -376,6 +378,7 @@ body.high-contrast .legal-table th {
 
 .about-v2-trust-head h3 {
   font-size: 1.08rem;
+  color: #1B7FEA;
 }
 
 .about-v2-trust-head svg {
@@ -1011,6 +1014,10 @@ body.high-contrast .legal-table th {
     radial-gradient(circle at 88% 88%, rgba(37, 99, 235, 0.08), transparent 46%);
 }
 
+.why-facto-section .section-title {
+  color: #1B7FEA;
+}
+
 .why-facto-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1036,6 +1043,7 @@ body.high-contrast .legal-table th {
 
 .why-facto-head h3 {
   font-size: 1.08rem;
+  color: #1B7FEA;
 }
 
 .why-facto-icon {
@@ -1075,6 +1083,7 @@ body.high-contrast .legal-table th {
 
 .trust-heading h3 {
   font-size: 1.1rem;
+  color: #1B7FEA;
 }
 
 .trust-icon {
@@ -1152,6 +1161,7 @@ body.high-contrast .legal-table th {
 .pricing-main-title {
   text-transform: uppercase;
   margin-bottom: 26px;
+  color: #1d4ed8;
 }
 
 .pricing-columns-grid {
@@ -1231,6 +1241,7 @@ body.high-contrast .legal-table th {
 .investment-package-column h3 {
   text-transform: none;
   font-size: 1.65rem;
+  color: #1d4ed8;
 }
 
 .investment-package-column {
@@ -1249,6 +1260,7 @@ body.high-contrast .legal-table th {
   font-size: 2rem;
   margin-bottom: 20px;
   text-transform: uppercase;
+  color: #1d4ed8;
 }
 
 .investment-what-you-get-grid {
@@ -1264,6 +1276,7 @@ body.high-contrast .legal-table th {
 .investment-what-you-get-card h4 {
   font-size: 1.35rem;
   margin-bottom: 10px;
+  color: #1d4ed8;
 }
 
 .investment-what-you-get-card p {
@@ -2302,4 +2315,109 @@ body.high-contrast .contact-trust-pill {
     width: calc(100vw - 28px);
     max-width: 340px;
   }
+}
+
+body:not(.theme-dark):not(.high-contrast) .app-wrapper,
+body:not(.theme-dark):not(.high-contrast) .main-content,
+body:not(.theme-dark):not(.high-contrast) .inner-page,
+body:not(.theme-dark):not(.high-contrast) .page-header,
+body:not(.theme-dark):not(.high-contrast) .section-padding,
+body:not(.theme-dark):not(.high-contrast) .hero-section,
+body:not(.theme-dark):not(.high-contrast) .about-v2-section,
+body:not(.theme-dark):not(.high-contrast) .services-page,
+body:not(.theme-dark):not(.high-contrast) .services-v2-section,
+body:not(.theme-dark):not(.high-contrast) .why-facto-section,
+body:not(.theme-dark):not(.high-contrast) .contact-section-v3,
+body:not(.theme-dark):not(.high-contrast) .footer-section {
+  background: var(--bg-primary) !important;
+  background-image: none !important;
+}
+
+body:not(.theme-dark):not(.high-contrast) .bg-darker {
+  background: var(--bg-secondary) !important;
+}
+
+body:not(.theme-dark):not(.high-contrast) .footer-section {
+  background: var(--bg-primary) !important;
+}
+
+body:not(.theme-dark):not(.high-contrast) .services-page-bg,
+body:not(.theme-dark):not(.high-contrast) .investment-atmosphere-orb,
+body:not(.theme-dark):not(.high-contrast) .investment-atmosphere-grid {
+  display: none;
+}
+
+body:not(.theme-dark):not(.high-contrast) .onboarding-page,
+body:not(.theme-dark):not(.high-contrast) .onboarding-left,
+body:not(.theme-dark):not(.high-contrast) .onboarding-right {
+  background: var(--bg-primary) !important;
+  background-image: none !important;
+}
+
+body:not(.theme-dark):not(.high-contrast) .onboarding-left-content,
+body:not(.theme-dark):not(.high-contrast) .form-header h2,
+body:not(.theme-dark):not(.high-contrast) .form-group-onboard label {
+  color: var(--text-primary);
+}
+
+body:not(.theme-dark):not(.high-contrast) .onboarding-left-content p,
+body:not(.theme-dark):not(.high-contrast) .form-header p,
+body:not(.theme-dark):not(.high-contrast) .onboarding-footer {
+  color: var(--text-secondary);
+}
+
+body:not(.theme-dark):not(.high-contrast) .step-circle {
+  background: #ffffff;
+  color: var(--text-secondary);
+  border-color: var(--glass-border);
+}
+
+body:not(.theme-dark):not(.high-contrast) .step-label {
+  color: var(--text-secondary);
+}
+
+body:not(.theme-dark):not(.high-contrast) .step-line {
+  background: var(--glass-border);
+}
+
+body:not(.theme-dark):not(.high-contrast) .form-group-onboard input {
+  background: #ffffff;
+  color: var(--text-primary);
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.page-header-title,
+.page-header-eyebrow,
+.gradient-text,
+[class$='-title'],
+[class*='-title '],
+[class$='-heading'],
+[class*='-heading '] {
+  color: #1B7FEA !important;
+  -webkit-text-fill-color: #1B7FEA !important;
+}
+
+.section-subtitle,
+.page-header-subtitle,
+[class$='-subtitle'],
+[class*='-subtitle '] {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+p,
+li,
+.legal-paragraph,
+.contact-link,
+.contact-item,
+.footer-disclosure,
+.footer-bottom {
+  color: #111827;
 }

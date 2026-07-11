@@ -146,14 +146,14 @@ const Contact = () => {
         <section id="contact" className="contact-section-v3 section-padding">
             <div className="container">
                 <div className="contact-header-v3">
-                    <Motion.div
+                    {/* <Motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         className="contact-badge"
-                    >
-                        <MessageSquare size={14} /> <span>Direct Communication</span>
-                    </Motion.div>
+                    > */}
+                        {/* <MessageSquare size={14} /> <span>Direct Communication</span> */}
+                    {/* </Motion.div> */}
                     <h1 className="section-title">
                         Contact <span className="gradient-text">Facto Research</span>
                     </h1>
@@ -199,7 +199,7 @@ const Contact = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        placeholder="e.g. 9999999999"
+                                        placeholder="e.g. 99999 99999"
                                         inputMode="numeric"
                                         autoComplete="tel"
                                         aria-invalid={Boolean(formErrors.phone)}

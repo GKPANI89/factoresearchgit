@@ -1,0 +1,119 @@
+import React from 'react';
+import { CheckCircle2, ShieldCheck, Target, TrendingUp } from 'lucide-react';
+import { RouteLink } from '../router';
+import { useRouter } from '../useRouter';
+import { investmentServices } from '../data/homeServicesData';
+import NotFoundPage from './NotFoundPage';
+
+const scrollToPricingDetails = () => {
+    const pricing = document.getElementById('service-pricing-details');
+
+    if (!pricing) {
+        return;
+    }
+
+    pricing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
+const InvestmentServiceDetailPage = () => {
+    const { path } = useRouter();
+    const service = investmentServices.find((item) => item.path === path);
+
+    if (!service) {
+        return <NotFoundPage />;
+    }
+
+    const relatedServices = investmentServices.filter((item) => item.slug !== service.slug);
+    const startPrice = service.pricing[0]?.[1] || 'Custom';
+
+    return (
+        <main className="investment-detail-page">
+            <section className="investment-detail-hero">
+                <div className="container investment-detail-hero-grid">
+                    <div>
+                        <h1>{service.title}</h1>
+                        <p
+                            className="service-detail-description"
+                            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                        >
+                            {service.summary}
+                        </p>
+                        <div className="investment-detail-actions">
+                            <button type="button" className="service-plan-btn" onClick={scrollToPricingDetails}>
+                                Subscribe <TrendingUp size={16} />
+                            </button>
+                        </div>
+                    </div>
+
+                    <article className="investment-detail-summary-card">
+                        <span>Starts at</span>
+                        <strong>{startPrice}</strong>
+                        <div className="investment-detail-metric-list">
+                            {service.metrics.map(([label, value]) => (
+                                <div key={label}>
+                                    <span>{label}</span>
+                                    <b>{value}</b>
+                                </div>
+                            ))}
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="service-pricing-details" className="investment-detail-body">
+                <div className="container investment-detail-layout">
+                    <article className="investment-detail-panel">
+                        <div className="investment-detail-panel-head">
+                            <ShieldCheck size={24} />
+                            <h2>What You Get</h2>
+                        </div>
+                        <ul className="investment-detail-feature-list">
+                            {service.features.map((feature) => (
+                                <li key={feature}>
+                                    <CheckCircle2 size={17} />
+                                    <span>{feature}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </article>
+
+                    <article className="investment-detail-panel">
+                        <div className="investment-detail-panel-head">
+                            <Target size={24} />
+                            <h2>Pricing</h2>
+                        </div>
+                        <div className="investment-detail-price-table">
+                            <div>
+                                <span>Duration</span>
+                                <span>Price</span>
+                            </div>
+                            {service.pricing.map(([duration, price]) => (
+                                <div key={duration}>
+                                    <span>{duration}</span>
+                                    <strong>{price}</strong>
+                                </div>
+                            ))}
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section className="investment-detail-related">
+                <div className="container">
+                    <h2>Explore Other Investing Services</h2>
+                    <div className="investment-detail-related-grid">
+                        {relatedServices.map((item) => (
+                            <RouteLink key={item.slug} to={item.path} className="investment-detail-related-card">
+                                <span>{item.tag}</span>
+                                <h3>{item.title}</h3>
+                                <p>{item.summary}</p>
+                            </RouteLink>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </main>
+    );
+};
+
+export default InvestmentServiceDetailPage;

@@ -137,21 +137,21 @@ const Hero = () => {
                         {/* <p className="hero-video-caption">About Facto Research</p> */}
                     </div>
                     <section id="home-video-transcript" className="hero-video-accessibility">
-                        <h2>Read Transcript</h2>
-                        <p>
+                        {/* <h2>Read Full Transcript</h2> */}
+                        {/* <p>
                             Speaker introduces Facto Research as a SEBI Registered Research Analyst and explains the
                             focus on data-driven research, disciplined risk management, and transparent communication.
-                        </p>
-                        <p>
+                        </p> */}
+                        {/* <p>
                             On-screen text includes the brand identity and SEBI Registration Number: INH000024480.
-                        </p>
+                        </p> */}
                         <p className="hero-video-transcript-link">
                             <a
                                 href="/documents/facto-introduction-transcript.txt"
                                 target="_blank"
                                 rel="noreferrer noopener"
                             >
-                                Open full transcript (TXT)
+                                Read Full Transcript (TXT)
                             </a>
                         </p>
                     </section>

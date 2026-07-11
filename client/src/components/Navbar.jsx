@@ -7,11 +7,17 @@ import {
     Moon,
     Sun,
     BarChart3,
+    BadgeDollarSign,
+    BriefcaseBusiness,
     TrendingUp,
     Activity,
+    ChartCandlestick,
     Layers3,
+    PackageCheck,
+    SearchCheck,
+    ScanSearch,
+    Sprout,
     Target,
-    Sparkles,
 } from 'lucide-react';
 import { RouteLink } from '../router';
 import { useRouter } from '../useRouter';
@@ -31,77 +37,154 @@ const clampFontScale = (value) => {
     return Math.min(MAX_FONT_SCALE, Math.max(MIN_FONT_SCALE, numeric));
 };
 
-const serviceLinks = [
+const serviceMenuGroups = [
     {
-        key: 'equity-research',
-        label: 'EQUITIES | F&O | MCX Research Analysis',
-        path: '/services/equity-research',
-        Icon: TrendingUp,
-        subtitle: 'Research-backed stock ideas with entry, exit, and risk guidance.',
+        title: 'Trading',
+        items: [
+            {
+                key: 'facto-market-pulse',
+                label: 'Market Pulse',
+                path: '/services/trading/facto-market-pulse',
+                Icon: BarChart3,
+                accent: '#16a34a',
+            },
+            
+            {
+                key: 'facto-tradeedge',
+                label: 'TradeEdge',
+                path: '/services/trading/facto-tradeedge',
+                Icon: TrendingUp,
+                accent: '#dc2626',
+                // subtitle: 'Cash market trading ideas with entry, target, and stop-loss.',
+            },
+            {
+                key: 'facto-swing-radar',
+                label: 'Swing Radar',
+                path: '/services/trading/facto-swing-radar',
+                Icon: Activity,
+                accent: '#f97316',
+                // subtitle: 'Swing trades with entry zone, multiple targets, and sizing.',
+            },
+            {
+                key: 'facto-momentum-radar',
+                label: 'Momentum Navigator',
+                path: '/services/trading/facto-momentum-radar',
+                Icon: BadgeDollarSign,
+                accent: '#ca8a04',
+                // subtitle: 'Breakout and volume-led momentum opportunities.',
+            },
+            {
+                key: 'facto-options-shield',
+                label: 'Options Shield',
+                path: '/services/trading/facto-options-shield',
+                Icon: Target,
+                accent: '#7c3aed',
+                // subtitle: 'Nifty and Bank Nifty option setups with risk controls.',
+            },
+            {
+                key: 'facto-commodity-compass',
+                label: 'Commodity Compass',
+                path: '/services/trading/facto-commodity-compass',
+                Icon: Layers3,
+                accent: '#92400e',
+                // subtitle: 'MCX research for gold, silver, crude oil, and natural gas.',
+            },
+        ],
     },
     {
-        key: 'fundamental-research',
-        label: 'Fundamental Research Reports',
-        path: '/services/fundamental-research',
-        Icon: BarChart3,
-        subtitle: 'Business, valuation, and financial quality analysis for investors.',
-    },
-    {
-        key: 'technical-analysis',
-        label: 'Technical Analysis, Market Trends & Live Index Tracking',
-        path: '/services/technical-analysis',
-        Icon: Activity,
-        subtitle: 'Momentum, charts, index tracking, and short-term market structure.',
-    },
-    {
-        key: 'portfolio-baskets',
-        label: 'Portfolio Baskets',
-        path: '/services/portfolio-baskets',
-        Icon: Layers3,
-        subtitle: 'Curated baskets with allocation logic and periodic review updates.',
-    },
-    {
-        key: 'thematic-sectoral',
-        label: 'Thematic & Sectoral Research',
-        path: '/services/thematic-sectoral',
-        Icon: Target,
-        subtitle: 'Sector-focused research across emerging trends and market cycles.',
-    },
-    {
-        key: 'educational-content',
-        label: 'Educational Content & Market Learning',
-        path: '/services/educational-content',
-        Icon: Sparkles,
-        subtitle: 'Courses, webinars, and practical market-learning resources.',
+        title: 'Investing',
+        items: [
+            {
+                key: 'facto-bluechip-core',
+                label: 'BlueChip Core',
+                path: '/pricing/investment-services/facto-bluechip-core',
+                Icon: BriefcaseBusiness,
+                accent: '#0f766e',
+                // subtitle: 'Large-cap research for conservative investors.',
+            },
+            {
+                key: 'facto-portfolio-xray',
+                label: 'Portfolio X-Ray',
+                path: '/pricing/investment-services/facto-portfolio-xray',
+                Icon: ScanSearch,
+                accent: '#9333ea',
+            },
+            {
+                key: 'facto-midcap-alpha',
+                label: 'MidCap Alpha',
+                path: '/pricing/investment-services/facto-midcap-alpha',
+                Icon: ChartCandlestick,
+                accent: '#ea580c',
+                // subtitle: 'Mid-cap opportunities for growth investors.',
+            },
+            {
+                key: 'facto-smallcap-edge',
+                label: 'SmallCap Edge',
+                path: '/pricing/investment-services/facto-smallcap-edge',
+                Icon: Sprout,
+                accent: '#be123c',
+                // subtitle: 'Small-cap ideas for aggressive investors.',
+            },
+            {
+                key: 'facto-valuelens',
+                label: 'ValueLens',
+                path: '/pricing/investment-services/facto-valuelens',
+                Icon: SearchCheck,
+                accent: '#15803d',
+                // subtitle: 'Undervalued stocks with margin-of-safety analysis.',
+            },
+            {
+                key: 'facto-wealth-baskets',
+                label: 'Wealth Baskets',
+                path: '/pricing/investment-services/facto-wealth-baskets',
+                Icon: PackageCheck,
+                accent: '#a16207',
+                // subtitle: 'Ready-made model portfolios with rebalancing.',
+            },
+        ],
     },
 ];
 
 const pricingMenuMeta = {
     '/pricing/stock-cash': {
-        Icon: BarChart3,
-        subtitle: 'Cash market recommendations with clear entry and exit levels.',
+        Icon: BriefcaseBusiness,
+        accent: '#0ea5e9',
+        // subtitle: 'Premium equity cash research with clear entry and exit levels.',
     },
     '/pricing/stock-future': {
-        Icon: TrendingUp,
-        subtitle: 'Trend-driven futures setups with risk-managed execution.',
+        Icon: ChartCandlestick,
+        accent: '#f97316',
+        // subtitle: 'Trend-driven stock futures setups with risk-managed execution.',
     },
     '/pricing/stock-option': {
-        Icon: Activity,
-        subtitle: 'Stock option strategies with strike and volatility guidance.',
+        Icon: Target,
+        accent: '#e11d48',
+        // subtitle: 'Stock options research with strike and volatility guidance.',
     },
     '/pricing/index-future': {
         Icon: Layers3,
-        subtitle: 'Nifty and Bank Nifty futures calls for active traders.',
+        accent: '#16a34a',
+        // subtitle: 'Nifty and Bank Nifty futures momentum for active traders.',
     },
     '/pricing/index-option': {
-        Icon: Target,
-        subtitle: 'Index option plans for expiry-based market opportunities.',
-    },
-    '/pricing/investment-services': {
-        Icon: Sparkles,
-        subtitle: 'Research-led portfolio and investment planning support.',
+        Icon: ScanSearch,
+        accent: '#7c3aed',
+        // subtitle: 'Index options elite plans for expiry-based opportunities.',
     },
 };
+
+const productMenuItems = pricingLinks.map((item) => {
+    const meta = pricingMenuMeta[item.path] || {};
+    return {
+        key: item.path,
+        label: item.label,
+        path: item.path,
+        Icon: meta.Icon || BarChart3,
+        accent: meta.accent || '#1B7FEA',
+    };
+});
+
+const servicesDropdownGroups = serviceMenuGroups;
 
 const getMenuItems = (menuElement) => {
     if (!menuElement) return [];
@@ -136,6 +219,7 @@ const Navbar = () => {
     const pricingTriggerRef = useRef(null);
     const servicesDropdownRef = useRef(null);
     const pricingDropdownRef = useRef(null);
+    const servicesCloseTimerRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -154,6 +238,10 @@ const Navbar = () => {
         document.body.classList.toggle('theme-dark', isDarkMode);
         window.localStorage.setItem(THEME_MODE_STORAGE_KEY, isDarkMode ? 'dark' : 'light');
     }, [isDarkMode]);
+
+    useEffect(() => {
+        return () => window.clearTimeout(servicesCloseTimerRef.current);
+    }, []);
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
@@ -211,7 +299,11 @@ const Navbar = () => {
         return path === normalizedTargetPath ? 'active' : '';
     };
 
-    const isServicesActive = path === '/services' || path.startsWith('/services/');
+    const serviceItemClassName = (item, baseClassName) => {
+        return `${baseClassName} ${path === item.path ? 'active' : ''}`.trim();
+    };
+
+    const isServicesActive = path === '/services' || path.startsWith('/services/') || path.startsWith('/pricing/');
     const isPricingActive = path === '/pricing' || path.startsWith('/pricing/');
     const primaryNavLinks = navLinks.filter(
         (item) => item.path !== '/services' && item.path !== '/pricing' && item.path !== '/contact'
@@ -219,13 +311,29 @@ const Navbar = () => {
     const contactLink = navLinks.find((item) => item.path === '/contact');
 
     const openServicesMenu = () => {
+        window.clearTimeout(servicesCloseTimerRef.current);
         setIsPricingMenuOpen(false);
         setIsServicesMenuOpen(true);
     };
 
+    const scheduleCloseServicesMenu = () => {
+        window.clearTimeout(servicesCloseTimerRef.current);
+        servicesCloseTimerRef.current = window.setTimeout(() => {
+            setIsServicesMenuOpen(false);
+        }, 180);
+    };
+
     const openPricingMenu = () => {
+        window.clearTimeout(servicesCloseTimerRef.current);
         setIsServicesMenuOpen(false);
         setIsPricingMenuOpen(true);
+    };
+
+    const scheduleClosePricingMenu = () => {
+        window.clearTimeout(servicesCloseTimerRef.current);
+        servicesCloseTimerRef.current = window.setTimeout(() => {
+            setIsPricingMenuOpen(false);
+        }, 140);
     };
 
     const handleDesktopMenuBlur = (menuType, event) => {
@@ -328,22 +436,6 @@ const Navbar = () => {
         }
     };
 
-    const renderRichDropdownLink = (item, metaMap, FallbackIcon, className, onClick, extraProps = {}) => {
-        const meta = metaMap[item.path] || {};
-        const Icon = meta.Icon || FallbackIcon;
-        return (
-            <RouteLink key={item.path} to={item.path} className={className} onClick={onClick} {...extraProps}>
-                <span className="dropdown-link-icon">
-                    <Icon size={16} />
-                </span>
-                <span className="dropdown-link-copy">
-                    <span className="dropdown-link-title">{item.label}</span>
-                    <span className="dropdown-link-subtitle">{meta.subtitle}</span>
-                </span>
-            </RouteLink>
-        );
-    };
-
     const handleMobileClose = () => {
         setIsMobileMenuOpen(false);
         setIsMobileServicesMenuOpen(false);
@@ -386,6 +478,7 @@ const Navbar = () => {
                         className="pricing-menu"
                         ref={servicesMenuRef}
                         onMouseEnter={openServicesMenu}
+                        onMouseLeave={scheduleCloseServicesMenu}
                         onBlur={(event) => handleDesktopMenuBlur('services', event)}
                     >
                         <button
@@ -398,6 +491,7 @@ const Navbar = () => {
                             aria-controls="services-dropdown-menu"
                             onKeyDown={(event) => handleDesktopTriggerKeyDown('services', event)}
                             onClick={() => {
+                                window.clearTimeout(servicesCloseTimerRef.current);
                                 setIsPricingMenuOpen(false);
                                 setIsServicesMenuOpen((open) => !open);
                             }}
@@ -408,27 +502,39 @@ const Navbar = () => {
                             <div
                                 id="services-dropdown-menu"
                                 ref={servicesDropdownRef}
-                                className="pricing-dropdown glass-card"
+                                className="pricing-dropdown services-dropdown glass-card"
                                 role="menu"
                                 aria-labelledby="services-trigger"
+                                onMouseEnter={openServicesMenu}
+                                onMouseLeave={scheduleCloseServicesMenu}
                                 onKeyDown={(event) => handleDesktopMenuKeyDown('services', event)}
                             >
-                                {serviceLinks.map((item) => (
-                                    <RouteLink
-                                        key={item.key}
-                                        to={item.path}
-                                        className={`pricing-dropdown-link ${linkClassName(item.path)}`}
-                                        onClick={() => setIsServicesMenuOpen(false)}
-                                        role="menuitem"
-                                    >
-                                        <span className="dropdown-link-icon">
-                                            <item.Icon size={16} />
-                                        </span>
-                                        <span className="dropdown-link-copy">
-                                            <span className="dropdown-link-title">{item.label}</span>
-                                            <span className="dropdown-link-subtitle">{item.subtitle}</span>
-                                        </span>
-                                    </RouteLink>
+                                {servicesDropdownGroups.map((group) => (
+                                    <div key={group.title} className="pricing-dropdown-group">
+                                        <span className="pricing-dropdown-group-title">{group.title}</span>
+                                        {group.items.map((item) => (
+                                            <RouteLink
+                                                key={item.key}
+                                                to={item.path}
+                                                className={serviceItemClassName(item, 'pricing-dropdown-link')}
+                                                onClick={() => {
+                                                    setIsServicesMenuOpen(false);
+                                                }}
+                                                role="menuitem"
+                                            >
+                                                <span
+                                                    className="services-menu-item-icon"
+                                                    style={{ '--service-menu-accent': item.accent }}
+                                                    aria-hidden="true"
+                                                >
+                                                    <item.Icon size={13} />
+                                                </span>
+                                                <span className="dropdown-link-copy">
+                                                    <span className="dropdown-link-title">{item.label}</span>
+                                                </span>
+                                            </RouteLink>
+                                        ))}
+                                    </div>
                                 ))}
                             </div>
                         )}
@@ -437,10 +543,11 @@ const Navbar = () => {
                         className="pricing-menu"
                         ref={pricingMenuRef}
                         onMouseEnter={openPricingMenu}
+                        onMouseLeave={scheduleClosePricingMenu}
                         onBlur={(event) => handleDesktopMenuBlur('pricing', event)}
                     >
                         <button
-                            id="pricing-trigger"
+                            id="hni-research-trigger"
                             ref={pricingTriggerRef}
                             type="button"
                             className={`pricing-trigger ${isPricingActive ? 'active' : ''}`}
@@ -449,31 +556,47 @@ const Navbar = () => {
                             aria-controls="pricing-dropdown-menu"
                             onKeyDown={(event) => handleDesktopTriggerKeyDown('pricing', event)}
                             onClick={() => {
+                                window.clearTimeout(servicesCloseTimerRef.current);
                                 setIsServicesMenuOpen(false);
                                 setIsPricingMenuOpen((open) => !open);
                             }}
                         >
-                            Pricing <ChevronDown size={14} className={isPricingMenuOpen ? 'open' : ''} />
+                            HNI Research <ChevronDown size={14} className={isPricingMenuOpen ? 'open' : ''} />
                         </button>
                         {isPricingMenuOpen && (
                             <div
                                 id="pricing-dropdown-menu"
                                 ref={pricingDropdownRef}
-                                className="pricing-dropdown glass-card"
+                                className="pricing-dropdown hni-research-dropdown glass-card"
                                 role="menu"
-                                aria-labelledby="pricing-trigger"
+                                aria-labelledby="hni-research-trigger"
+                                onMouseEnter={openPricingMenu}
+                                onMouseLeave={scheduleClosePricingMenu}
                                 onKeyDown={(event) => handleDesktopMenuKeyDown('pricing', event)}
                             >
-                                {pricingLinks.map((item) =>
-                                    renderRichDropdownLink(
-                                        item,
-                                        pricingMenuMeta,
-                                        BarChart3,
-                                        `pricing-dropdown-link ${linkClassName(item.path)}`,
-                                        () => setIsPricingMenuOpen(false),
-                                        { role: 'menuitem' }
-                                    )
-                                )}
+                                <div className="pricing-dropdown-group">
+                                    <span className="pricing-dropdown-group-title">HNI Insights</span>
+                                    {productMenuItems.map((item) => (
+                                        <RouteLink
+                                            key={item.key}
+                                            to={item.path}
+                                            className={serviceItemClassName(item, 'pricing-dropdown-link')}
+                                            onClick={() => setIsPricingMenuOpen(false)}
+                                            role="menuitem"
+                                        >
+                                            <span
+                                                className="services-menu-item-icon"
+                                                style={{ '--service-menu-accent': item.accent }}
+                                                aria-hidden="true"
+                                            >
+                                                <item.Icon size={13} />
+                                            </span>
+                                            <span className="dropdown-link-copy">
+                                                <span className="dropdown-link-title">{item.label}</span>
+                                            </span>
+                                        </RouteLink>
+                                    ))}
+                                </div>
                             </div>
                         )}
                     </div>
@@ -576,21 +699,31 @@ const Navbar = () => {
                     </button>
                     {isMobileServicesMenuOpen && (
                         <div id="mobile-services-dropdown" className="mobile-pricing-links">
-                            {serviceLinks.map((item) => (
-                                <RouteLink
-                                    key={item.key}
-                                    to={item.path}
-                                    className={`mobile-pricing-link-card ${linkClassName(item.path)}`}
-                                    onClick={handleMobileClose}
-                                >
-                                    <span className="dropdown-link-icon">
-                                        <item.Icon size={16} />
-                                    </span>
-                                    <span className="dropdown-link-copy">
-                                        <span className="dropdown-link-title">{item.label}</span>
-                                        <span className="dropdown-link-subtitle">{item.subtitle}</span>
-                                    </span>
-                                </RouteLink>
+                            {servicesDropdownGroups.map((group) => (
+                                <div key={group.title} className="mobile-pricing-link-group">
+                                    <span className="pricing-dropdown-group-title">{group.title}</span>
+                                    {group.items.map((item) => (
+                                        <RouteLink
+                                            key={item.key}
+                                            to={item.path}
+                                            className={serviceItemClassName(item, 'mobile-pricing-link-card')}
+                                            onClick={() => {
+                                                handleMobileClose();
+                                            }}
+                                        >
+                                            <span
+                                                className="services-menu-item-icon"
+                                                style={{ '--service-menu-accent': item.accent }}
+                                                aria-hidden="true"
+                                            >
+                                                <item.Icon size={13} />
+                                            </span>
+                                            <span className="dropdown-link-copy">
+                                                <span className="dropdown-link-title">{item.label}</span>
+                                            </span>
+                                        </RouteLink>
+                                    ))}
+                                </div>
                             ))}
                         </div>
                     )}
@@ -598,25 +731,36 @@ const Navbar = () => {
                         type="button"
                         className={`mobile-pricing-trigger ${isPricingActive ? 'active' : ''}`}
                         aria-expanded={isMobilePricingMenuOpen}
-                        aria-controls="mobile-pricing-dropdown"
+                        aria-controls="mobile-hni-research-dropdown"
                         onClick={() => {
                             setIsMobileServicesMenuOpen(false);
                             setIsMobilePricingMenuOpen((open) => !open);
                         }}
                     >
-                        Pricing <ChevronDown size={14} className={isMobilePricingMenuOpen ? 'open' : ''} />
+                        HNI Research <ChevronDown size={14} className={isMobilePricingMenuOpen ? 'open' : ''} />
                     </button>
                     {isMobilePricingMenuOpen && (
-                        <div id="mobile-pricing-dropdown" className="mobile-pricing-links">
-                            {pricingLinks.map((item) =>
-                                renderRichDropdownLink(
-                                    item,
-                                    pricingMenuMeta,
-                                    BarChart3,
-                                    `mobile-pricing-link-card ${linkClassName(item.path)}`,
-                                    handleMobileClose
-                                )
-                            )}
+                        <div id="mobile-hni-research-dropdown" className="mobile-pricing-links">
+                            <span className="pricing-dropdown-group-title">HNI Insights</span>
+                            {productMenuItems.map((item) => (
+                                <RouteLink
+                                    key={item.key}
+                                    to={item.path}
+                                    className={serviceItemClassName(item, 'mobile-pricing-link-card')}
+                                    onClick={handleMobileClose}
+                                >
+                                    <span
+                                        className="services-menu-item-icon"
+                                        style={{ '--service-menu-accent': item.accent }}
+                                        aria-hidden="true"
+                                    >
+                                        <item.Icon size={13} />
+                                    </span>
+                                    <span className="dropdown-link-copy">
+                                        <span className="dropdown-link-title">{item.label}</span>
+                                    </span>
+                                </RouteLink>
+                            ))}
                         </div>
                     )}
                     {contactLink && (

@@ -1,10 +1,12 @@
 import React, { useMemo } from 'react';
-import { Mail, Phone, MapPin, Instagram, Twitter, Linkedin, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin, ShieldCheck } from 'lucide-react';
 import { RouteLink } from '../router';
 import { navLinks } from '../routes';
 import { siteData } from '../data/siteData';
 import { legalLinks } from '../data/legalData';
 import WhatsAppBrandIcon from './WhatsAppBrandIcon';
+import { FacebookBrandIcon, InstagramBrandIcon, LinkedInBrandIcon, XBrandIcon } from './SocialBrandIcons';
+import sebiPaymentQr from '../assets/qr.jpeg';
 
 const BUSINESS_HOURS = [
     { day: 'Mon', time: '09:00 am - 05:00 pm', open: true },
@@ -25,20 +27,27 @@ const Footer = () => {
     const socialLinks = siteData.contact.socialLinks || {};
     const hasLink = (value) => typeof value === 'string' && value.trim().length > 0;
     const socialProfiles = [
-        { key: 'twitter', href: socialLinks.twitter, className: 'social-twitter', label: 'Twitter', Icon: Twitter },
+        { key: 'twitter', href: socialLinks.twitter, className: 'social-twitter', label: 'X', Icon: XBrandIcon },
+        {
+            key: 'facebook',
+            href: socialLinks.facebook,
+            className: 'social-facebook',
+            label: 'Facebook',
+            Icon: FacebookBrandIcon,
+        },
         {
             key: 'instagram',
             href: socialLinks.instagram,
             className: 'social-instagram',
             label: 'Instagram',
-            Icon: Instagram,
+            Icon: InstagramBrandIcon,
         },
         {
             key: 'linkedin',
             href: socialLinks.linkedin,
             className: 'social-linkedin',
             label: 'LinkedIn',
-            Icon: Linkedin,
+            Icon: LinkedInBrandIcon,
         },
     ];
     const todayHours = useMemo(() => {
@@ -52,52 +61,31 @@ const Footer = () => {
             <div className="container">
                 <div className="footer-grid">
                     <div className="footer-info">
-                        <div className="logo">
-                            <img
-                                src={siteData.brand.logoUrl}
-                                alt={`${siteData.brand.name} Logo`}
-                                className="logo-img footer-logo-img"
-                            />
+                        <div className="footer-brand-assets">
+                            {/* <div className="logo">
+                                <img
+                                    src={siteData.brand.logoUrl}
+                                    alt={`${siteData.brand.name} Logo`}
+                                    className="logo-img footer-logo-img"
+                                />
+                            </div> */}
+                            <div className="footer-sebi-payment">
+                                <h4>SEBI Verified UPI QR Code</h4>
+                                <img
+                                    src={sebiPaymentQr}
+                                    alt="SEBI verified payment QR code"
+                                    className="footer-sebi-payment-qr"
+                                />
+                            </div>
                         </div>
                         <p className="footer-brand-copy">
-                            Facto Research is a SEBI-registered research analyst
-                            brand providing data-driven equity research, market analysis, and investment insights for
-                            Indian markets through factoresearch.com.
+                            <b>Payment & UPI Disclaimer :</b><br></br>
+
+Facto Research is a SEBI Registered Research Analyst(Registration No. INH000024480).
+
+Clients are advised to make payments only through our <span style={{color:"blue",fontWeight:"bold"}}> SEBI-verified UPI ID ( facto.ra@validfdrl )</span> and official bank account details communicated through our official channels. Before making any payment, please verify the UPI ID, QR code, and beneficiary name <span style={{color:"#1B7FEA",fontWeight:"bold"}}>( FACTO RESEARCH )</span> displayed in the payment application.
                         </p>
-                        <div className="social-links">
-                            {socialProfiles.map((profile) => {
-                                const enabled = hasLink(profile.href);
-                                return (
-                                    <a
-                                        key={profile.key}
-                                        href={enabled ? profile.href : '#'}
-                                        className={`${profile.className}${enabled ? '' : ' social-link-disabled'}`}
-                                        target={enabled ? '_blank' : undefined}
-                                        rel={enabled ? 'noreferrer noopener' : undefined}
-                                        aria-label={profile.label}
-                                        aria-disabled={!enabled}
-                                        onClick={(event) => {
-                                            if (!enabled) {
-                                                event.preventDefault();
-                                            }
-                                        }}
-                                    >
-                                        <profile.Icon size={20} />
-                                    </a>
-                                );
-                            })}
-                            {siteData.contact.whatsappUrl && (
-                                <a
-                                    href={siteData.contact.whatsappUrl}
-                                    target="_blank"
-                                    rel="noreferrer noopener"
-                                    aria-label="WhatsApp"
-                                    className="social-whatsapp-link"
-                                >
-                                    <WhatsAppBrandIcon size={20} />
-                                </a>
-                            )}
-                        </div>
+                        
                     </div>
 
                     <div className="footer-links">
@@ -105,7 +93,9 @@ const Footer = () => {
                         <ul>
                             {navLinks.map((item) => (
                                 <li key={item.path}>
-                                    <RouteLink to={item.path}>{item.label}</RouteLink>
+                                    <RouteLink to={item.path}>
+                                        {item.path === '/pricing' ? 'HNI Research' : item.label}
+                                    </RouteLink>
                                 </li>
                             ))}
                         </ul>
@@ -123,7 +113,7 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-contact">
-                        <h4>Contact Info</h4>
+                        <h4>Registered Address</h4>
                         <div className="contact-item">
                             <Phone size={18} />
                             <a className="contact-link" href={phoneHref}>
@@ -165,8 +155,45 @@ const Footer = () => {
                                 <span className="footer-open-today-time"> {todayHours.time}</span>
                             )}
                         </p>
+                        <b>Follow us on</b>
+                        <div className="social-links">
+                            {socialProfiles.map((profile) => {
+                                const enabled = hasLink(profile.href);
+                                return (
+                                    <a
+                                        key={profile.key}
+                                        href={enabled ? profile.href : '#'}
+                                        className={`${profile.className}${enabled ? '' : ' social-link-disabled'}`}
+                                        target={enabled ? '_blank' : undefined}
+                                        rel={enabled ? 'noreferrer noopener' : undefined}
+                                        aria-label={profile.label}
+                                        aria-disabled={!enabled}
+                                        onClick={(event) => {
+                                            if (!enabled) {
+                                                event.preventDefault();
+                                            }
+                                        }}
+                                    >
+                                        <profile.Icon size={20} />
+                                    </a>
+                                );
+                            })}
+                            {siteData.contact.whatsappUrl && (
+                                <a
+                                    href={siteData.contact.whatsappUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    aria-label="WhatsApp"
+                                    className="social-whatsapp-link"
+                                >
+                                    <WhatsAppBrandIcon size={20} />
+                                </a>
+                            )}
+                        </div>
                     </div>
                 </div>
+
+                <div className="footer-large-wordmark">Facto Research</div>
 
                 <div className="footer-bottom">
                     <p>© 2026 {siteData.brand.name}. All rights reserved.</p>

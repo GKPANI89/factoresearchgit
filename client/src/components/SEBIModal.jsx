@@ -327,7 +327,7 @@ const SEBIModal = () => {
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        className="modal-content glass-card"
+                        className="modal-content regulatory-disclosure-modal glass-card"
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="regulatory-disclosure-title"
@@ -356,7 +356,7 @@ const SEBIModal = () => {
                                 Registration granted by SEBI and certification from NISM in no way guarantee performance of
                                 the intermediary or provide any assurance of returns to investors.
                             </p>
-                            <div className="disclosure-box">
+                            <div className="disclosure-box regulatory-warning">
                                 <strong>Important:</strong> We do not provide profit sharing services or guaranteed returns.
                                 Beware of fraudsters using our name.
                             </div>
@@ -384,8 +384,8 @@ const SEBIModal = () => {
                     >
                         <div className="modal-header advice-modal-header">
                             <div>
-                                <h2 id="advice-modal-title">Get In Touch!</h2>
-                                <p>Your Information will never be shared with any third party</p>
+                                <h2 id="advice-modal-title">Get In Touch !</h2>
+                                <p>Your data will never be shared with any third party.</p>
                             </div>
                             <button
                                 id="modal-close-btn"

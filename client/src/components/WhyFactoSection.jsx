@@ -1,25 +1,25 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
-import { Award, ShieldCheck, Timer } from 'lucide-react';
+import { BadgeCheck, History, Network } from 'lucide-react';
 
 const points = [
     {
         title: 'Proven Frameworks',
         description:
             'Our research is based on time-tested models that have been sharpened through 15 years of real-world application.',
-        Icon: Award,
+        Icon: Network,
     },
     {
         title: '15+ Years of Experience',
         description:
             'We have seen the markets evolve. Our insights are seasoned, not just reactionary.',
-        Icon: Timer,
+        Icon: History,
     },
     {
         title: 'SEBI Registered INH000024480',
         description:
             'We operate with the highest level of legal accountability and transparency.',
-        Icon: ShieldCheck,
+        Icon: BadgeCheck,
     },
 ];
 

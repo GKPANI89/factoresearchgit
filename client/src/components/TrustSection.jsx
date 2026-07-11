@@ -1,11 +1,11 @@
 import React from 'react';
-import { Sparkles, Target, Eye } from 'lucide-react';
+import { Rocket, Scale, Telescope } from 'lucide-react';
 import { siteData } from '../data/siteData';
 
 const valueCards = [
-    { key: 'values', icon: Sparkles },
-    { key: 'mission', icon: Target },
-    { key: 'vision', icon: Eye },
+    { key: 'values', icon: Scale },
+    { key: 'mission', icon: Rocket },
+    { key: 'vision', icon: Telescope },
 ];
 
 const TrustSection = () => {

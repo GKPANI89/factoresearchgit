@@ -5,6 +5,8 @@ const DEFAULT_REGISTERED_ADDRESS =
     'D.No.7, SNO.432/4 Plot No.6, Opp JNTU College, KM Colony, Anantapur, Andhra Pradesh-515002.';
 const DEFAULT_WHATSAPP_URL =
     'https://api.whatsapp.com/send/?phone=919959937373&text&type=phone_number&app_absent=0';
+const DEFAULT_INSTAGRAM_URL =
+    'https://www.instagram.com/factoresearchinsights?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==';
 
 const withFallback = (value, fallback) => {
     const normalized = typeof value === 'string' ? value.trim() : '';
@@ -16,7 +18,7 @@ const SUPPORT_EMAIL = withFallback(import.meta.env.VITE_SUPPORT_EMAIL, DEFAULT_S
 const REGISTERED_ADDRESS = withFallback(import.meta.env.VITE_REGISTERED_ADDRESS, DEFAULT_REGISTERED_ADDRESS);
 const WHATSAPP_URL = withFallback(import.meta.env.VITE_WHATSAPP_URL, DEFAULT_WHATSAPP_URL);
 const TWITTER_URL = withFallback(import.meta.env.VITE_TWITTER_URL, '');
-const INSTAGRAM_URL = withFallback(import.meta.env.VITE_INSTAGRAM_URL, '');
+const INSTAGRAM_URL = withFallback(import.meta.env.VITE_INSTAGRAM_URL, DEFAULT_INSTAGRAM_URL);
 const LINKEDIN_URL = withFallback(import.meta.env.VITE_LINKEDIN_URL, '');
 const FACEBOOK_URL = withFallback(import.meta.env.VITE_FACEBOOK_URL, '');
 const YOUTUBE_URL = withFallback(import.meta.env.VITE_YOUTUBE_URL, '');
@@ -329,72 +331,75 @@ export const siteData = {
     pricingPlans: [
         {
             slug: 'stock-cash',
-            menuLabel: 'Stock Cash',
-            title: 'Stock Cash Premium',
-            prices: { quarterly: '50000', halfyearly: '75000', yearly: '115000' },
+            menuLabel: 'Facto Equity Cash Alpha',
+            title: 'Facto Equity Cash Alpha',
+            prices: { monthly: '1,999', quarterly: '5,499', halfyearly: '9,999', yearly: '17,999' },
             features: [
-                'Daily Recommendations',
-                'Market Analysis Reports',
-                'Entry and Exit levels',
-                'Target & Stop loss Support',
-                'WhatsApp/SMS alerts',
-                '24/7 customer support',
+                'Daily trading opportunities',
+                'Entry Price',
+                'Stop Loss',
+                'Target Price',
+                'Risk Management',
+                'Holding Period: Intraday - 3 Days',
+                'Risk-Reward Ratio: 1:2',
             ],
         },
         {
             slug: 'stock-future',
-            menuLabel: 'Stock Future',
-            title: 'Stock Future Premium',
-            prices: { quarterly: '75000', halfyearly: '125000', yearly: '150000' },
+            menuLabel: 'Facto Stock Futures Pro',
+            title: 'Facto Stock Futures Pro',
+            prices: { monthly: '2,499', quarterly: '6,999', halfyearly: '12,999', yearly: '23,999' },
             features: [
-                'Stock futures setups',
-                'Trend and momentum analysis',
-                'Risk management logic',
-                'Daily strategy updates',
-                'WhatsApp support',
-                'Research desk access',
+                '5-10 swing trades monthly',
+                'Entry Zone',
+                'Stop Loss',
+                'Multiple Targets',
+                'Position Sizing',
+                'Holding Period: 3-20 Days',
+                'Risk-Reward Ratio: 1:2',
             ],
         },
         {
             slug: 'stock-option',
-            menuLabel: 'Stock Option',
-            title: 'Stock Option Premium',
-            prices: { quarterly: '75000', halfyearly: '125000', yearly: '150000' },
+            menuLabel: 'Facto Stock Options Elite',
+            title: 'Facto Stock Options Elite',
+            prices: { monthly: '4,999', quarterly: '13,999', halfyearly: '24,999', yearly: '44,999' },
             features: [
-                'Option strategy recommendations',
-                'Strike selection guidance',
-                'Volatility and momentum studies',
-                'Hedged risk framework',
-                'Expiry-focused updates',
-                'Priority support',
+                'Nifty & Bank Nifty setups',
+                'Call & Put opportunities',
+                'Option strategy reports',
+                'Risk management framework',
+                'Holding Period: Intraday to Weekly',
+                'Risk-Reward Ratio: 1:2 to 1:4',
             ],
         },
         {
             slug: 'index-future',
-            menuLabel: 'Index Future',
-            title: 'Index Future Premium',
-            prices: { quarterly: '75000', halfyearly: '125000', yearly: '150000' },
+            menuLabel: 'Facto Index Futures Momentum',
+            title: 'Facto Index Futures Momentum',
+            prices: { monthly: '2,999', quarterly: '7,999', halfyearly: '14,999', yearly: '26,999' },
             features: [
-                'Index futures recommendations',
-                'Nifty and Bank Nifty focus',
-                'Short-term and swing setups',
-                'Support and resistance levels',
-                'Live market support',
-                'Risk-first execution plan',
+                'Breakout opportunities',
+                'Volume analysis',
+                'Trend strength analysis',
+                'Target levels',
+                'Exit strategy',
+                'Holding Period: 2-15 Days',
+                'Risk-Reward Ratio: 1:2',
             ],
         },
         {
             slug: 'index-option',
-            menuLabel: 'Index Option',
-            title: 'Index Option Premium',
-            prices: { quarterly: '75000', halfyearly: '125000', yearly: '150000' },
+            menuLabel: 'Facto Index Options Elite',
+            title: 'Facto Index Options Elite',
+            prices: { monthly: '4,999', quarterly: '13,999', halfyearly: '24,999', yearly: '44,999' },
             features: [
-                'Index option strategies',
-                'Hedging and adjustment plans',
-                'Expiry trend analytics',
-                'Position sizing guidance',
-                'WhatsApp/SMS alerts',
-                'Dedicated support',
+                'Nifty & Bank Nifty setups',
+                'Call & Put opportunities',
+                'Option strategy reports',
+                'Risk management framework',
+                'Holding Period: Intraday to Weekly',
+                'Risk-Reward Ratio: 1:2 to 1:4',
             ],
         },
         {

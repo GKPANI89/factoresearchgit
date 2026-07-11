@@ -10,7 +10,8 @@ import StockFuturePricingPage from './pages/pricing/StockFuturePricingPage';
 import StockOptionPricingPage from './pages/pricing/StockOptionPricingPage';
 import IndexFuturePricingPage from './pages/pricing/IndexFuturePricingPage';
 import IndexOptionPricingPage from './pages/pricing/IndexOptionPricingPage';
-import InvestmentServicesPricingPage from './pages/pricing/InvestmentServicesPricingPage';
+import InvestmentServiceDetailPage from './pages/InvestmentServiceDetailPage';
+import TradingServiceDetailPage from './pages/TradingServiceDetailPage';
 import DisclaimerPage from './pages/legal/DisclaimerPage';
 import PrivacyPolicyPage from './pages/legal/PrivacyPolicyPage';
 import TermsConditionsPage from './pages/legal/TermsConditionsPage';
@@ -33,12 +34,11 @@ export const navLinks = [
 ];
 
 export const pricingLinks = [
-    { label: 'Stock Cash', path: '/pricing/stock-cash' },
-    { label: 'Stock Future', path: '/pricing/stock-future' },
-    { label: 'Stock Option', path: '/pricing/stock-option' },
-    { label: 'Index Future', path: '/pricing/index-future' },
-    { label: 'Index Option', path: '/pricing/index-option' },
-    { label: 'Investment Services', path: '/pricing/investment-services' },
+    { label: 'Facto Equity Cash Alpha', path: '/pricing/stock-cash' },
+    { label: 'Facto Stock Futures Pro', path: '/pricing/stock-future' },
+    { label: 'Facto Stock Options Elite', path: '/pricing/stock-option' },
+    { label: 'Facto Index Futures Momentum', path: '/pricing/index-future' },
+    { label: 'Facto Index Options Elite', path: '/pricing/index-option' },
 ];
 
 export const routeComponents = {
@@ -50,13 +50,24 @@ export const routeComponents = {
     '/services/portfolio-baskets': ServiceDetailPage,
     '/services/thematic-sectoral': ServiceDetailPage,
     '/services/educational-content': ServiceDetailPage,
+    '/services/trading/facto-market-pulse': TradingServiceDetailPage,
+    '/services/trading/facto-tradeedge': TradingServiceDetailPage,
+    '/services/trading/facto-swing-radar': TradingServiceDetailPage,
+    '/services/trading/facto-momentum-radar': TradingServiceDetailPage,
+    '/services/trading/facto-options-shield': TradingServiceDetailPage,
+    '/services/trading/facto-commodity-compass': TradingServiceDetailPage,
     '/pricing': PricingPage,
     '/pricing/stock-cash': StockCashPricingPage,
     '/pricing/stock-future': StockFuturePricingPage,
     '/pricing/stock-option': StockOptionPricingPage,
     '/pricing/index-future': IndexFuturePricingPage,
     '/pricing/index-option': IndexOptionPricingPage,
-    '/pricing/investment-services': InvestmentServicesPricingPage,
+    '/pricing/investment-services/facto-bluechip-core': InvestmentServiceDetailPage,
+    '/pricing/investment-services/facto-portfolio-xray': InvestmentServiceDetailPage,
+    '/pricing/investment-services/facto-midcap-alpha': InvestmentServiceDetailPage,
+    '/pricing/investment-services/facto-valuelens': InvestmentServiceDetailPage,
+    '/pricing/investment-services/facto-smallcap-edge': InvestmentServiceDetailPage,
+    '/pricing/investment-services/facto-wealth-baskets': InvestmentServiceDetailPage,
     '/about': AboutPage,
     '/contact': ContactPage,
     '/onboarding': OnboardingPage,

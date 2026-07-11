@@ -5,27 +5,30 @@ const MAIN_PAGES = [
     { label: 'Home', path: '/' },
     { label: 'About Us', path: '/about' },
     { label: 'Services', path: '/services' },
-    { label: 'Pricing', path: '/pricing' },
+    { label: 'HNI Research', path: '/pricing' },
     { label: 'Contact Us', path: '/contact' },
     { label: 'Onboarding', path: '/onboarding' },
 ];
 
 const SERVICE_PAGES = [
-    { label: 'Equities | F&O | MCX Research Analysis', path: '/services/equity-research' },
-    { label: 'Fundamental Research Reports', path: '/services/fundamental-research' },
-    { label: 'Technical Analysis, Market Trends & Live Index Tracking', path: '/services/technical-analysis' },
-    { label: 'Portfolio Baskets', path: '/services/portfolio-baskets' },
-    { label: 'Thematic & Sectoral Research', path: '/services/thematic-sectoral' },
-    { label: 'Educational Content & Market Learning', path: '/services/educational-content' },
+    { label: 'Facto TradeEdge', path: '/services/trading/facto-tradeedge' },
+    { label: 'Facto Swing Radar', path: '/services/trading/facto-swing-radar' },
+    { label: 'Facto Momentum Radar', path: '/services/trading/facto-momentum-radar' },
+    { label: 'Facto Options Shield', path: '/services/trading/facto-options-shield' },
+    { label: 'Facto Commodity Compass', path: '/services/trading/facto-commodity-compass' },
 ];
 
 const PRICING_PAGES = [
-    { label: 'Stock Cash', path: '/pricing/stock-cash' },
-    { label: 'Stock Future', path: '/pricing/stock-future' },
-    { label: 'Stock Option', path: '/pricing/stock-option' },
-    { label: 'Index Future', path: '/pricing/index-future' },
-    { label: 'Index Option', path: '/pricing/index-option' },
-    { label: 'Investment Services', path: '/pricing/investment-services' },
+    { label: 'Facto Equity Cash Alpha', path: '/pricing/stock-cash' },
+    { label: 'Facto Stock Futures Pro', path: '/pricing/stock-future' },
+    { label: 'Facto Stock Options Elite', path: '/pricing/stock-option' },
+    { label: 'Facto Index Futures Momentum', path: '/pricing/index-future' },
+    { label: 'Facto Index Options Elite', path: '/pricing/index-option' },
+    { label: 'Facto BlueChip Core', path: '/pricing/investment-services/facto-bluechip-core' },
+    { label: 'Facto MidCap Alpha', path: '/pricing/investment-services/facto-midcap-alpha' },
+    { label: 'Facto ValueLens', path: '/pricing/investment-services/facto-valuelens' },
+    { label: 'Facto SmallCap Edge', path: '/pricing/investment-services/facto-smallcap-edge' },
+    { label: 'Facto Wealth Baskets', path: '/pricing/investment-services/facto-wealth-baskets' },
 ];
 
 const LEGAL_PAGES = [
@@ -73,7 +76,7 @@ const SitemapPage = () => {
                 <div className="container legal-container">
                     {renderLinkGroup('Main Pages', MAIN_PAGES)}
                     {renderLinkGroup('Services', SERVICE_PAGES)}
-                    {renderLinkGroup('Pricing', PRICING_PAGES)}
+                    {renderLinkGroup('HNI Research', PRICING_PAGES)}
                     {renderLinkGroup('Legal & Compliance', LEGAL_PAGES)}
                 </div>
             </section>

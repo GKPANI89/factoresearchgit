@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { TrendingUp } from 'lucide-react';
-import { RouteLink } from '../router';
 import { siteData } from '../data/siteData';
 import homeShowcasePoster from '../assets/image.jpeg';
 import homeShowcaseVideo from '../assets/intro_video.mp4';
@@ -77,17 +76,12 @@ const Hero = () => {
                         {siteData.hero.description}
                     </Motion.p>
                     <Motion.div variants={textItem} className="hero-btns">
-                        <RouteLink
-                            to={siteData.hero.primaryAction.path}
-                            className="btn-primary"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                        >
+                        <a href={siteData.hero.primaryAction.path} className="btn-outline">
                             {siteData.hero.primaryAction.label}
-                        </RouteLink>
-                        <RouteLink to={siteData.hero.secondaryAction.path} className="btn-outline">
+                        </a>
+                        <a href={siteData.hero.secondaryAction.path} className="btn-outline">
                             {siteData.hero.secondaryAction.label}
-                        </RouteLink>
+                        </a>
                     </Motion.div>
                 </Motion.div>
 

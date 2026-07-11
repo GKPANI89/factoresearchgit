@@ -23,9 +23,6 @@ const LINKEDIN_URL = withFallback(import.meta.env.VITE_LINKEDIN_URL, '');
 const FACEBOOK_URL = withFallback(import.meta.env.VITE_FACEBOOK_URL, '');
 const YOUTUBE_URL = withFallback(import.meta.env.VITE_YOUTUBE_URL, '');
 
-const ONBOARDING_URL =
-    import.meta.env.VITE_ONBOARDING_URL || 'https://onboarding.cognifyai.in/Facto/';
-
 export const siteData = {
     brand: {
         name: APP_NAME,
@@ -37,8 +34,8 @@ export const siteData = {
         title: 'Research Built on Data\nReports Built on Facts.',
         description:
             `Facto Research is led by a veteran Research Analyst with over 15 years of deep-market experience. We help investors navigate Indian financial markets with clarity, confidence, and consistency through factoresearch.com.`,
-        primaryAction: { label: 'Onboarding', path: ONBOARDING_URL },
-        secondaryAction: { label: `About ${APP_NAME}`, path: '/about' },
+        primaryAction: { label: 'Trading Services', path: '#trading-services-carousel' },
+        secondaryAction: { label: 'Investments', path: '#investment-services-carousel' },
         stats: [
             { value: '15+', label: 'Years of Experience' },
             { value: 'SEBI', label: 'Reg. No. INH000024480' },

@@ -34,7 +34,7 @@ export const siteData = {
         title: 'Research Built on Data\nReports Built on Facts.',
         description:
             `Facto Research is led by a veteran Research Analyst with over 15 years of deep-market experience. We help investors navigate Indian financial markets with clarity, confidence, and consistency through factoresearch.com.`,
-        primaryAction: { label: 'Trading Services', path: '#trading-services-carousel' },
+        primaryAction: { label: 'Trading', path: '#trading-services-carousel' },
         secondaryAction: { label: 'Investments', path: '#investment-services-carousel' },
         stats: [
             { value: '15+', label: 'Years of Experience' },
@@ -330,7 +330,7 @@ export const siteData = {
             slug: 'stock-cash',
             menuLabel: 'Facto Equity Cash Alpha',
             title: 'Facto Equity Cash Alpha',
-            prices: { monthly: '1,999', quarterly: '5,499', halfyearly: '9,999', yearly: '17,999' },
+            prices: { monthly: '1,999', quarterly: '5,499', 'Half-Yearly': '9,999', yearly: '17,999' },
             features: [
                 'Daily trading opportunities',
                 'Entry Price',
@@ -345,7 +345,7 @@ export const siteData = {
             slug: 'stock-future',
             menuLabel: 'Facto Stock Futures Pro',
             title: 'Facto Stock Futures Pro',
-            prices: { monthly: '2,499', quarterly: '6,999', halfyearly: '12,999', yearly: '23,999' },
+            prices: { monthly: '2,499', quarterly: '6,999', 'Half-Yearly': '12,999', yearly: '23,999' },
             features: [
                 '5-10 swing trades monthly',
                 'Entry Zone',
@@ -360,7 +360,7 @@ export const siteData = {
             slug: 'stock-option',
             menuLabel: 'Facto Stock Options Elite',
             title: 'Facto Stock Options Elite',
-            prices: { monthly: '4,999', quarterly: '13,999', halfyearly: '24,999', yearly: '44,999' },
+            prices: { monthly: '4,999', quarterly: '13,999', 'Half-Yearly': '24,999', yearly: '44,999' },
             features: [
                 'Nifty & Bank Nifty setups',
                 'Call & Put opportunities',
@@ -374,7 +374,7 @@ export const siteData = {
             slug: 'index-future',
             menuLabel: 'Facto Index Futures Momentum',
             title: 'Facto Index Futures Momentum',
-            prices: { monthly: '2,999', quarterly: '7,999', halfyearly: '14,999', yearly: '26,999' },
+            prices: { monthly: '2,999', quarterly: '7,999', 'Half-Yearly': '14,999', yearly: '26,999' },
             features: [
                 'Breakout opportunities',
                 'Volume analysis',
@@ -389,7 +389,7 @@ export const siteData = {
             slug: 'index-option',
             menuLabel: 'Facto Index Options Elite',
             title: 'Facto Index Options Elite',
-            prices: { monthly: '4,999', quarterly: '13,999', halfyearly: '24,999', yearly: '44,999' },
+            prices: { monthly: '4,999', quarterly: '13,999', 'Half-Yearly': '24,999', yearly: '44,999' },
             features: [
                 'Nifty & Bank Nifty setups',
                 'Call & Put opportunities',
@@ -403,7 +403,7 @@ export const siteData = {
             slug: 'investment-services',
             menuLabel: 'Investment Services',
             title: 'Investment Services',
-            prices: { quarterly: 'Custom', halfyearly: 'Custom', yearly: 'Custom' },
+            prices: { quarterly: 'Custom', 'Half-Yearly': 'Custom', yearly: 'Custom' },
             features: [
                 'Portfolio guidance',
                 'Research-backed allocation ideas',
@@ -494,10 +494,10 @@ export const siteData = {
             'To be the most trusted name in independent equity research in India, where every recommendation is backed by 15 years of expertise and a commitment to the absolute facts.',
     },
     team: {
-        heading: 'We Belive In Team Work',
+        heading: 'We Believe In Team Work',
         members: [
             {
-                role: 'Cheif Research Ananlyst',
+                role: 'Chief Research Analyst',
                 description:
                     'A SEBI-registered Research Analyst with 15 years of expertise in equity research. Fundamental and technical analysis to deliver comprehensive market insights.',
             },
@@ -507,7 +507,7 @@ export const siteData = {
                     'Our team of specialized market analysts provides comprehensive, data-driven research across every market segment.',
             },
             {
-                role: 'Client support',
+                role: 'Client Support',
                 description:
                     'Our dedicated support team ensures seamless service and rapid resolution of all client inquiries and requirements.',
             },

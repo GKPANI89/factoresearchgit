@@ -76,10 +76,10 @@ const Hero = () => {
                         {siteData.hero.description}
                     </Motion.p>
                     <Motion.div variants={textItem} className="hero-btns">
-                        <a href={siteData.hero.primaryAction.path} className="btn-outline">
+                        <a href={siteData.hero.primaryAction.path} className="btn-primary">
                             {siteData.hero.primaryAction.label}
                         </a>
-                        <a href={siteData.hero.secondaryAction.path} className="btn-outline">
+                        <a href={siteData.hero.secondaryAction.path} className="btn-primary">
                             {siteData.hero.secondaryAction.label}
                         </a>
                     </Motion.div>

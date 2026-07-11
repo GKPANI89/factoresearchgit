@@ -30,7 +30,7 @@ const scrollToPricingPlans = () => {
 const durations = [
     { key: 'monthly', label: '1 Month Plan', badge: 'Starter' },
     { key: 'quarterly', label: '3 Months Plan', badge: 'Flexible Choice' },
-    { key: 'halfyearly', label: '6 Months Plan', badge: 'Popular' },
+    { key: 'Half-Yearly', label: '6 Months Plan', badge: 'Popular' },
     { key: 'yearly', label: '1 Year Plan', badge: 'Best Value' },
 ];
 
@@ -39,7 +39,7 @@ const premiumPricingContent = {
         title: 'Facto Equity Cash Alpha',
         plans: [
             { title: 'Quarterly', price: `${rupee}50000` },
-            { title: 'Halfyearly', price: `${rupee}75000` },
+            { title: 'Half-Yearly', price: `${rupee}75000` },
             { title: 'Yearly', price: `${rupee}115000` },
         ],
         features: [
@@ -55,7 +55,7 @@ const premiumPricingContent = {
         title: 'Facto Stock Future Pro',
         plans: [
             { title: 'Quarterly', price: `${rupee}75000` },
-            { title: 'Halfyearly', price: `${rupee}125000` },
+            { title: 'Half-Yearly', price: `${rupee}125000` },
             { title: 'Yearly', price: `${rupee}150000` },
         ],
         features: [
@@ -71,7 +71,7 @@ const premiumPricingContent = {
         title: 'Facto Stock Option Elite',
         plans: [
             { title: 'Quarterly', price: `${rupee}75000` },
-            { title: 'Halfyearly', price: `${rupee}125000` },
+            { title: 'Half-Yearly', price: `${rupee}125000` },
             { title: 'Yearly', price: `${rupee}150000` },
         ],
         features: [
@@ -87,7 +87,7 @@ const premiumPricingContent = {
         title: 'Facto Index Future Momentum',
         plans: [
             { title: 'Quarterly', price: `${rupee}75000` },
-            { title: 'Halfyearly', price: `${rupee}125000` },
+            { title: 'Half-Yearly', price: `${rupee}125000` },
             { title: 'Yearly', price: `${rupee}150000` },
         ],
         features: [
@@ -103,7 +103,7 @@ const premiumPricingContent = {
         title: 'Facto Index Option Elite',
         plans: [
             { title: 'Quarterly', price: `${rupee}75000` },
-            { title: 'Halfyearly', price: `${rupee}125000` },
+            { title: 'Half-Yearly', price: `${rupee}125000` },
             { title: 'Yearly', price: `${rupee}150000` },
         ],
         features: [

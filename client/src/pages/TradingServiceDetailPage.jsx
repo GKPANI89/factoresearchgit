@@ -1,19 +1,11 @@
 import React from 'react';
-import { CheckCircle2, ShieldCheck, Target, TrendingUp } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ShieldCheck, Target } from 'lucide-react';
 import { RouteLink } from '../router';
 import { useRouter } from '../useRouter';
 import { tradingServices } from '../data/homeServicesData';
+import RazorpayCheckoutButton from '../components/RazorpayCheckoutButton';
+import { formatServicePrice } from '../utils/servicePricing';
 import NotFoundPage from './NotFoundPage';
-
-const scrollToPricingDetails = () => {
-    const pricing = document.getElementById('service-pricing-details');
-
-    if (!pricing) {
-        return;
-    }
-
-    pricing.scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
 
 const TradingServiceDetailPage = () => {
     const { path } = useRouter();
@@ -31,6 +23,9 @@ const TradingServiceDetailPage = () => {
             <section className="investment-detail-hero">
                 <div className="container investment-detail-hero-grid">
                     <div>
+                        <RouteLink to="/services" className="investment-detail-back">
+                            <ArrowLeft size={18} /> Back to Services
+                        </RouteLink>
                         <h1>{service.title}</h1>
                         <p
                             className="service-detail-description"
@@ -39,15 +34,17 @@ const TradingServiceDetailPage = () => {
                             {service.summary}
                         </p>
                         <div className="investment-detail-actions">
-                            <button type="button" className="service-plan-btn" onClick={scrollToPricingDetails}>
-                                Subscribe <TrendingUp size={16} />
-                            </button>
+                            <RazorpayCheckoutButton
+                                amount={startPrice}
+                                serviceName={service.title}
+                                planName={service.pricing[0]?.[0]}
+                            />
                         </div>
                     </div>
 
                     <article className="investment-detail-summary-card">
                         <span>Starts at</span>
-                        <strong>{startPrice}</strong>
+                        <strong>{formatServicePrice(startPrice)}</strong>
                         <div className="investment-detail-metric-list">
                             {service.metrics.map(([label, value]) => (
                                 <div key={label}>
@@ -90,7 +87,7 @@ const TradingServiceDetailPage = () => {
                             {service.pricing.map(([duration, price]) => (
                                 <div key={duration}>
                                     <span>{duration}</span>
-                                    <strong>{price}</strong>
+                                    <strong>{formatServicePrice(price)}</strong>
                                 </div>
                             ))}
                         </div>

@@ -38,14 +38,12 @@ const ServiceDetailPage = () => {
                         transition={{ duration: 0.5 }}
                         className="page-header-card glass-card services-detail-header-card"
                     >
+                        <RouteLink to="/services" className="service-detail-back">
+                            <ArrowLeft size={16} /> Back to Services
+                        </RouteLink>
                         <span className="page-header-eyebrow">Service {serviceTag}</span>
                         <h1 className="page-header-title">{service.title}</h1>
                         <p className="page-header-subtitle">{service.overview}</p>
-                        <div className="services-detail-header-actions">
-                            <RouteLink to="/services" className="btn-outline">
-                                <ArrowLeft size={16} /> Back to All Services
-                            </RouteLink>
-                        </div>
                     </Motion.div>
                 </div>
             </section>

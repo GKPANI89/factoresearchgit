@@ -13,19 +13,11 @@ import {
 import { RouteLink } from '../router';
 import { siteData } from '../data/siteData';
 import { investmentServices } from '../data/homeServicesData';
+import RazorpayCheckoutButton from './RazorpayCheckoutButton';
+import { formatServicePrice } from '../utils/servicePricing';
 import heroImage from '../assets/image.jpeg';
 
 const rupee = '\u20b9';
-
-const scrollToPricingPlans = () => {
-    const pricing = document.getElementById('pricing');
-
-    if (!pricing) {
-        return;
-    }
-
-    pricing.scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
 
 const durations = [
     { key: 'monthly', label: '1 Month Plan', badge: 'Starter' },
@@ -327,7 +319,12 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                             </li>
                                         ))}
                                     </ul>
-                                    <strong>{plan.price}</strong>
+                                    <strong>{formatServicePrice(plan.price)}</strong>
+                                    <RazorpayCheckoutButton
+                                        amount={plan.price}
+                                        serviceName={premiumContent.title}
+                                        planName={plan.title}
+                                    />
                                 </article>
                             ))}
                         </div>
@@ -372,7 +369,7 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                             <Target size={34} />
                             <div>
                                 <span>Get started at</span>
-                                <strong>{startPrice}</strong>
+                                <strong>{formatServicePrice(startPrice)}</strong>
                             </div>
                         </div>
                     </article>
@@ -381,10 +378,10 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
 
             <section className="service-benefits-band">
                 <div className="container service-benefits-grid">
-                    {meta.benefits.map(([title, description, Icon]) => (
+                    {meta.benefits.map(([title, description, benefitIcon]) => (
                         <article key={title} className="service-benefit-item">
                             <span>
-                                <Icon size={24} />
+                                {React.createElement(benefitIcon, { size: 24 })}
                             </span>
                             <div>
                                 <h3>{title}</h3>
@@ -417,7 +414,9 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                 <article key={pkg.title} className="service-plan-card">
                                     <span className="service-plan-badge">{pkg.tag}</span>
                                     <h3>{pkg.title}</h3>
-                                    <strong className="service-plan-price">{pkg.pricing[0]?.[1]}</strong>
+                                    <strong className="service-plan-price">
+                                        {formatServicePrice(pkg.pricing[0]?.[1])}
+                                    </strong>
                                     <ul>
                                         {pkg.features.slice(0, 5).map((point) => (
                                             <li key={`${pkg.title}-${point}`}>
@@ -436,13 +435,15 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                         {pkg.pricing.map(([duration, price]) => (
                                             <div key={`${pkg.title}-${duration}`}>
                                                 <span>{duration}</span>
-                                                <strong>{price}</strong>
+                                                <strong>{formatServicePrice(price)}</strong>
                                             </div>
                                         ))}
                                     </div>
-                                    <button type="button" className="service-plan-btn" onClick={scrollToPricingPlans}>
-                                        Subscribe <TrendingUp size={16} />
-                                    </button>
+                                    <RazorpayCheckoutButton
+                                        amount={pkg.pricing[0]?.[1]}
+                                        serviceName={pkg.title}
+                                        planName={pkg.pricing[0]?.[0]}
+                                    />
                                 </article>
                             ))}
                         </div>
@@ -453,7 +454,7 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                     <span className="service-plan-badge">{duration.badge}</span>
                                     <h3>{duration.label}</h3>
                                     <strong className="service-plan-price">
-                                        {formatPlanPrice(selectedPlan.prices[duration.key])}
+                                        {formatServicePrice(formatPlanPrice(selectedPlan.prices[duration.key]))}
                                     </strong>
                                     <ul>
                                         {selectedPlan.features.map((feature) => (
@@ -463,9 +464,11 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                             </li>
                                         ))}
                                     </ul>
-                                    <button type="button" className="service-plan-btn" onClick={scrollToPricingPlans}>
-                                        Subscribe <TrendingUp size={16} />
-                                    </button>
+                                    <RazorpayCheckoutButton
+                                        amount={formatPlanPrice(selectedPlan.prices[duration.key])}
+                                        serviceName={selectedPlan.title}
+                                        planName={duration.label}
+                                    />
                                 </article>
                             ))}
                         </div>

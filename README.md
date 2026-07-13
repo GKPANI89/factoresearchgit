@@ -12,6 +12,7 @@ The frontend lives in `client/`.
 Set these values in `client/.env`:
 
 - `VITE_API_BASE_URL`: your API origin, for example `https://api.factoresearch.com`
+- `VITE_RAZORPAY_KEY_ID`: the Razorpay public key ID (never put the key secret in the client)
 
 Run the frontend:
 
@@ -20,6 +21,8 @@ cd client
 npm install
 npm run dev
 ```
+
+Local Vite can use the deployed API by keeping `VITE_API_BASE_URL=https://api.factoresearch.com`. If you are also running the backend locally, override it in `client/.env.local` with `VITE_API_BASE_URL=http://localhost:3001`.
 
 ## Backend setup
 
@@ -40,6 +43,8 @@ Set these values in `server/.env`:
 - `SMTP_GREETING_TIMEOUT_MS` (optional, default `10000`)
 - `SMTP_SOCKET_TIMEOUT_MS` (optional, default `20000`)
 - `SMTP_SEND_TIMEOUT_MS` (optional, default `25000`)
+- `RAZORPAY_KEY_ID`
+- `RAZORPAY_KEY_SECRET`
 
 Run the backend:
 
@@ -62,7 +67,7 @@ Set the required environment variables on your backend host to match `server/.en
 For `ALLOWED_ORIGINS`, include your frontend domains, for example:
 
 ```text
-https://factoresearch.com,https://www.factoresearch.com
+https://factoresearch.com,https://www.factoresearch.com,http://localhost:5173,http://127.0.0.1:5173
 ```
 
 ## Frontend deployment
@@ -71,6 +76,7 @@ Set this environment variable on the frontend host:
 
 ```text
 VITE_API_BASE_URL=https://api.factoresearch.com
+VITE_RAZORPAY_KEY_ID=your_razorpay_key_id
 ```
 
 Build the frontend from `client/`:
@@ -79,6 +85,12 @@ Build the frontend from `client/`:
 Build command: npm run build
 Publish directory: client/dist
 ```
+
+## Razorpay checkout
+
+Service Subscribe buttons create an order through `POST /api/create-order`, open Razorpay Standard Checkout, and verify successful payments through `POST /api/verify-payment`.
+
+Configure the matching Razorpay test or live credentials on both deployment hosts before building the frontend. Only the key ID belongs in the frontend environment. Keep the key secret on the backend host only.
 
 ## Mail behavior
 

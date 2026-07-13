@@ -1,7 +1,9 @@
 import 'dotenv/config';
+import { createHmac, timingSafeEqual } from 'node:crypto';
 import cors from 'cors';
 import express from 'express';
 import nodemailer from 'nodemailer';
+import Razorpay from 'razorpay';
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
@@ -22,6 +24,13 @@ const parseEnvPositiveInt = (value, fallback) => {
     const parsed = Number(normalizeEnv(value));
     return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
 };
+
+const razorpayKeyId = normalizeEnv(process.env.RAZORPAY_KEY_ID);
+const razorpayKeySecret = normalizeEnv(process.env.RAZORPAY_KEY_SECRET);
+const razorpay =
+    razorpayKeyId && razorpayKeySecret
+        ? new Razorpay({ key_id: razorpayKeyId, key_secret: razorpayKeySecret })
+        : null;
 
 const supportEmail = normalizeEnv(process.env.SUPPORT_EMAIL) || 'support@factoresearch.com';
 const fromName = normalizeEnv(process.env.SMTP_FROM_NAME) || 'Facto Research';
@@ -455,6 +464,82 @@ app.use(express.json({ limit: '1mb' }));
 
 app.get('/health', (_req, res) => {
     res.json({ ok: true });
+});
+
+app.post('/api/create-order', async (req, res) => {
+    const amount = Number(req.body?.amount);
+    const currency = normalizeText(req.body?.currency).toUpperCase() || 'INR';
+    const receipt = normalizeText(req.body?.receipt).replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 40);
+
+    if (!Number.isSafeInteger(amount) || amount < 100) {
+        res.status(400).json({ ok: false, error: 'Amount must be an integer of at least 100 paise.' });
+        return;
+    }
+
+    if (currency !== 'INR') {
+        res.status(400).json({ ok: false, error: 'Only INR payments are supported.' });
+        return;
+    }
+
+    if (!razorpay) {
+        res.status(500).json({ ok: false, error: 'Razorpay is not configured on the server.' });
+        return;
+    }
+
+    try {
+        const order = await razorpay.orders.create({
+            amount,
+            currency,
+            receipt: receipt || `facto-${Date.now().toString(36)}`,
+        });
+
+        res.json({ order_id: order.id, amount: order.amount, currency: order.currency });
+    } catch (error) {
+        const status = Number(error?.statusCode || error?.status);
+        const isAuthFailure = status === 401 || status === 403;
+
+        console.error('Razorpay order creation failed', {
+            status,
+            message: error?.error?.description || error?.message,
+        });
+        res.status(isAuthFailure ? 401 : 500).json({
+            ok: false,
+            error: isAuthFailure
+                ? 'Razorpay authentication failed on the server.'
+                : 'Unable to create the payment order right now.',
+        });
+    }
+});
+
+app.post('/api/verify-payment', (req, res) => {
+    const orderId = normalizeText(req.body?.razorpay_order_id);
+    const paymentId = normalizeText(req.body?.razorpay_payment_id);
+    const receivedSignature = normalizeText(req.body?.razorpay_signature);
+
+    if (!orderId || !paymentId || !receivedSignature) {
+        res.status(400).json({ ok: false, error: 'Payment verification fields are missing.' });
+        return;
+    }
+
+    if (!razorpayKeySecret) {
+        res.status(500).json({ ok: false, error: 'Razorpay is not configured on the server.' });
+        return;
+    }
+
+    const expectedSignature = createHmac('sha256', razorpayKeySecret)
+        .update(`${orderId}|${paymentId}`)
+        .digest('hex');
+    const expectedBuffer = Buffer.from(expectedSignature, 'utf8');
+    const receivedBuffer = Buffer.from(receivedSignature, 'utf8');
+    const isValid =
+        expectedBuffer.length === receivedBuffer.length && timingSafeEqual(expectedBuffer, receivedBuffer);
+
+    if (!isValid) {
+        res.status(400).json({ ok: false, error: 'Payment signature verification failed.' });
+        return;
+    }
+
+    res.json({ ok: true, message: 'Payment verified successfully.' });
 });
 
 app.get('/api/market-quotes', async (req, res) => {

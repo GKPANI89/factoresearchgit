@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { CheckCircle2, TrendingUp, X, XCircle } from 'lucide-react';
 import { createRazorpayOrder, verifyRazorpayPayment } from '../utils/razorpayApi';
 import { servicePriceToPaise } from '../utils/servicePricing';
@@ -94,7 +95,7 @@ const RazorpayCheckoutButton = ({ amount, serviceName, planName, className = 'se
                 {isProcessing ? 'Opening checkout…' : 'Subscribe'} <TrendingUp size={16} />
             </button>
 
-            {result && (
+            {result && createPortal(
                 <div className="payment-result-overlay" role="presentation">
                     <div
                         className={`payment-result-dialog payment-result-${result.type}`}
@@ -111,7 +112,8 @@ const RazorpayCheckoutButton = ({ amount, serviceName, planName, className = 'se
                             <X size={16} /> Close
                         </button>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     );

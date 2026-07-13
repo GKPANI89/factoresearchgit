@@ -324,6 +324,7 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                         amount={plan.price}
                                         serviceName={premiumContent.title}
                                         planName={plan.title}
+                                        plans={premiumContent.plans}
                                     />
                                 </article>
                             ))}
@@ -440,6 +441,7 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                                     amount={price}
                                                     serviceName={pkg.title}
                                                     planName={duration}
+                                                    plans={pkg.pricing}
                                                     className="service-price-subscribe-btn"
                                                 />
                                             </div>
@@ -469,6 +471,10 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                         amount={formatPlanPrice(selectedPlan.prices[duration.key])}
                                         serviceName={selectedPlan.title}
                                         planName={duration.label}
+                                        plans={durations.map((option) => ({
+                                            name: option.label,
+                                            price: formatPlanPrice(selectedPlan.prices[option.key]),
+                                        }))}
                                     />
                                 </article>
                             ))}

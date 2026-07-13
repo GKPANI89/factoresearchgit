@@ -38,6 +38,7 @@ const InvestmentServiceDetailPage = () => {
                                 amount={startPrice}
                                 serviceName={service.title}
                                 planName={service.pricing[0]?.[0]}
+                                plans={service.pricing}
                             />
                         </div>
                     </div>
@@ -93,6 +94,7 @@ const InvestmentServiceDetailPage = () => {
                                         amount={price}
                                         serviceName={service.title}
                                         planName={duration}
+                                        plans={service.pricing}
                                         className="service-price-subscribe-btn"
                                     />
                                 </div>

@@ -34,8 +34,8 @@ export const siteData = {
         title: 'Research Built on Data\nReports Built on Facts.',
         description:
             `Facto Research is led by a veteran Research Analyst with over 15 years of deep-market experience. We help investors navigate Indian financial markets with clarity, confidence, and consistency through factoresearch.com.`,
-        primaryAction: { label: 'Trading', path: '#trading-services-carousel' },
-        secondaryAction: { label: 'Investments', path: '#investment-services-carousel' },
+        secondaryAction: { label: 'Trading Services', path: '#trading-services-carousel' },
+        primaryAction: { label: 'Investing Services', path: '#investment-services-carousel' },
         stats: [
             { value: '15+', label: 'Years of Experience' },
             { value: 'SEBI', label: 'Reg. No. INH000024480' },

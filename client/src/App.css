@@ -3030,6 +3030,225 @@ li,
   opacity: 0.78;
 }
 
+.subscription-config-overlay {
+  position: fixed;
+  z-index: 19990;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(3, 12, 30, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.subscription-config-dialog {
+  width: min(100%, 760px);
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 22px;
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 30px 90px rgba(2, 6, 23, 0.34);
+}
+
+.subscription-config-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px;
+  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8fbff, #eef6ff);
+}
+
+.subscription-config-header span {
+  display: block;
+  margin-bottom: 3px;
+  color: #1B7FEA;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.subscription-config-header h2 {
+  margin: 0;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  line-height: 1.15;
+}
+
+.subscription-config-header > button {
+  display: grid;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #64748b;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.subscription-config-body {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.75fr) minmax(240px, 1.4fr) minmax(180px, 0.85fr);
+  gap: 24px;
+  align-items: end;
+  padding: 32px 28px;
+}
+
+.subscription-config-service,
+.subscription-config-price {
+  display: grid;
+  gap: 8px;
+}
+
+.subscription-config-service > span,
+.subscription-period-field > span,
+.subscription-config-price > span {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.subscription-config-service strong {
+  color: #0f172a;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.subscription-period-field {
+  display: grid;
+  gap: 8px;
+}
+
+.subscription-period-field > div {
+  position: relative;
+}
+
+.subscription-period-field select {
+  width: 100%;
+  min-height: 52px;
+  appearance: none;
+  padding: 0 48px 0 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: 0;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.subscription-period-field select:focus {
+  border-color: #1B7FEA;
+  box-shadow: 0 0 0 3px rgba(27, 127, 234, 0.14);
+}
+
+.subscription-period-field svg {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  pointer-events: none;
+  color: #475569;
+  transform: translateY(-50%);
+}
+
+.subscription-config-price {
+  text-align: right;
+}
+
+.subscription-config-price strong {
+  color: #1B7FEA;
+  -webkit-text-fill-color: #1B7FEA;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.subscription-config-price > small {
+  color: #64748b;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.subscription-config-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 28px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.subscription-config-actions button {
+  min-height: 48px;
+  padding: 10px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.subscription-continue-btn {
+  border: 1px solid #94a3b8;
+  background: #ffffff;
+  color: #334155;
+}
+
+.subscription-checkout-btn {
+  border: 1px solid #1B7FEA;
+  background: linear-gradient(135deg, #1B7FEA, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(27, 127, 234, 0.2);
+}
+
+.subscription-checkout-btn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (max-width: 720px) {
+  .subscription-config-overlay {
+    padding: 12px;
+  }
+
+  .subscription-config-dialog {
+    border-radius: 18px;
+  }
+
+  .subscription-config-header,
+  .subscription-config-body,
+  .subscription-config-actions {
+    padding-inline: 20px;
+  }
+
+  .subscription-config-body {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-block: 24px;
+  }
+
+  .subscription-config-price {
+    text-align: left;
+  }
+
+  .subscription-config-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .subscription-checkout-btn {
+    grid-row: 1;
+  }
+}
+
 .payment-result-overlay {
   position: fixed;
   z-index: 20000;

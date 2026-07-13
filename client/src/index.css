@@ -2436,8 +2436,8 @@ select:focus-visible,
 }
 
 #mobile-services-dropdown .dropdown-link-title {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
+  color: var(--text-primary) !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
   font-size: 0.98rem;
   font-weight: 500;
 }

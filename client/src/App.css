@@ -4798,6 +4798,12 @@ body:not(.theme-dark):not(.high-contrast) .disclosure-box strong {
   -webkit-text-fill-color: #1B7FEA !important;
 }
 
+#root .regulatory-disclosure-modal .modal-body,
+#root .regulatory-disclosure-modal .modal-body p {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
 #root .advice-modal-content,
 #root .advice-modal-content:hover {
   background: #ffffff !important;
@@ -4807,6 +4813,12 @@ body:not(.theme-dark):not(.high-contrast) .disclosure-box strong {
 #root .advice-modal-content #advice-modal-title {
   color: #1B7FEA !important;
   -webkit-text-fill-color: #1B7FEA !important;
+}
+
+#root .advice-modal-content .advice-modal-header p,
+#root .advice-modal-content .advice-form-field label {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
 }
 
 #root .advice-modal-content .advice-form input,

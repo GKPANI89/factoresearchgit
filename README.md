@@ -88,9 +88,9 @@ Publish directory: client/dist
 
 ## Razorpay checkout
 
-Service Subscribe buttons create an order through `POST /api/create-order`, open Razorpay Standard Checkout, and verify successful payments through `POST /api/verify-payment`.
+Service Subscribe buttons create an order through `POST /api/create-order`, add 18% GST to the base price on the server, open Razorpay Standard Checkout with the tax-inclusive total, and verify successful payments through `POST /api/verify-payment`.
 
-Configure the matching Razorpay test or live credentials on both deployment hosts before building the frontend. Only the key ID belongs in the frontend environment. Keep the key secret on the backend host only.
+Configure Razorpay credentials on the backend deployment. The create-order response supplies the public key ID to Checkout, while the key secret remains on the backend only. `VITE_RAZORPAY_KEY_ID` can remain as an optional frontend fallback.
 
 ## Mail behavior
 

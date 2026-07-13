@@ -44,13 +44,18 @@ const RazorpayCheckoutButton = ({ amount, serviceName, planName, className = 'se
                 currency: 'INR',
                 receipt: buildReceipt(serviceName),
             });
+            const checkoutKey = order.key_id || import.meta.env.VITE_RAZORPAY_KEY_ID;
+
+            if (!checkoutKey) {
+                throw new Error('Razorpay public key is missing from the server configuration.');
+            }
 
             const checkout = new window.Razorpay({
-                key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+                key: checkoutKey,
                 amount: order.amount,
                 currency: order.currency,
                 name: 'Facto Research',
-                description: `${serviceName}${planName ? ` - ${planName}` : ''}`,
+                description: `${serviceName}${planName ? ` - ${planName}` : ''} (incl. 18% GST)`,
                 order_id: order.order_id,
                 handler: async (payment) => {
                     try {

@@ -4,7 +4,7 @@ import { RouteLink } from '../router';
 import { useRouter } from '../useRouter';
 import { investmentServices } from '../data/homeServicesData';
 import RazorpayCheckoutButton from '../components/RazorpayCheckoutButton';
-import { formatServicePrice } from '../utils/servicePricing';
+import ServicePrice from '../components/ServicePrice';
 import NotFoundPage from './NotFoundPage';
 
 const InvestmentServiceDetailPage = () => {
@@ -44,7 +44,7 @@ const InvestmentServiceDetailPage = () => {
 
                     <article className="investment-detail-summary-card">
                         <span>Starts at</span>
-                        <strong>{formatServicePrice(startPrice)}</strong>
+                        <strong><ServicePrice price={startPrice} /></strong>
                         <div className="investment-detail-metric-list">
                             {service.metrics.map(([label, value]) => (
                                 <div key={label}>
@@ -83,11 +83,18 @@ const InvestmentServiceDetailPage = () => {
                             <div>
                                 <span>Duration</span>
                                 <span>Price</span>
+                                <span>Action</span>
                             </div>
                             {service.pricing.map(([duration, price]) => (
                                 <div key={duration}>
                                     <span>{duration}</span>
-                                    <strong>{formatServicePrice(price)}</strong>
+                                    <strong><ServicePrice price={price} /></strong>
+                                    <RazorpayCheckoutButton
+                                        amount={price}
+                                        serviceName={service.title}
+                                        planName={duration}
+                                        className="service-price-subscribe-btn"
+                                    />
                                 </div>
                             ))}
                         </div>

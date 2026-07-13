@@ -14,7 +14,7 @@ import { RouteLink } from '../router';
 import { siteData } from '../data/siteData';
 import { investmentServices } from '../data/homeServicesData';
 import RazorpayCheckoutButton from './RazorpayCheckoutButton';
-import { formatServicePrice } from '../utils/servicePricing';
+import ServicePrice from './ServicePrice';
 import heroImage from '../assets/image.jpeg';
 
 const rupee = '\u20b9';
@@ -319,7 +319,7 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                             </li>
                                         ))}
                                     </ul>
-                                    <strong>{formatServicePrice(plan.price)}</strong>
+                                    <strong><ServicePrice price={plan.price} /></strong>
                                     <RazorpayCheckoutButton
                                         amount={plan.price}
                                         serviceName={premiumContent.title}
@@ -369,7 +369,7 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                             <Target size={34} />
                             <div>
                                 <span>Get started at</span>
-                                <strong>{formatServicePrice(startPrice)}</strong>
+                                <strong><ServicePrice price={startPrice} /></strong>
                             </div>
                         </div>
                     </article>
@@ -415,7 +415,7 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                     <span className="service-plan-badge">{pkg.tag}</span>
                                     <h3>{pkg.title}</h3>
                                     <strong className="service-plan-price">
-                                        {formatServicePrice(pkg.pricing[0]?.[1])}
+                                        <ServicePrice price={pkg.pricing[0]?.[1]} />
                                     </strong>
                                     <ul>
                                         {pkg.features.slice(0, 5).map((point) => (
@@ -435,15 +435,16 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                         {pkg.pricing.map(([duration, price]) => (
                                             <div key={`${pkg.title}-${duration}`}>
                                                 <span>{duration}</span>
-                                                <strong>{formatServicePrice(price)}</strong>
+                                                <strong><ServicePrice price={price} /></strong>
+                                                <RazorpayCheckoutButton
+                                                    amount={price}
+                                                    serviceName={pkg.title}
+                                                    planName={duration}
+                                                    className="service-price-subscribe-btn"
+                                                />
                                             </div>
                                         ))}
                                     </div>
-                                    <RazorpayCheckoutButton
-                                        amount={pkg.pricing[0]?.[1]}
-                                        serviceName={pkg.title}
-                                        planName={pkg.pricing[0]?.[0]}
-                                    />
                                 </article>
                             ))}
                         </div>
@@ -454,7 +455,7 @@ const Pricing = ({ planSlug = 'stock-cash' }) => {
                                     <span className="service-plan-badge">{duration.badge}</span>
                                     <h3>{duration.label}</h3>
                                     <strong className="service-plan-price">
-                                        {formatServicePrice(formatPlanPrice(selectedPlan.prices[duration.key]))}
+                                        <ServicePrice price={formatPlanPrice(selectedPlan.prices[duration.key])} />
                                     </strong>
                                     <ul>
                                         {selectedPlan.features.map((feature) => (

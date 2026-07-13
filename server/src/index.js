@@ -467,11 +467,11 @@ app.get('/health', (_req, res) => {
 });
 
 app.post('/api/create-order', async (req, res) => {
-    const amount = Number(req.body?.amount);
+    const baseAmount = Number(req.body?.amount);
     const currency = normalizeText(req.body?.currency).toUpperCase() || 'INR';
     const receipt = normalizeText(req.body?.receipt).replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 40);
 
-    if (!Number.isSafeInteger(amount) || amount < 100) {
+    if (!Number.isSafeInteger(baseAmount) || baseAmount < 100) {
         res.status(400).json({ ok: false, error: 'Amount must be an integer of at least 100 paise.' });
         return;
     }
@@ -487,13 +487,28 @@ app.post('/api/create-order', async (req, res) => {
     }
 
     try {
+        const gstAmount = Math.round((baseAmount * 18) / 100);
+        const totalAmount = baseAmount + gstAmount;
         const order = await razorpay.orders.create({
-            amount,
+            amount: totalAmount,
             currency,
             receipt: receipt || `facto-${Date.now().toString(36)}`,
+            notes: {
+                base_amount_paise: String(baseAmount),
+                gst_rate: '18%',
+                gst_amount_paise: String(gstAmount),
+            },
         });
 
-        res.json({ order_id: order.id, amount: order.amount, currency: order.currency });
+        res.json({
+            order_id: order.id,
+            amount: order.amount,
+            currency: order.currency,
+            key_id: razorpayKeyId,
+            base_amount: baseAmount,
+            gst_amount: gstAmount,
+            gst_rate: 18,
+        });
     } catch (error) {
         const status = Number(error?.statusCode || error?.status);
         const isAuthFailure = status === 401 || status === 403;

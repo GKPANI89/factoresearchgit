@@ -1,22 +1,10 @@
-export const SERVICE_TAX_LABEL = '+GST(incl. of taxes)';
+export const SERVICE_GST_RATE = 18;
 
-export const formatServicePrice = (price) => {
-    const normalized = String(price || '').trim();
-
-    if (!normalized || normalized.toLowerCase() === 'custom') {
-        return normalized || 'Custom';
-    }
-
-    return `${normalized} ${SERVICE_TAX_LABEL}`;
-};
+const extractRupeeAmounts = (price) =>
+    Array.from(String(price || '').matchAll(/₹\s*([\d,]+(?:\.\d{1,2})?)/g), (match) =>
+        Math.round(Number(match[1].replaceAll(',', '')) * 100)
+    ).filter((amount) => Number.isSafeInteger(amount) && amount > 0);
 
 export const servicePriceToPaise = (price) => {
-    const firstAmount = String(price || '').match(/[\d,]+/);
-
-    if (!firstAmount) {
-        return null;
-    }
-
-    const rupees = Number(firstAmount[0].replaceAll(',', ''));
-    return Number.isSafeInteger(rupees) && rupees > 0 ? rupees * 100 : null;
+    return extractRupeeAmounts(price)[0] || null;
 };

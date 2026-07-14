@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { CheckCircle2, ChevronDown, TrendingUp, X, XCircle } from 'lucide-react';
+import { CheckCircle2, ChevronDown, X, XCircle } from 'lucide-react';
 import { createRazorpayOrder, verifyRazorpayPayment } from '../utils/razorpayApi';
 import { servicePriceToPaise } from '../utils/servicePricing';
 import ServicePrice from './ServicePrice';
@@ -138,7 +138,7 @@ const RazorpayCheckoutButton = ({
     return (
         <>
             <button type="button" className={className} onClick={openConfiguration}>
-                Subscribe <TrendingUp size={16} />
+                SUBSCRIBE
             </button>
 
             {isConfigOpen && createPortal(

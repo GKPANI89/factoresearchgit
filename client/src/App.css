@@ -3879,21 +3879,34 @@ li,
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
   gap: 28px;
+  align-items: start;
 }
 
 .investment-detail-panel {
-  padding: 30px;
+  padding: 22px;
   border-radius: 12px;
   border: 1px solid rgba(27, 127, 234, 0.16);
   background: #ffffff;
   box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
 }
 
+.investment-detail-layout > .investment-detail-panel:last-child {
+  padding: 16px;
+}
+
+.investment-detail-layout > .investment-detail-panel:last-child .investment-detail-panel-head {
+  margin-bottom: 10px;
+}
+
+.investment-detail-layout > .investment-detail-panel:last-child .investment-detail-panel-head h2 {
+  font-size: 1.45rem;
+}
+
 .investment-detail-panel-head {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 22px;
+  margin-bottom: 14px;
 }
 
 .investment-detail-panel-head svg {
@@ -3909,7 +3922,7 @@ li,
 .investment-detail-feature-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 10px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -3922,7 +3935,7 @@ li,
   color: #111827;
   font-weight: 700;
   line-height: 1.45;
-  padding: 12px;
+  padding: 9px 10px;
   border-radius: 8px;
   background: #f6faff;
 }
@@ -3944,8 +3957,8 @@ li,
   display: grid;
   grid-template-columns: minmax(90px, 1fr) minmax(160px, auto) auto;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 10px;
+  padding: 9px 12px;
   border-bottom: 1px solid rgba(27, 127, 234, 0.12);
 }
 
@@ -3961,6 +3974,7 @@ li,
 .investment-detail-price-table span,
 .investment-detail-price-table strong {
   color: #111827;
+  font-size: 0.86rem;
   font-weight: 800;
 }
 
@@ -3968,7 +3982,7 @@ li,
   .investment-detail-price-table div {
     grid-template-columns: minmax(72px, 0.8fr) minmax(118px, 1.2fr) auto;
     gap: 8px;
-    padding: 12px 10px;
+    padding: 8px;
   }
 
   .investment-detail-price-table .service-price-subscribe-btn {

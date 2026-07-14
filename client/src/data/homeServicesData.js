@@ -85,7 +85,7 @@ export const investmentServices = [
         path: '/pricing/investment-services/facto-valuelens',
         summary: 'Undervalued stock research using intrinsic value, valuation reports, and margin-of-safety checks.',
         features: [
-            'Undervalued stock opportunities',
+            '5 Undervalued stock ideas',
             'Intrinsic value calculations',
             'Valuation report',
             'Margin of safety analysis',
@@ -139,7 +139,7 @@ export const investmentServices = [
         path: '/pricing/investment-services/facto-wealth-baskets',
         summary: 'Model portfolios with stock allocation, buy/sell updates, quarterly rebalancing, and long-term strategy.',
         features: [
-            'Model portfolio',
+            'Model portfolios',
             'Stock allocation percentage',
             'Buy and sell updates',
             'Quarterly rebalancing',
@@ -190,7 +190,7 @@ export const tradingServices = [
         tag: 'Cash Market',
         path: '/services/trading/facto-tradeedge',
         summary: 'Daily cash-market trading opportunities with clear entry, target, stop-loss, and risk management.',
-        features: ['Daily trading opportunities', 'Entry Price', 'Customer Support', 'Stop Loss', 'Target Price', 'Risk Management'],
+        features: ['Daily 1 or 2 trading ideas', 'Entry Price', 'Customer Support', 'Stop Loss', 'Target Price', 'Risk Management'],
         metrics: [
             ['Holding Period', 'Intraday'],
             ['Risk-Reward Ratio', '1:2'],
@@ -230,7 +230,7 @@ export const tradingServices = [
         tag: 'Momentum Trading',
         path: '/services/trading/facto-momentum-radar',
         summary: 'Breakout and momentum trading ideas supported by volume analysis, trend strength, and exit planning.',
-        features: ['Breakout opportunities', 'Volume analysis', 'Customer Support','Trend strength analysis', 'Target levels', 'Strategies'],
+        features: ['1 or 2 Breakout ideas', 'Volume analysis', 'Customer Support','Trend strength analysis', 'Target levels', 'Strategies'],
         metrics: [
             ['Holding Period', '2-10 Days'],
             ['Risk-Reward Ratio', '1:2'],
@@ -251,8 +251,8 @@ export const tradingServices = [
         path: '/services/trading/facto-options-shield',
         summary: 'Options research for Nifty and Bank Nifty with call/put opportunities, strategy reports, and risk controls.',
         features: [
-            'Nifty & Bank Nifty ideas',
-            'Call & Put opportunities',
+            'Nifty & Sensex ideas',
+            '1 or 2 Call & Put ideas',
             'Customer Support',
             'Option strategies',
             'Risk management framework',

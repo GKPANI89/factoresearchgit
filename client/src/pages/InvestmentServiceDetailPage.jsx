@@ -23,7 +23,14 @@ const InvestmentServiceDetailPage = () => {
             <section className="investment-detail-hero">
                 <div className="container investment-detail-hero-grid">
                     <div>
-                        <RouteLink to="/services" className="investment-detail-back">
+                        <RouteLink
+                            to="/services"
+                            className="investment-detail-back"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                window.dispatchEvent(new Event('open-services-menu'));
+                            }}
+                        >
                             <ArrowLeft size={18} /> Back to Services
                         </RouteLink>
                         <h1>{service.title}</h1>

@@ -154,7 +154,7 @@ const RazorpayCheckoutButton = ({
                         <header className="subscription-config-header">
                             <div>
                                 <span>Subscription</span>
-                                <h2 id="subscription-config-title">Configure Your Service</h2>
+                                {/* <h2 id="subscription-config-title">Configure Your Service</h2> */}
                             </div>
                             <button type="button" onClick={closeConfiguration} aria-label="Close configuration">
                                 <X size={24} />

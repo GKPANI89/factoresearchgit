@@ -38,7 +38,14 @@ const ServiceDetailPage = () => {
                         transition={{ duration: 0.5 }}
                         className="page-header-card glass-card services-detail-header-card"
                     >
-                        <RouteLink to="/services" className="service-detail-back">
+                        <RouteLink
+                            to="/services"
+                            className="service-detail-back"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                window.dispatchEvent(new Event('open-services-menu'));
+                            }}
+                        >
                             <ArrowLeft size={16} /> Back to Services
                         </RouteLink>
                         <span className="page-header-eyebrow">Service {serviceTag}</span>

@@ -244,6 +244,29 @@ const Navbar = () => {
     }, []);
 
     useEffect(() => {
+        const handleOpenServicesMenu = () => {
+            const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+            setIsPricingMenuOpen(false);
+            setIsMobilePricingMenuOpen(false);
+
+            if (isMobile) {
+                setIsMobileMenuOpen(true);
+                setIsMobileServicesMenuOpen(true);
+                setIsServicesMenuOpen(false);
+            } else {
+                setIsMobileMenuOpen(false);
+                setIsMobileServicesMenuOpen(false);
+                setIsServicesMenuOpen(true);
+                window.requestAnimationFrame(() => servicesTriggerRef.current?.focus());
+            }
+        };
+
+        window.addEventListener('open-services-menu', handleOpenServicesMenu);
+        return () => window.removeEventListener('open-services-menu', handleOpenServicesMenu);
+    }, []);
+
+    useEffect(() => {
         const handleOutsideClick = (event) => {
             if (servicesMenuRef.current && !servicesMenuRef.current.contains(event.target)) {
                 setIsServicesMenuOpen(false);

@@ -3056,7 +3056,7 @@ li,
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 24px 28px;
+  padding: 14px 24px;
   border-bottom: 1px solid #e2e8f0;
   background: linear-gradient(135deg, #f8fbff, #eef6ff);
 }
@@ -3081,9 +3081,9 @@ li,
 
 .subscription-config-header > button {
   display: grid;
-  flex: 0 0 42px;
-  width: 42px;
-  height: 42px;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
   place-items: center;
   border: 0;
   border-radius: 50%;
@@ -3098,7 +3098,7 @@ li,
   grid-template-columns: minmax(150px, 0.75fr) minmax(240px, 1.4fr) minmax(180px, 0.85fr);
   gap: 24px;
   align-items: end;
-  padding: 32px 28px;
+  padding: 20px 24px;
 }
 
 .subscription-config-service,
@@ -3134,7 +3134,7 @@ li,
 
 .subscription-period-field select {
   width: 100%;
-  min-height: 52px;
+  min-height: 46px;
   appearance: none;
   padding: 0 48px 0 16px;
   border: 1px solid #cbd5e1;
@@ -3182,14 +3182,14 @@ li,
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  padding: 18px 28px;
+  padding: 12px 24px;
   border-top: 1px solid #e2e8f0;
   background: #f8fafc;
 }
 
 .subscription-config-actions button {
-  min-height: 48px;
-  padding: 10px 20px;
+  min-height: 42px;
+  padding: 8px 18px;
   border-radius: 9px;
   cursor: pointer;
   font: inherit;
@@ -3231,8 +3231,16 @@ li,
 
   .subscription-config-body {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding-block: 24px;
+    gap: 14px;
+    padding-block: 18px;
+  }
+
+  .subscription-config-header {
+    padding-block: 12px;
+  }
+
+  .subscription-config-actions {
+    padding-block: 12px;
   }
 
   .subscription-config-price {
@@ -4389,6 +4397,12 @@ li,
   font-weight: 900;
 }
 
+.stock-cash-premium-card strong .service-gst-label {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  opacity: 0.9;
+}
+
 .stock-cash-premium-card .service-plan-btn {
   margin-top: 18px;
 }
@@ -4859,7 +4873,23 @@ li,
 
 .investment-detail-page .investment-detail-summary-card {
   width: min(100%, 520px);
-  padding: 56px clamp(24px, 2.8vw, 36px) 34px;
+  padding: 24px clamp(22px, 2.5vw, 30px) 16px;
+}
+
+.investment-detail-page .investment-detail-summary-card > span {
+  margin-bottom: 4px;
+}
+
+.investment-detail-page .investment-detail-summary-card > strong {
+  margin-bottom: 6px;
+}
+
+.investment-detail-page .investment-detail-metric-list {
+  gap: 0;
+}
+
+.investment-detail-page .investment-detail-metric-list div {
+  padding-block: 5px;
 }
 
 .investment-detail-page .investment-detail-metric-list div {
@@ -4924,7 +4954,7 @@ li,
 
   .investment-detail-page .investment-detail-summary-card {
     width: min(100%, 360px);
-    padding: 46px 18px 22px;
+    padding: 22px 16px 14px;
   }
 
   .investment-detail-page .investment-detail-metric-list div {
@@ -5235,6 +5265,14 @@ body:not(.theme-dark):not(.high-contrast) .disclosure-box strong {
 #root .modal-content .warning-icon {
   color: #16a34a !important;
   stroke: #16a34a !important;
+}
+
+/* Keep the GST suffix white inside HNI blue price badges. */
+#root body:not(.theme-dark):not(.high-contrast) .stock-cash-premium-card strong .service-gst-label,
+#root .stock-cash-premium-card strong .service-gst-label {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  opacity: 1;
 }
 
 /* Investment service hero final alignment */

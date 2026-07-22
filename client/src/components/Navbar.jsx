@@ -30,6 +30,7 @@ const LEGACY_HIGH_CONTRAST_STORAGE_KEY = 'factoHighContrastMode';
 const MIN_FONT_SCALE = 0.9;
 const MAX_FONT_SCALE = 1.4;
 const FONT_STEP = 0.1;
+const ONBOARDING_URL = 'https://onboarding.cognifyai.in/Facto/';
 
 const clampFontScale = (value) => {
     const numeric = Number(value);
@@ -674,7 +675,7 @@ const Navbar = () => {
                         </button>
                     </div>
                     <RouteLink
-                        to={siteData.hero.primaryAction.path}
+                        to={ONBOARDING_URL}
                         className="nav-cta"
                         target="_blank"
                         rel="noreferrer noopener"
@@ -841,7 +842,7 @@ const Navbar = () => {
                         </button>
                     </div>
                     <RouteLink
-                        to={siteData.hero.primaryAction.path}
+                        to={ONBOARDING_URL}
                         className="nav-cta"
                         onClick={handleMobileClose}
                         target="_blank"

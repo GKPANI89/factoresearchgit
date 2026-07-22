@@ -674,14 +674,9 @@ const Navbar = () => {
                             )}
                         </button>
                     </div>
-                    <RouteLink
-                        to={ONBOARDING_URL}
-                        className="nav-cta"
-                        target="_blank"
-                        rel="noreferrer noopener"
-                    >
+                    <a href={ONBOARDING_URL} className="nav-cta">
                         Onboarding <ArrowUpRight size={16} />
-                    </RouteLink>
+                    </a>
                 </div>
 
                 <button
@@ -841,15 +836,9 @@ const Navbar = () => {
                             )}
                         </button>
                     </div>
-                    <RouteLink
-                        to={ONBOARDING_URL}
-                        className="nav-cta"
-                        onClick={handleMobileClose}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                    >
+                    <a href={ONBOARDING_URL} className="nav-cta">
                         Onboarding
-                    </RouteLink>
+                    </a>
                 </div>
             )}
         </nav>

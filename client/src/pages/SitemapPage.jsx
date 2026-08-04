@@ -7,7 +7,7 @@ const MAIN_PAGES = [
     { label: 'Services', path: '/services' },
     { label: 'HNI Research', path: '/pricing' },
     { label: 'Contact Us', path: '/contact' },
-    { label: 'Onboarding', path: '/onboarding' },
+    { label: 'Onboarding', path: 'https://onboarding.cognifyai.in/Facto/' },
 ];
 
 const SERVICE_PAGES = [

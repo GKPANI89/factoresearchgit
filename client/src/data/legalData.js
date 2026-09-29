@@ -959,7 +959,10 @@ export const complaintBoardData = {
     monthlyTrendTable: {
         headers: ['S.No', 'Month', 'Carried forward from previous month', 'Received', 'Resolved', 'Pending'],
         rows: [
-            ['1', 'August - 2026', '0', '0', '0', '0'],
+            ['1', 'May - 2026', '0', '0', '0', '0'],
+            ['2', 'June - 2026', '0', '0', '0', '0'],
+            ['3', 'July - 2026', '0', '0', '0', '0'],
+            ['4', 'August - 2026', '0', '0', '0', '0'],
             ['', 'Total', '0', '0', '0', '0'],
         ],
     },

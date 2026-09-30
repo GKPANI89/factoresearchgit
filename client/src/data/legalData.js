@@ -937,7 +937,7 @@ export const legalDocuments = {
 
 export const complaintBoardData = {
     title: 'Complaint Board',
-    monthEnding: 'August 2026',
+    monthEnding: 'September 2026',
     sourceTable: {
         headers: [
             'S.No.',
@@ -962,7 +962,7 @@ export const complaintBoardData = {
             ['1', 'May - 2026', '0', '0', '0', '0'],
             ['2', 'June - 2026', '0', '0', '0', '0'],
             ['3', 'July - 2026', '0', '0', '0', '0'],
-            ['4', 'August - 2026', '0', '0', '0', '0'],
+            ['4', 'September - 2026', '0', '0', '0', '0'],
             ['', 'Total', '0', '0', '0', '0'],
         ],
     },
@@ -975,7 +975,7 @@ export const complaintBoardData = {
 export const complianceAuditStatus = {
     title: 'Compliance Audit Status',
     subtitle: 'Current compliance audit publication status.',
-    status: 'Latest status updated for August 2026.',
+    status: 'Latest status updated for September 2026.',
     points: [
         'Compliance audit status records are maintained in accordance with applicable SEBI regulations.',
         'Detailed audit status documents are published through official disclosures.',
